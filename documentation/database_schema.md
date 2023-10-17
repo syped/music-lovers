@@ -10,9 +10,6 @@
 | last_name           | string          | not null,                 |
 | password            | string          | not null,                 |
 | email               | string          | not null, indexed, unique |
-| num_followers       | integer         | not null                  |
-| created_at          | datetime        | not null                  |
-| updated_at          | datetime        | not null                  |
 
 ## `albums`
 
@@ -22,8 +19,6 @@
 | album_name          | string(50)      | not null                  |
 | artist_id           | integer         | not null, foreign key     |
 | release_year        | integer         | not null                  |
-| created_at          | datetime        | not null                  |
-| updated_at          | datetime        | not null                  |
 
 * `artist_id` references `artists` table
 
@@ -37,8 +32,6 @@
 | length              | decimal(5,2)    | not null, indexed, unique |
 | album_id            | integer         | not null, foreign key     |
 | artist_id           | integer         | not null, foreign key     |
-| created_at          | datetime        | not null                  |
-| updated_at          | datetime        | not null                  |
 
 * `album_id` references `albums` table
 * `artist_id` references `artists` table
@@ -64,8 +57,6 @@
 | id                  | integer         | not null, primary key     |
 | song_id             | integer         | not null, foreign key     |
 | artist_id           | integer         | not null, foreign key     |
-| created_at          | datetime        | not null                  |
-| updated_at          | datetime        | not null                  |
 
 * `artist_id` references `artists` table
 * `song_id` references `songs` table
@@ -76,8 +67,6 @@
 | ------------------- | --------------- | ------------------------- |
 | id                  | integer         | not null, primary key     |
 | song_id             | integer         | not null, foreign key     |
-| aws                 | string          | not null                  |
-| created_at          | datetime        | not null                  |
-| updated_at          | datetime        | not null                  |
+| url                 | string          | not null                  |
 
 * `song_id` references `songs` table
