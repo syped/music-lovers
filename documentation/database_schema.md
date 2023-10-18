@@ -61,12 +61,26 @@
 * `artist_id` references `artists` table
 * `song_id` references `songs` table
 
-## `song_images`
+## `album_images`
 
 | column name         | data type       | details                   |
 | ------------------- | --------------- | ------------------------- |
 | id                  | integer         | not null, primary key     |
+| album_id            | integer         | not null, foreign key     |
 | song_id             | integer         | not null, foreign key     |
 | url                 | string          | not null                  |
 
+* `album_id` references `albums` table
 * `song_id` references `songs` table
+
+## `playlist_images`
+
+| column name         | data type       | details                   |
+| ------------------- | --------------- | ------------------------- |
+| id                  | integer         | not null, primary key     |
+| playlist_id         | integer         | not null, foreign key     |
+| album_images_id     | integer         | not null, foreign key     |
+| url                 | string          | not null                  |
+
+* `playlist_id` references `playlists` table
+* `album_images_id` references `album_images` table
