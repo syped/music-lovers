@@ -13,9 +13,9 @@ class Playlist(db.Model):
     created_at = db.Column(db.Date)
     updated_at = db.Column(db.Date)
 
-    users = db.relationship("User", back_populates="playlists")
-    song = db.relationship("Song", back_populates="playlists")
-    playlist_images = db.relationship("Playlist_image", back_populates="playlists")
+    user = db.relationship("User", back_populates="playlist")
+    song = db.relationship("Song", back_populates="playlist")
+    playlist_image = db.relationship("PlaylistImage", back_populates="playlist")
 
     def to_dict(self):
         return {

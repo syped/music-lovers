@@ -11,8 +11,9 @@ class Album(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     release_year = db.Column(db.Integer, nullable=False)
 
-    users = db.relationship("User", back_populates="album")
-    album_images = db.relationship("Album_image", back_populates="album")
+    user = db.relationship("User", back_populates="album")
+    album_image = db.relationship("AlbumImage", back_populates="album")
+    song = db.relationship("Song", back_populates="album")
 
     def to_dict(self):
         return {

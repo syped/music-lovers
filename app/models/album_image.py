@@ -1,6 +1,6 @@
 from .db import db, environment, SCHEMA
 
-class Album_image(db.Model):
+class AlbumImage(db.Model):
     __tablename__ = 'album_images'
 
     if environment == "production":
@@ -11,9 +11,9 @@ class Album_image(db.Model):
     song_id = db.Column(db.Integer, db.ForeignKey("songs.id"))
     url = db.Column(db.String)
 
-    album = db.relationship("Album", back_populates="album_images")
-    song = db.relationship("Song", back_populates="album_images")
-    playlist_images = db.relationship("Playlist_image", back_populates="album_images")
+    album = db.relationship("Album", back_populates="album_image")
+    song = db.relationship("Song", back_populates="album_image")
+    playlist_image = db.relationship("PlaylistImage", back_populates="album_image")
 
     def to_dict(self):
         return {

@@ -13,11 +13,11 @@ class Song(db.Model):
     album_id = db.Column(db.Integer, db.ForeignKey("albums.id"))
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 
-    users = db.relationship("User", back_populates="song")
-    albums = db.relationship("Album", back_populates="song")
-    playlists = db.relationship("Playlist", back_populates="song")
-    likes = db.relationship("Like", back_populates="song")
-    album_images = db.relationship("Album_image", back_populates="song")
+    user = db.relationship("User", back_populates="song")
+    album = db.relationship("Album", back_populates="song")
+    playlist = db.relationship("Playlist", back_populates="song")
+    like = db.relationship("Like", back_populates="song")
+    album_image = db.relationship("AlbumImage", back_populates="song")
 
     def to_dict(self):
         return {

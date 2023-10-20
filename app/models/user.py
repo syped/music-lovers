@@ -16,10 +16,10 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String, nullable=False)
     hashed_password = db.Column(db.String(255), nullable=False)
 
-    album = db.relationship("Album", back_populates="users")
-    song = db.relationship("Song", back_populates="users")
-    playlists = db.relationship("Playlist", back_populates="users")
-    likes = db.relationship("Like", back_populates="users")
+    album = db.relationship("Album", back_populates="user")
+    song = db.relationship("Song", back_populates="user")
+    playlist = db.relationship("Playlist", back_populates="user")
+    like = db.relationship("Like", back_populates="user")
 
     @property
     def password(self):
