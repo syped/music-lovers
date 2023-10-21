@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 class Album(db.Model):
     __tablename__ = 'albums'
@@ -8,7 +8,7 @@ class Album(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     album_name = db.Column(db.String(255), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
     release_year = db.Column(db.Integer, nullable=False)
 
     user = db.relationship("User", back_populates="album")
