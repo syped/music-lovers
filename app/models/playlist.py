@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 class Playlist(db.Model):
     __tablename__ = 'playlists'
@@ -8,8 +8,8 @@ class Playlist(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     playlist_name = db.Column(db.String(255), nullable=False)
-    song_id = db.Column(db.Integer, db.ForeignKey("songs.id"))
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    song_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("songs.id")))
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
     created_at = db.Column(db.Date)
     updated_at = db.Column(db.Date)
 
