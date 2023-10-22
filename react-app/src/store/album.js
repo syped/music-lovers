@@ -14,6 +14,11 @@ const loadSingleAlbum = (album) => ({
   album,
 });
 
+const createAlbum = (album) => ({
+    type: CREATE_ALBUM,
+    album
+})
+
 //THUNKS
 export const getAlbums = () => async (dispatch) => {
   const response = await fetch("/api/albums");
@@ -41,6 +46,20 @@ export const getSingleAlbum = (albumId) => async (dispatch) => {
   }
 };
 
+export const createAlbumThunk = (album) => async (dispatch) => {
+  const response = await fetch(`/api/albums`, {
+    method: "POST",
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(album)
+  });
+
+  if (response.ok) {
+    const newAlbum = await response.json();
+    dispatch(createAlbum(newAlbum));
+    return newAlbum;
+  }
+};
+
 //REDUCER
 
 const initialState = {
@@ -58,6 +77,10 @@ const albumsReducer = (state = initialState, action) => {
     case GET_SINGLE_ALBUM:
       newState = { ...state };
       newState.singleAlbum = action.album;
+      return newState;
+    case CREATE_ALBUM:
+      newState = { ...state};
+      newState.allAlbums = action.album;
       return newState;
     default:
       return state;
