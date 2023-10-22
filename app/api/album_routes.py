@@ -4,7 +4,7 @@ from app.models import Album, db
 from app.forms.album_form import AlbumForm
 from .auth_routes import validation_errors_to_error_messages
 
-album_routes = Blueprint('albums', __name__) 
+album_routes = Blueprint('albums', __name__)
 
 #GET ALL ALBUMS
 @album_routes.route('/')
@@ -20,7 +20,7 @@ def get_single_album():
         return album.to_dict()
     else:
         return {"error": "Album not found"}, 404
-    
+
 #CREATE AN ALBUM
 @album_routes.route('/', methods=['POST'])
 @login_required
@@ -30,7 +30,7 @@ def create_album():
     if form.validate_on_submit():
         new_album = Album(
             user_id = form.data['user_id'],
-            album_name = form.data['album_name']
+            album_name = form.data['album_name'],
             release_year = form.data['release_year']
         )
         db.session.add(new_album)
@@ -38,7 +38,7 @@ def create_album():
         return new_album.to_dict()
     else:
         return {'errors': validation_errors_to_error_messages(form.errors)}, 400
-    
+
 #EDIT ALBUM
 @album_routes.route('/<album_id>', methods=['PUT'])
 @login_required
@@ -54,7 +54,7 @@ def edit_album(id):
         return album.to_dict()
     else:
         return {'errors': validation_errors_to_error_messages(form.errors)}, 400
-    
+
 #DELETE ALBUM
 @album_routes.route('/<album_id>', methods=['DELETE'])
 @login_required

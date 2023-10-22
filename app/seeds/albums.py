@@ -3,12 +3,12 @@ from sqlalchemy.sql import text
 
 def seed_albums():
     album1 = Album(
-        user_id=1, 
-        album_name="SQUARE ONE", 
+        user_id=1,
+        album_name="SQUARE ONE",
         release_year=2016
     )
     db.session.add(album1)
-    
+
     album2 = Album(
         user_id=1,
         album_name="SQUARE TWO",
@@ -21,7 +21,9 @@ def seed_albums():
         album_name="FLY HIGH PROJECT #2 'ROOFTOP'",
         release_year=2019
     )
-    db.sessiona.add(album3)
+    db.session.add(album3)
+
+    db.session.commit()
 
 def undo_albums():
     if environment == "production":
