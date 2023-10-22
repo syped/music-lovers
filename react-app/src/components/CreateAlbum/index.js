@@ -69,4 +69,4 @@ function CreateAlbumForm() {
     )
 }
 
-export default CreateAlbumForm
+export default CreateAlbumForm;

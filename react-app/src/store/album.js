@@ -2,6 +2,7 @@
 const GET_ALBUMS = "albums/GET_ALBUMS";
 const GET_SINGLE_ALBUM = "albums/GET_SINGLE_ALBUM";
 const CREATE_ALBUM = "albums/CREATE_ALBUM";
+const DELETE_ALBUM = "albums/DELETE_ALBUM";
 
 // ACTION CREATORS
 const loadAllAlbums = (albums) => ({
@@ -17,7 +18,12 @@ const loadSingleAlbum = (album) => ({
 const createAlbum = (album) => ({
     type: CREATE_ALBUM,
     album
-})
+});
+
+const deleteAlbum = (albumId) => ({
+  type: DELETE_ALBUM,
+  albumId
+});
 
 //THUNKS
 export const getAlbums = () => async (dispatch) => {
@@ -57,8 +63,24 @@ export const createAlbumThunk = (album) => async (dispatch) => {
     const newAlbum = await response.json();
     dispatch(createAlbum(newAlbum));
     return newAlbum;
-  }
+  } else {
+    const errors = await response.json();
+    return errors;
+  };
 };
+
+export const deleteAlbumThunk = (albumId) => async (dispatch) => {
+  const response = await fetch(`/api/albums/${albumId}`, {
+    method: 'DELETE',
+  });
+
+  if (response.ok) {
+    dispatch(deleteAlbum(albumId));
+  } else {
+    const errors = await response.json();
+    return errors;
+  };
+}
 
 //REDUCER
 
@@ -81,6 +103,10 @@ const albumsReducer = (state = initialState, action) => {
     case CREATE_ALBUM:
       newState = { ...state};
       newState.allAlbums = action.album;
+      return newState;
+    case DELETE_ALBUM:
+      newState = { ...state};
+      delete newState.allAlbums[action.albumId];
       return newState;
     default:
       return state;
