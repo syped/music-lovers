@@ -11,8 +11,8 @@ const loadAllAlbums = (albums) => ({
 
 const loadSingleAlbum = (album) => ({
   type: GET_SINGLE_ALBUM,
-  album
-})
+  album,
+});
 
 //THUNKS
 export const getAlbums = () => async (dispatch) => {
@@ -29,17 +29,17 @@ export const getAlbums = () => async (dispatch) => {
 };
 
 export const getSingleAlbum = (albumId) => async (dispatch) => {
-  const response = await fetch(`/api/album/${albumId}`);
+  const response = await fetch(`/api/albums/${albumId}`);
 
-  if(response.ok) {
+  if (response.ok) {
     const album = await response.json();
-    dispatch(loadSingleAlbum(albumId));
+    dispatch(loadSingleAlbum(album));
     return album;
   } else {
     const errors = await response.json();
     return errors;
   }
-}
+};
 
 //REDUCER
 

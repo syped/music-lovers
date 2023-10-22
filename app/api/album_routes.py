@@ -13,9 +13,9 @@ def get_all_albums():
     return jsonify([album.to_dict() for album in albums])
 
 #GET SINGLE ALBUM
-@album_routes.route('/<album_id>')
-def get_single_album():
-    album = Album.query.get(album_id)
+@album_routes.route('/<int:id>')
+def get_single_album(id):
+    album = Album.query.get(id)
     if album:
         return album.to_dict()
     else:

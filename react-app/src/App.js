@@ -26,11 +26,11 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/albums">
-            <AlbumPage />
-          </Route>
           <Route path="/albums/:albumId">
             <SingleAlbumPage />
+          </Route>
+          <Route path="/albums">
+            <AlbumPage />
           </Route>
         </Switch>
       )}
