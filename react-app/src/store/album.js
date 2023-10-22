@@ -1,10 +1,20 @@
+// ACTION TYPE
 const GET_ALBUMS = "albums/GET_ALBUMS";
+const GET_SINGLE_ALBUM = "albums/GET_SINGLE_ALBUM";
+const CREATE_ALBUM = "albums/CREATE_ALBUM";
 
+// ACTION CREATORS
 const loadAllAlbums = (albums) => ({
   type: GET_ALBUMS,
   albums,
 });
 
+const loadSingleAlbum = (album) => ({
+  type: GET_SINGLE_ALBUM,
+  album
+})
+
+//THUNKS
 export const getAlbums = () => async (dispatch) => {
   const response = await fetch("/api/albums");
 
@@ -18,6 +28,21 @@ export const getAlbums = () => async (dispatch) => {
   }
 };
 
+export const getSingleAlbum = (albumId) => async (dispatch) => {
+  const response = await fetch(`/api/album/${albumId}`);
+
+  if(response.ok) {
+    const album = await response.json();
+    dispatch(loadSingleAlbum(albumId));
+    return album;
+  } else {
+    const errors = await response.json();
+    return errors;
+  }
+}
+
+//REDUCER
+
 const initialState = {
   allAlbums: {},
   singleAlbum: {},
@@ -29,6 +54,10 @@ const albumsReducer = (state = initialState, action) => {
     case GET_ALBUMS:
       newState = { ...state };
       newState.allAlbums = action.albums;
+      return newState;
+    case GET_SINGLE_ALBUM:
+      newState = { ...state };
+      newState.singleAlbum = action.album;
       return newState;
     default:
       return state;

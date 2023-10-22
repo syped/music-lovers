@@ -6,6 +6,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import AlbumPage from "./components/AlbumPage";
+import SingleAlbumPage from "./components/SingleAlbumPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +28,9 @@ function App() {
           </Route>
           <Route path="/albums">
             <AlbumPage />
+          </Route>
+          <Route path="/albums/:albumId">
+            <SingleAlbumPage />
           </Route>
         </Switch>
       )}
