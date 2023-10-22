@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { createAlbumThunk } from '../../store/album';
 
-export const createAlbumForm = () => {
+function CreateAlbumForm() {
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -41,7 +41,7 @@ export const createAlbumForm = () => {
 
             if (newAlbum) {
                 dispatch(createAlbumThunk(newAlbum.id));
-                history.push(`/spot/${newAlbum.id}`);
+                history.push(`/albums/${newAlbum.id}`);
             }
         }
     };
@@ -64,7 +64,9 @@ export const createAlbumForm = () => {
                 {errors.name && <p className='errors'>{errors.name}</p>}
             </div>
         </form>
-
+        <button type="submit">Upload</button>
         </>
     )
 }
+
+export default CreateAlbumForm

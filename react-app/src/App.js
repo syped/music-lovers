@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import AlbumPage from "./components/AlbumPage";
 import SingleAlbumPage from "./components/SingleAlbumPage";
+import CreateAlbum from "./components/CreateAlbum";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +26,9 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route exact path="/albums/create">
+            <CreateAlbum />
           </Route>
           <Route path="/albums/:albumId">
             <SingleAlbumPage />
