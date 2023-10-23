@@ -34,6 +34,7 @@ const deleteSong = (songId) => ({
 //THUNKS
 export const getSongsThunk = () => async (dispatch) => {
     const response = await fetch("/api/songs");
+    console.log('RESPONSE', response);
 
     if (response.ok) {
         const songs = await response.json();
@@ -58,7 +59,7 @@ export const getSingleSongThunk = (songId) => async (dispatch) => {
     }
 };
 
-export const createSongThunk = (album) => async (dispatch) => {
+export const createSongThunk = (song) => async (dispatch) => {
     const response = await fetch(`/api/songs/create_song`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -129,7 +130,7 @@ const songsReducer = (state = initialState, action) => {
         case UPDATE_SONG:
             newState = { ...state };
             newState.allSongs[action.song.id] = action.song;
-            return newSong;
+            return newState;
         case DELETE_SONG:
             newState = { ...state };
             delete newState.allSongs[action.songId];

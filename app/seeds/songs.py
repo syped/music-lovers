@@ -37,7 +37,7 @@ def seed_songs():
     song5 = Song(
         user_id=1,
         album_id=2,
-        song_name="Whistle (Acoustic Ver.)"
+        song_name="Whistle (Acoustic Ver.)",
         length=3.52
     )
     db.session.add(song5)

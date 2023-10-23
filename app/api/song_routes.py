@@ -56,7 +56,7 @@ def edit_song(id):
         return song.to_dict()
     else:
         return {'errors': validation_errors_to_error_messages(form.errors)}, 400
-    
+
 #DELETE SONG
 @song_routes.route('/int:id>', methods=['DELETE'])
 @login_required
