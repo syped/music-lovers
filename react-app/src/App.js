@@ -8,6 +8,8 @@ import Navigation from "./components/Navigation";
 import AlbumPage from "./components/AlbumPage";
 import SingleAlbumPage from "./components/SingleAlbumPage";
 import CreateAlbum from "./components/CreateAlbum";
+import LandingPage from "./components/LandingPage";
+import YourLibrary from "./components/YourLibrary";
 
 function App() {
   const dispatch = useDispatch();
@@ -19,8 +21,12 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
+      <YourLibrary />
       {isLoaded && (
         <Switch>
+          <Route exact path="/">
+            <LandingPage />
+          </Route>
           <Route path="/login">
             <LoginFormPage />
           </Route>

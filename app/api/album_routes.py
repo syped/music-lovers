@@ -40,7 +40,7 @@ def create_album():
         return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 #EDIT ALBUM
-@album_routes.route('/<album_id>', methods=['PUT'])
+@album_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def edit_album(id):
     form = AlbumForm() #CREATE A NEW FORM FOR EDIT ALBUM?
@@ -56,7 +56,7 @@ def edit_album(id):
         return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 #DELETE ALBUM
-@album_routes.route('/<album_id>', methods=['DELETE'])
+@album_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_album(id):
     album = Album.query.get(id)
