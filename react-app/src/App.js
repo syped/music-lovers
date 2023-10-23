@@ -40,15 +40,13 @@ function App() {
           <Route path="/songs">
             <SongPage />
           </Route>
-          <Route path="/songs/:songId/edit">
-            <EditSong />
-          </Route>
           <Route path="/albums/create">
             <CreateAlbum />
             <CreateSong />
           </Route>
           <Route path="/albums/:albumId/edit">
             <EditAlbum />
+            <EditSong />
           </Route>
           <Route path="/albums/:albumId">
             <SingleAlbumPage />

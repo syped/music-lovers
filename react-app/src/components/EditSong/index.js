@@ -8,7 +8,7 @@ function EditSong() {
     const history = useHistory();
     const song = useSelector((state) => state.songs.singleSong);
     const userId = useSelector((state) => state.session.user.id);
-    const { songId } = useParams();
+    // const { songId } = useParams();
     
     const [name, setName] = useState(song.song_name);
     const [length, setLength] = useState(song.length);
@@ -17,8 +17,8 @@ function EditSong() {
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
     useEffect(() => {
-        dispatch(getSingleSongThunk(songId));
-    }, [dispatch, songId]);
+        dispatch(getSingleSongThunk(song.id));
+    }, [dispatch, song.id]);
 
     useEffect(() => {
         setName(song.song_name || "");
