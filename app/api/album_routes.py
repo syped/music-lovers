@@ -29,7 +29,6 @@ def create_album():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         new_album = Album(
-            user_id = form.data['user_id'],
             album_name = form.data['album_name'],
             release_year = form.data['release_year']
         )
