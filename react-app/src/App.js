@@ -8,7 +8,7 @@ import Navigation from "./components/Navigation";
 import AlbumPage from "./components/AlbumPage";
 import SingleAlbumPage from "./components/SingleAlbumPage";
 import CreateAlbum from "./components/CreateAlbum";
-// import EditAlbum from "./components/EditAlbum";
+import EditAlbum from "./components/EditAlbum";
 import LandingPage from "./components/LandingPage";
 import YourLibrary from "./components/YourLibrary";
 
@@ -37,9 +37,9 @@ function App() {
           <Route exact path="/albums/create">
             <CreateAlbum />
           </Route>
-          {/* <Route exact path="/albums/edit">
+          <Route exact path="/albums/:albumId/edit">
             <EditAlbum />
-          </Route> */}
+          </Route>
           <Route path="/albums/:albumId">
             <SingleAlbumPage />
           </Route>

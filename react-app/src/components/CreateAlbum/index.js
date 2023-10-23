@@ -71,7 +71,7 @@ function CreateAlbumForm() {
           </label>
           {errors.releaseYear && <p className="errors">{errors.releaseYear}</p>}
         </div>
-        <button type="submit">Upload</button>
+        <button type="submit">Upload Album</button>
       </form>
     </>
   );
