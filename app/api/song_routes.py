@@ -24,7 +24,7 @@ def get_single_song(id):
 #CREATE A SONG
 @song_routes.route('/create_song', methods=['POST'])
 @login_required
-def create_album():
+def create_song():
     form = SongForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():

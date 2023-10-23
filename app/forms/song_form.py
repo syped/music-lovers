@@ -7,5 +7,5 @@ class SongForm(FlaskForm):
     album_id = IntegerField('album_id', validators=[DataRequired()])
     song_name = StringField('song_name', validators=[DataRequired(message="This field is required and must be at least 3 characters."), Length(min=3, max=255)])
     length = FloatField('length', validators=[DataRequired(message="This field is required.")])
-    mp3 = StringField('mp3', validators=[DataRequired(message="This field is required and must be a MP3 file."), URL(require_tld=False)])
+    mp3 = StringField('mp3', validators=[DataRequired(message="This field is required and must be a MP3 file.")])
 
