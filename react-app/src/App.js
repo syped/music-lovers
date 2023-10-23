@@ -34,10 +34,10 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route exact path="/albums/create">
+          <Route path="/albums/create">
             <CreateAlbum />
           </Route>
-          <Route exact path="/albums/:albumId/edit">
+          <Route path="/albums/:albumId/edit">
             <EditAlbum />
           </Route>
           <Route path="/albums/:albumId">
