@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createAlbumThunk } from "../../store/album";
 
 function CreateAlbumForm() {
   const dispatch = useDispatch();
   const history = useHistory();
+  const userId = useSelector((state) => state.session.user.id);
 
   const [name, setName] = useState("");
   const [releaseYear, setReleaseYear] = useState("");
@@ -26,13 +27,17 @@ function CreateAlbumForm() {
     const errorsFound = errorsChecked(name, releaseYear);
 
     const newAlbum = {
-      name,
-      releaseYear,
+      user_id: userId,
+      album_name: name,
+      release_year: releaseYear,
     };
-    if (Object.keys(errorsFound).length === 0) {
 
-      dispatch(createAlbumThunk(newAlbum));
-      history.push(`/albums/${newAlbum.id}`);
+    if (Object.keys(errorsFound).length === 0) {
+      const response = await dispatch(createAlbumThunk(newAlbum));
+
+      if (response) {
+        history.push(`/albums/${response.id}`);
+      }
     }
   };
 
@@ -58,7 +63,7 @@ function CreateAlbumForm() {
           <label>
             Release Year
             <input
-              type="integer"
+              type="number"
               value={releaseYear}
               onChange={(e) => setReleaseYear(e.target.value)}
               placeholder="Release Year"

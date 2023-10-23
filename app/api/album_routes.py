@@ -22,13 +22,14 @@ def get_single_album(id):
         return {"error": "Album not found"}, 404
 
 #CREATE AN ALBUM
-@album_routes.route('/', methods=['POST'])
+@album_routes.route('/create_album', methods=['POST'])
 @login_required
 def create_album():
     form = AlbumForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         new_album = Album(
+            user_id = form.data['user_id'],
             album_name = form.data['album_name'],
             release_year = form.data['release_year']
         )

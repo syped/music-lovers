@@ -18,17 +18,17 @@ const loadSingleAlbum = (album) => ({
 
 const createAlbum = (album) => ({
   type: CREATE_ALBUM,
-  album
+  album,
 });
 
 const updateAlbum = (album) => ({
   type: UPDATE_ALBUM,
-  album
-})
+  album,
+});
 
 const deleteAlbum = (albumId) => ({
   type: DELETE_ALBUM,
-  albumId
+  albumId,
 });
 
 //THUNKS
@@ -59,10 +59,10 @@ export const getSingleAlbum = (albumId) => async (dispatch) => {
 };
 
 export const createAlbumThunk = (album) => async (dispatch) => {
-  const response = await fetch(`/api/albums`, {
+  const response = await fetch(`/api/albums/create_album`, {
     method: "POST",
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify(album)
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(album),
   });
 
   if (response.ok) {
@@ -72,15 +72,15 @@ export const createAlbumThunk = (album) => async (dispatch) => {
   } else {
     const errors = await response.json();
     return errors;
-  };
+  }
 };
 
 export const updateAlbumThunk = (album) => async (dispatch) => {
   const response = await fetch(`/api/albums/${album.id}`, {
     method: "PUT",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify(album)
-  })
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(album),
+  });
 
   if (response.ok) {
     const updatedAlbum = await response.json();
@@ -90,11 +90,11 @@ export const updateAlbumThunk = (album) => async (dispatch) => {
     const errors = await response.json();
     return errors;
   }
-}
+};
 
 export const deleteAlbumThunk = (albumId) => async (dispatch) => {
   const response = await fetch(`/api/albums/${albumId}`, {
-    method: 'DELETE',
+    method: "DELETE",
   });
 
   if (response.ok) {
@@ -102,8 +102,8 @@ export const deleteAlbumThunk = (albumId) => async (dispatch) => {
   } else {
     const errors = await response.json();
     return errors;
-  };
-}
+  }
+};
 
 //REDUCER
 
