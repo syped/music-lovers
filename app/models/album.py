@@ -10,9 +10,9 @@ class Album(db.Model):
     album_name = db.Column(db.String(255), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
     release_year = db.Column(db.Integer, nullable=False)
+    album_image = db.Column(db.String, nullable=False)
 
     user = db.relationship("User", back_populates="album")
-    album_image = db.relationship("AlbumImage", back_populates="album")
     song = db.relationship("Song", back_populates="album")
 
     def to_dict(self):
@@ -21,4 +21,5 @@ class Album(db.Model):
             'album_name': self.album_name,
             'user_id': self.user_id,
             'release_year': self.release_year,
+            'album_image': self.album_image
         }

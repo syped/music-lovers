@@ -17,7 +17,6 @@ class Song(db.Model):
     album = db.relationship("Album", back_populates="song")
     playlist = db.relationship("Playlist", back_populates="song")
     like = db.relationship("Like", back_populates="song")
-    album_image = db.relationship("AlbumImage", back_populates="song")
 
     def to_dict(self):
         return {
