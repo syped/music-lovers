@@ -5,7 +5,6 @@ function AllSongs() {
     const dispatch = useDispatch();
 
     const allSongsObj = useSelector((state) => state.songs.allSongs);
-    console.log('ALL SONGS OBJ', allSongsObj)
 
     const arr = Object.values(allSongsObj);
 

@@ -34,7 +34,6 @@ const deleteSong = (songId) => ({
 //THUNKS
 export const getSongsThunk = () => async (dispatch) => {
     const response = await fetch("/api/songs");
-    console.log('RESPONSE', response);
 
     if (response.ok) {
         const songs = await response.json();

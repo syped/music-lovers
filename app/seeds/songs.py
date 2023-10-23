@@ -6,7 +6,8 @@ def seed_songs():
         user_id=1,
         album_id=1,
         song_name="Whistle",
-        length=3.31
+        length=3.31,
+        mp3='random1'
     )
     db.session.add(song1)
 
@@ -14,7 +15,8 @@ def seed_songs():
         user_id=1,
         album_id=1,
         song_name="Boombayah",
-        length=4.00
+        length=4.00,
+        mp3='random2'
     )
     db.session.add(song2)
 
@@ -22,7 +24,8 @@ def seed_songs():
         user_id=1,
         album_id=2,
         song_name="Playing With Fire",
-        length=3.17
+        length=3.17,
+        mp3='random3'
     )
     db.session.add(song3)
 
@@ -30,7 +33,8 @@ def seed_songs():
         user_id=1,
         album_id=2,
         song_name="Stay",
-        length=3.50
+        length=3.50,
+        mp3='random4'
     )
     db.session.add(song4)
 
@@ -38,7 +42,8 @@ def seed_songs():
         user_id=1,
         album_id=2,
         song_name="Whistle (Acoustic Ver.)",
-        length=3.52
+        length=3.52,
+        mp3='random5'
     )
     db.session.add(song5)
 

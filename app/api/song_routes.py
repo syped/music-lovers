@@ -10,7 +10,7 @@ song_routes = Blueprint('songs', __name__)
 @song_routes.route('/')
 def get_all_songs():
     songs = Song.query.all()
-    return jsonify(song.to_dict() for song in songs)
+    return jsonify([song.to_dict() for song in songs])
 
 #GET SINGLE SONG
 @song_routes.route('/<int:id>')
