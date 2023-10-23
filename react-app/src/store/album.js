@@ -106,7 +106,6 @@ export const deleteAlbumThunk = (albumId) => async (dispatch) => {
 };
 
 //REDUCER
-
 const initialState = {
   allAlbums: {},
   singleAlbum: {},
