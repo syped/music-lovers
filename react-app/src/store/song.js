@@ -51,7 +51,7 @@ export const getSingleSongThunk = (songId) => async (dispatch) => {
     if (response.ok) {
         const song = await response.json();
         dispatch(loadSingleSong(song));
-        // return song;
+        return song;
     } else {
         const errors = await response.json();
         return errors

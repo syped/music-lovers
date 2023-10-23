@@ -43,7 +43,7 @@ def create_album():
 @album_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def edit_album(id):
-    form = AlbumForm() #CREATE A NEW FORM FOR EDIT ALBUM?
+    form = AlbumForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         album = Album.query.get(id)

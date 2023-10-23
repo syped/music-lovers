@@ -11,6 +11,7 @@ import SingleAlbumPage from "./components/SingleAlbumPage";
 import CreateAlbum from "./components/CreateAlbum";
 import CreateSong from "./components/CreateSong";
 import EditAlbum from "./components/EditAlbum";
+import EditSong from "./components/EditSong";
 import LandingPage from "./components/LandingPage";
 import YourLibrary from "./components/YourLibrary";
 
@@ -38,6 +39,9 @@ function App() {
           </Route>
           <Route path="/songs">
             <SongPage />
+          </Route>
+          <Route path="/songs/:songId/edit">
+            <EditSong />
           </Route>
           <Route path="/albums/create">
             <CreateAlbum />

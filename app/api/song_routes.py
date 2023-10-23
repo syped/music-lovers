@@ -51,6 +51,8 @@ def edit_song(id):
         song = Song.query.get(id)
         song.album_id = form.data['album_id']
         song.song_name = form.data['song_name']
+        song.length = form.data['length']
+        song.mp3 = form.data['mp3']
 
         db.session.commit()
         return song.to_dict()
