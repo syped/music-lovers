@@ -44,12 +44,20 @@ function SingleAlbumPage() {
           <div>
             {sessionUser.id === singleAlbumObj.user_id
               ? albumsSongsArr.map((song) => (
+                <div className="song-edit-delete-container">
                   <div className="song-edit">
                     <OpenModalButton
                       buttonText="Edit"
                       modalComponent={<EditSong song={song} />}
                     />
                   </div>
+                  <div className="song-delete">
+                  <OpenModalButton
+                    buttonText="Delete"
+                    modalComponent={<DeleteSong song={song} />}
+                  />
+                </div>
+                </div>
                 ))
               : null}
           </div>

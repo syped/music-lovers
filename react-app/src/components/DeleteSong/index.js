@@ -3,14 +3,14 @@ import { useModal } from "../../context/Modal"
 import { useDispatch } from "react-redux"
 import { deleteSongThunk } from "../../store/song"
 
-function DeleteSongModal ({ songId }) {
+function DeleteSongModal ({ song }) {
     const dispatch = useDispatch();
     const [exist, setExist] = useState(true)
     const { closeModal } = useModal();
 
     const confirmDelete = (e) => {
         e.preventDefault();
-        dispatch(deleteSongThunk(songId)).then(closeModal);
+        dispatch(deleteSongThunk(song.id)).then(closeModal);
         setExist(false)
     }
 
