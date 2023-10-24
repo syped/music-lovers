@@ -46,7 +46,6 @@ function App() {
           </Route>
           <Route path="/albums/:albumId/edit">
             <EditAlbum />
-            <EditSong />
           </Route>
           <Route path="/albums/:albumId">
             <SingleAlbumPage />

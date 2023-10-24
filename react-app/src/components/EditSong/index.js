@@ -3,12 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { updateSongThunk, getSingleSongThunk } from "../../store/song";
 
-function EditSong({song}) {
+function EditSong({ song }) {
   const dispatch = useDispatch();
   const history = useHistory();
-//   const song = useSelector((state) => state.songs.singleSong);
+  //   const song = useSelector((state) => state.songs.singleSong);
   const userId = useSelector((state) => state.session.user.id);
   // const { songId } = useParams();
+  console.log("hey", song);
 
   const [name, setName] = useState(song.song_name);
   const [length, setLength] = useState(song.length);
