@@ -4,6 +4,8 @@ from app.models import Album, db
 from app.forms.album_form import AlbumForm
 from .auth_routes import validation_errors_to_error_messages
 
+from .aws_helpers import upload_file_to_s3, get_unique_filename, remove_file_from_s3
+
 album_routes = Blueprint('albums', __name__)
 
 #GET ALL ALBUMS
@@ -28,10 +30,18 @@ def create_album():
     form = AlbumForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        album_image = form.data['album_image']
+        album_image.filename = get_unique_filename(album_image.filename)
+        upload = upload_file_to_s3(album_image)
+
+        if 'url' not in upload:
+            return {'errors': [upload]}
+
         new_album = Album(
             user_id = form.data['user_id'],
             album_name = form.data['album_name'],
-            release_year = form.data['release_year']
+            release_year = form.data['release_year'],
+            album_image= upload['url']
         )
         db.session.add(new_album)
         db.session.commit()

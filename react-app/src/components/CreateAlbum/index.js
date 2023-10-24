@@ -12,6 +12,9 @@ function CreateAlbumForm() {
   const [releaseYear, setReleaseYear] = useState("");
   const [errors, setErrors] = useState({});
 
+  const [image, setImage] = useState(null);
+  const [imageLoading, setImageLoading] = useState(false);
+
   function errorsChecked(name, releaseYear) {
     const errors = {};
     if (!name) errors.name = "Album name is required";
@@ -26,14 +29,22 @@ function CreateAlbumForm() {
     e.preventDefault();
     const errorsFound = errorsChecked(name, releaseYear);
 
-    const newAlbum = {
-      user_id: userId,
-      album_name: name,
-      release_year: releaseYear,
-    };
+    const formData = new FormData();
+    formData.append("album_image", image);
+    formData.append("user_id", userId);
+    formData.append("album_name", name);
+    formData.append("release_year", releaseYear);
+
+    setImageLoading(true);
+
+    // const newAlbum = {
+    //   user_id: userId,
+    //   album_name: name,
+    //   release_year: releaseYear,
+    // };
 
     if (Object.keys(errorsFound).length === 0) {
-      const response = await dispatch(createAlbumThunk(newAlbum));
+      const response = await dispatch(createAlbumThunk(formData));
 
       if (response) {
         history.push(`/albums/${response.id}`);
@@ -46,7 +57,16 @@ function CreateAlbumForm() {
       <div className="form-container">
         <h1>Upload your Album</h1>
       </div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
+        <div className="form-upload">
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => setImage(e.target.files[0])}
+          />
+          {imageLoading && <p>Loading...</p>}
+        </div>
+
         <div className="form-fields">
           <label>
             Album
