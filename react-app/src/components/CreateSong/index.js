@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createSongThunk } from "../../store/song";
 
-function CreateSongForm({ dataFromAlbum, onSongSubmit }) {
+function CreateSongForm({ albumId, onSongAdd }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const userId = useSelector((state) => state.session.user.id);
@@ -26,6 +26,10 @@ function CreateSongForm({ dataFromAlbum, onSongSubmit }) {
     return errors;
   }
 
+  if ((name, length, mp3)) {
+    onSongAdd();
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const errorsFound = errorsChecked(name, length, mp3);
@@ -33,7 +37,7 @@ function CreateSongForm({ dataFromAlbum, onSongSubmit }) {
     const formData = new FormData();
     formData.append("mp3", mp3);
     formData.append("user_id", userId);
-    formData.append("album_id", dataFromAlbum);
+    formData.append("album_id", albumId);
     formData.append("song_name", name);
     formData.append("length", length);
 
@@ -50,11 +54,9 @@ function CreateSongForm({ dataFromAlbum, onSongSubmit }) {
     if (Object.keys(errorsFound).length === 0) {
       const response = await dispatch(createSongThunk(formData));
 
-      onSongSubmit();
-
-      if (response.ok) {
-        history.push(`/songs/${response.id}`);
-      }
+      //   if (response.ok) {
+      //     history.push(`/songs/${response.id}`);
+      //   }
     }
   };
 
@@ -99,7 +101,7 @@ function CreateSongForm({ dataFromAlbum, onSongSubmit }) {
             </label>
             {errors.name && <p className="errors">{errors.mp3}</p>}
           </div>
-          <button type="submit">Upload Song</button>
+          {/* <button type="submit">Upload Song</button> */}
         </form>
       </div>
     </>

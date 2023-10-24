@@ -49,9 +49,9 @@ function CreateAlbumForm({ onAlbumSubmit, canSubmitAlbum }) {
 
         onAlbumSubmit(response.id);
 
-        if (response) {
-          history.push(`/albums/${response.id}`);
-        }
+        // if (response) {
+        //   history.push(`/albums/${response.id}`);
+        // }
       }
     }
   };
