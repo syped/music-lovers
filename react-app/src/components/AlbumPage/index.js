@@ -19,6 +19,7 @@ function AllAlbums() {
         {arr.map((album) => (
           // navlink to album details page
           <div className="album-card">
+            <img src={album.album_image} />
             <div>{album.album_name}</div>
             <div>{album.release_year}</div>
           </div>
