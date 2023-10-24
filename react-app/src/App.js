@@ -14,6 +14,7 @@ import EditAlbum from "./components/EditAlbum";
 import EditSong from "./components/EditSong";
 import LandingPage from "./components/LandingPage";
 import YourLibrary from "./components/YourLibrary";
+import CreateAlbumSongForm from "./components/CreateAlbumForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,8 +42,7 @@ function App() {
             <SongPage />
           </Route>
           <Route path="/albums/create">
-            <CreateAlbum />
-            <CreateSong />
+            <CreateAlbumSongForm />
           </Route>
           <Route path="/albums/:albumId/edit">
             <EditAlbum />

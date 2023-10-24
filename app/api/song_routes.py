@@ -4,6 +4,8 @@ from app.models import Song, db
 from app.forms.song_form import SongForm
 from .auth_routes import validation_errors_to_error_messages
 
+from .aws_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
+
 song_routes = Blueprint('songs', __name__)
 
 #GET ALL SONGS
@@ -28,12 +30,19 @@ def create_song():
     form = SongForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        mp3 = form.data['mp3']
+        mp3.filename = get_unique_filename(mp3.filename)
+        upload = upload_file_to_s3(mp3)
+
+        if 'url' not in upload:
+            return {'errors': [upload]}
+
         new_song = Song(
             user_id = form.data['user_id'],
             album_id = form.data['album_id'],
             song_name = form.data['song_name'],
             length = form.data['length'],
-            mp3 = form.data['mp3'] #!! GO BACKKKKKKK
+            mp3 = upload['url']
         )
         db.session.add(new_song)
         db.session.commit()
