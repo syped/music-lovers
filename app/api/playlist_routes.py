@@ -24,7 +24,7 @@ def get_single_playlist(id):
         return {"error": "Playlist not found"}, 404
 
 #CREATE A PLAYLIST
-@playlist_routes.route('/create_playlist', methods=['POSTS'])
+@playlist_routes.route('/create_playlist', methods=['POST'])
 @login_required
 def create_playlist():
     form = PlaylistForm()
@@ -39,12 +39,12 @@ def create_playlist():
 
         new_playlist = Playlist(
             playlist_name = form.data['playlist_name'],
-            song_id = form.data['song_id'],
+            # song_id = form.data['song_id'],
             user_id = form.data['user_id'],
             playlist_image = upload['url'],
             playlist_bio = form.data['playlist_bio'],
-            created_at = form.data['created_at'],
-            updated_at = form.data['updated_at']
+            # created_at = form.data['created_at']
+            # updated_at = form.data['updated_at']
         )
         db.session.add(new_playlist)
         db.session.commit()
