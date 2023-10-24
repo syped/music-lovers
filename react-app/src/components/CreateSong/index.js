@@ -37,6 +37,8 @@ function CreateSongForm({ dataFromAlbum, onSongSubmit }) {
     formData.append("song_name", name);
     formData.append("length", length);
 
+    setMp3Loading(true);
+
     // const newSong = {
     //   user_id: userId,
     //   album_id: 1, //HARD-CODED, FIX TO ALBUM NAME
