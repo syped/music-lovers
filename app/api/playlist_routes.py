@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request, redirect, url_for
 from flask_login import login_required
-from app.models import Playlist, db
+from app.models import Playlist, Song, db
 from app.forms.playlist_form import PlaylistForm
 from .auth_routes import validation_errors_to_error_messages
 
@@ -90,3 +90,17 @@ def delete_playlist(id):
         return "Playlist successfully deleted."
     else:
         return {'error': 'Playlist does not exist'}, 404
+
+#ADD SONG TO PLAYLIST
+@playlist_routes.route('/add-song', methods=['POST'])
+@login_required
+def create_playlist_song(playlist_id):
+    playlist = Playlist.query.get(playlist_id)
+    if playlist:
+        song_id = request.form.get("song_id")
+        song = Song.query.get(song_id)
+        playlist.songs.append(  song)
+        db.session.commit()
+        return playlist.to_dict()
+    else:
+        return {'errors': "Relationship Failed Song to Playlist"}, 400
