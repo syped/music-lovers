@@ -24,7 +24,7 @@ function EditSong({ song, albumId }) {
     setLength(song.length || "");
   }, [song]);
 
-  function errorsChecked(name, length, mp3) {
+  function errorsChecked(name, length) {
     const errors = {};
 
     if (!name) errors.name = "Album name is required";
