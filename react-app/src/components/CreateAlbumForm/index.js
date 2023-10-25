@@ -48,7 +48,6 @@ import { createAlbumThunk } from "../../store/album";
 import { createSongThunk } from "../../store/song";
 
 function CreateAlbumSongForm() {
-  const [albumId, setAlbumId] = useState(0);
   const [songAdded, setSongAdded] = useState(false);
   const [count, setCount] = useState(0);
   const history = useHistory();
@@ -93,8 +92,6 @@ function CreateAlbumSongForm() {
     if (songAdded) {
       const response = await dispatch(createAlbumThunk(formData));
       const id = response.id;
-
-      setAlbumId(id);
 
       handleSongSubmit(id);
 

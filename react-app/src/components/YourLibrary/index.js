@@ -27,7 +27,9 @@ function YourLibrary() {
   let userPlaylistsArr;
 
   if (sessionUser) {
-    userPlaylistsArr = arr.filter((playlist) => playlist.user_id === sessionUser.id);
+    userPlaylistsArr = arr.filter(
+      (playlist) => playlist.user_id === sessionUser.id
+    );
   }
 
   return (
@@ -38,11 +40,14 @@ function YourLibrary() {
       <div className="user-albums-container">
         {sessionUser &&
           userAlbumsArr.map((album) => (
-            <div className="album-delete-button">
-              <OpenModalButton
-                buttonText="Delete"
-                modalComponent={<DeleteAlbumModal albumId={album.id} />}
-              />
+            <div>
+              <div>{album.album_name}</div>
+              <div className="album-delete-button">
+                <OpenModalButton
+                  buttonText="Delete"
+                  modalComponent={<DeleteAlbumModal albumId={album.id} />}
+                />
+              </div>
             </div>
           ))}
       </div>
@@ -50,18 +55,20 @@ function YourLibrary() {
         {sessionUser &&
           userPlaylistsArr.map((playlist) => (
             <div className="playlist-edit-and-delete">
-            <div className="playlist-edit-button">
-              <OpenModalButton
-                buttonText="Edit"
-                modalComponent={<EditPlaylist playlistId={playlist.id} />}
-              />
-            </div>
-            <div className="playlist-delete-button">
-              <OpenModalButton
-                buttonText="Delete"
-                modalComponent={<DeletePlaylistModal playlistId={playlist.id} />}
-              />
-            </div>
+              <div className="playlist-edit-button">
+                <OpenModalButton
+                  buttonText="Edit"
+                  modalComponent={<EditPlaylist playlistId={playlist.id} />}
+                />
+              </div>
+              <div className="playlist-delete-button">
+                <OpenModalButton
+                  buttonText="Delete"
+                  modalComponent={
+                    <DeletePlaylistModal playlistId={playlist.id} />
+                  }
+                />
+              </div>
             </div>
           ))}
       </div>
