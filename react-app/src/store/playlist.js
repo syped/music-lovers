@@ -4,6 +4,7 @@ const GET_SINGLE_PLAYLIST = "playlists/GET_SINGLE_PLAYLIST";
 const CREATE_PLAYLIST = "playlists/CREATE_PLAYLIST";
 const UPDATE_PLAYLIST = "playlists/UPDATE_PLAYLIST";
 const DELETE_PLAYLIST = "playlists/DELETE_PLAYLIST";
+const ADD_SONG_TO_PLAYLIST = "playlists/ADD_SONG_TO_PLAYLIST";
 
 // ACTION CREATORS
 const loadAllPlaylists = (playlists) => ({
@@ -30,6 +31,7 @@ const deletePlaylist = (playlistId) => ({
   type: DELETE_PLAYLIST,
   playlistId,
 });
+
 
 // THUNKS
 export const getPlaylistsThunk = () => async (dispatch) => {

@@ -3,12 +3,12 @@ const LIKE_PLAYLIST = "playlists/LIKE_PLAYLIST";
 const UNLIKE_PLAYLIST = "playlists/UNLIKE_PLAYLIST";
 
 //ACTION CREATORS
-export const likeplaylist = (playlistId) => ({
+export const likePlaylist = (playlistId) => ({
   type: LIKE_PLAYLIST,
   payload: playlistId,
 });
 
-export const unlikeplaylist = (playlistId) => ({
+export const unlikePlaylist = (playlistId) => ({
   type: UNLIKE_PLAYLIST,
   payload: playlistId,
 });
