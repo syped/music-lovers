@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createSongThunk } from "../../store/song";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
-function CreateSongForm({ albumId, onSongAdd }) {
+function CreateSongForm() {
   const dispatch = useDispatch();
   const history = useHistory();
   const userId = useSelector((state) => state.session.user.id);
-  // const albumId = useSelector((state) => state.songs.)
+  const { albumId } = useParams();
 
   const [name, setName] = useState("");
   const [length, setLength] = useState("");
@@ -24,10 +25,6 @@ function CreateSongForm({ albumId, onSongAdd }) {
     setErrors(errors);
 
     return errors;
-  }
-
-  if ((name, length, mp3)) {
-    onSongAdd();
   }
 
   const handleSubmit = async (e) => {
@@ -101,7 +98,7 @@ function CreateSongForm({ albumId, onSongAdd }) {
             </label>
             {errors.name && <p className="errors">{errors.mp3}</p>}
           </div>
-          {/* <button type="submit">Upload Song</button> */}
+          <button type="submit">Upload Song</button>
         </form>
       </div>
     </>

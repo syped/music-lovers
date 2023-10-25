@@ -10,7 +10,6 @@ class Playlist(db.Model):
     playlist_name = db.Column(db.String(255), nullable=False)
     playlist_bio = db.Column(db.String(999), nullable=False)
     playlist_image = db.Column(db.String, nullable=False)
-    is_public = db.Column(db.Boolean, default=True)
     # song_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("songs.id")))
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
     # created_at = db.Column(db.Date)
@@ -25,7 +24,6 @@ class Playlist(db.Model):
             'playlist_name': self.playlist_name,
             'playlist_bio': self.playlist_bio,
             'playlist_image': self.playlist_image,
-            'is_public': self.is_public,
             # 'song_id': self.song_id,
             'user_id': self.user_id,
             # 'created_at': self.created_at,

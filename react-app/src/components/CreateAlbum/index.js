@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createAlbumThunk } from "../../store/album";
 
-function CreateAlbumForm({ onAlbumSubmit, canSubmitAlbum }) {
+function CreateAlbumForm() {
   const dispatch = useDispatch();
   const history = useHistory();
   const userId = useSelector((state) => state.session.user.id);
@@ -43,15 +43,11 @@ function CreateAlbumForm({ onAlbumSubmit, canSubmitAlbum }) {
     //   release_year: releaseYear,
     // };
 
-    if (canSubmitAlbum) {
-      if (Object.keys(errorsFound).length === 0) {
-        const response = await dispatch(createAlbumThunk(formData));
+    if (Object.keys(errorsFound).length === 0) {
+      const response = await dispatch(createAlbumThunk(formData));
 
-        onAlbumSubmit(response.id);
-
-        // if (response) {
-        //   history.push(`/albums/${response.id}`);
-        // }
+      if (response) {
+        history.push(`/albums/${response.id}`);
       }
     }
   };
@@ -95,9 +91,7 @@ function CreateAlbumForm({ onAlbumSubmit, canSubmitAlbum }) {
           </label>
           {errors.releaseYear && <p className="errors">{errors.releaseYear}</p>}
         </div>
-        <button disabled={!canSubmitAlbum} type="submit">
-          Upload Album
-        </button>
+        <button type="submit">Upload Album</button>
       </form>
     </>
   );

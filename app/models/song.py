@@ -9,7 +9,7 @@ class Song(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     song_name = db.Column(db.String(255), nullable=False)
     length = db.Column(db.Float)
-    mp3 = db.Column(db.String, nullable=False)
+    mp3 = db.Column(db.String)
     album_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("albums.id")))
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
 

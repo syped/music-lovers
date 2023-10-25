@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { updateAlbumThunk, getSingleAlbum } from "../../store/album";
 
-function EditAlbum() {
+function EditAlbum({ albumId }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const album = useSelector((state) => state.albums.singleAlbum);
   const userId = useSelector((state) => state.session.user.id);
-  const { albumId } = useParams();
+  // const { albumId } = useParams();
 
   const [name, setName] = useState(album.album_name);
   const [releaseYear, setReleaseYear] = useState(album.release_year);
@@ -43,7 +43,7 @@ function EditAlbum() {
 
     const updatedAlbum = {
       user_id: userId,
-      id: album.id,
+      id: albumId,
       album_name: name,
       release_year: releaseYear,
     };

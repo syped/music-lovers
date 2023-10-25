@@ -54,13 +54,14 @@ function App() {
             <PlaylistPage />
           </Route>
           <Route path="/albums/create">
-            <CreateAlbumSongForm />
+            <CreateAlbum />
           </Route>
           <Route path="/albums/:albumId/edit">
             <EditAlbum />
           </Route>
           <Route path="/albums/:albumId">
             <SingleAlbumPage />
+            <CreateSong />
           </Route>
           <Route path="/albums">
             <AlbumPage />
