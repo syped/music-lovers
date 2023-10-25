@@ -11,6 +11,6 @@ class PlaylistForm(FlaskForm):
     user_id = IntegerField('user_id', validators=[DataRequired()])
     playlist_image = FileField('playlist_image', validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
     playlist_bio = StringField('playlist_bio', validators=[DataRequired()])
-    pp = BooleanField('pp', validators=[DataRequired()])
+    is_public = BooleanField('is_public', validators=[DataRequired()])
     # created_at = DateField('created_at')
     # updated_at = DateField('updated_at')

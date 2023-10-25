@@ -13,6 +13,17 @@ playlist_routes = Blueprint('playlists', __name__)
 def get_all_playlists():
     playlists = Playlist.query.all()
     return jsonify([playlist.to_dict() for playlist in playlists])
+    # user_id = request.args.get('userId')
+
+    # if user_id:
+    #     playlists = Playlist.query.filter(
+    #         (Playlist.owner_id == user_id, Playlist.is_public == False),
+    #         Playlist.is_public == True
+    #     ).all()
+    # else:
+    #     playlists = Playlist.query.filter(Playlist.is_public == True).all()
+
+    # return jsonify([playlist.to_dict() for playlist in playlists])
 
 #GET SINGLE PLAYLIST
 @playlist_routes.route('/<int:id>')
@@ -43,7 +54,7 @@ def create_playlist():
             user_id = form.data['user_id'],
             playlist_image = upload['url'],
             playlist_bio = form.data['playlist_bio'],
-            pp = form.data['pp']
+            is_public=form.data['is_public']
             # created_at = form.data['created_at']
             # updated_at = form.data['updated_at']
         )
@@ -63,7 +74,7 @@ def edit_playlist(id):
         playlist = Playlist.query.get(id)
         playlist.playlist_name = form.data['playlist_name']
         playlist.playlist_bio = form.data['playlist_bio']
-        playlist.pp = form.data['pp']
+        playlist.is_public = form.data['is_public']
 
         db.session.commit()
         return playlist.to_dict()

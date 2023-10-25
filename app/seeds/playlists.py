@@ -6,7 +6,7 @@ def seed_playlists():
         user_id=1,
         playlist_name="Favorites",
         playlist_bio="My favorite songs",
-        pp=True,
+        is_public=True,
         playlist_image="https://i.kym-cdn.com/entries/icons/facebook/000/022/615/CybuEaUVIAAF_HV.jpg"
     )
     db.session.add(playlist1)
@@ -15,7 +15,7 @@ def seed_playlists():
         user_id=2,
         playlist_name="RoBroken",
         playlist_bio="In my sad boi era",
-        pp=False,
+        is_public=True,
         playlist_image="https://i.kym-cdn.com/photos/images/newsfeed/002/328/211/810.jpg"
     )
     db.session.add(playlist2)
@@ -24,7 +24,7 @@ def seed_playlists():
         user_id=3,
         playlist_name="Mujahid's Oppas",
         playlist_bio="Mujahid's KoreaBoo playlist",
-        pp=True,
+        is_public=False,
         playlist_image="https://i.ytimg.com/vi/vAigwiOrl-k/maxresdefault.jpg"
     )
     db.session.add(playlist3)

@@ -10,7 +10,7 @@ function CreatePlaylistForm() {
 
   const [name, setName] = useState("");
   const [bio, setBio] = useState("");
-  const [pp, setPp] = useState(true);
+  const [isPublic, setIsPublic] = useState(true);
   const [errors, setErrors] = useState({});
 
   const [image, setImage] = useState(null);
@@ -34,7 +34,7 @@ function CreatePlaylistForm() {
     formData.append("user_id", userId);
     formData.append("playlist_name", name);
     formData.append("playlist_bio", bio);
-    formData.append('pp', pp)
+    formData.append('is_public', isPublic)
     //do i add bio????
 
     setImageLoading(true);
@@ -86,8 +86,9 @@ function CreatePlaylistForm() {
             />
           </label>
           <label class="switch">
-            <input type="checkbox" onChange={(e) => setPp(e.target.value)} placeholder="public" value="pp" />
-            <label>Private</label>
+            <input type="checkbox" onChange={(e) => setIsPublic(e.target.checked)} checked={isPublic} />
+            <span className="slider"></span>
+            {isPublic ? "Public" : "Private"}
           </label>
           {/* {errors.releaseYear && <p className="errors">{errors.bio}</p>} */}
         </div>

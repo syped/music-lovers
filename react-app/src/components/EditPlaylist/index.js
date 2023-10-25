@@ -12,6 +12,7 @@ function EditPlaylist() {
 
     const [name, setName] = useState(playlist.playlist_name);
     const [bio, setBio] = useState(playlist.playlist_bio);
+    const [isPublic, setIsPublic] = useState(playlist.is_pulic);
     const [errors, setErrors] = useState({});
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
@@ -22,6 +23,7 @@ function EditPlaylist() {
     useEffect(() => {
         setName(playlist.playlist_name || "");
         setBio(playlist.playlist_bio || "");
+        setIsPublic(playlist.is_public || true);
     }, [playlist]);
 
     function errorsChecked(name, bio) {
@@ -45,6 +47,7 @@ function EditPlaylist() {
             id: playlist.id,
             playlist_name: name,
             playlist_bio: bio,
+            is_public: isPublic
         };
 
         if (Object.keys(errorsFound).length === 0) {
@@ -89,6 +92,15 @@ function EditPlaylist() {
                     {hasSubmitted && errors.bio && (
                         <p className="errors">{errors.bio}</p>
                     )}
+                <div className="form-fields">
+                    <label>
+                        Public Playlist
+                        <input
+                            type="checkbox"
+                            onChange={(e) => setIsPublic(!isPublic)}
+                        />
+                    </label>
+                </div>
                 </div>
                 <button type="submit">Update Playlist</button>
             </form>
