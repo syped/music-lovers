@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createSongThunk } from "../../store/song";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
-function CreateSongForm({ dataFromAlbum, onSongSubmit }) {
+function CreateSongForm() {
   const dispatch = useDispatch();
   const history = useHistory();
   const userId = useSelector((state) => state.session.user.id);
-  // const albumId = useSelector((state) => state.songs.)
+  const { albumId } = useParams();
 
   const [name, setName] = useState("");
   const [length, setLength] = useState("");
@@ -33,7 +34,7 @@ function CreateSongForm({ dataFromAlbum, onSongSubmit }) {
     const formData = new FormData();
     formData.append("mp3", mp3);
     formData.append("user_id", userId);
-    formData.append("album_id", dataFromAlbum);
+    formData.append("album_id", albumId);
     formData.append("song_name", name);
     formData.append("length", length);
 
@@ -50,11 +51,9 @@ function CreateSongForm({ dataFromAlbum, onSongSubmit }) {
     if (Object.keys(errorsFound).length === 0) {
       const response = await dispatch(createSongThunk(formData));
 
-      onSongSubmit();
-
-      if (response.ok) {
-        history.push(`/songs/${response.id}`);
-      }
+      //   if (response.ok) {
+      //     history.push(`/songs/${response.id}`);
+      //   }
     }
   };
 

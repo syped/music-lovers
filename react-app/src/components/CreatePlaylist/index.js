@@ -1,61 +1,55 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { createAlbumThunk } from "../../store/album";
+import { createPlaylistThunk } from "../../store/playlist";
 
-function CreateAlbumForm() {
+function CreatePlaylistForm() {
   const dispatch = useDispatch();
   const history = useHistory();
   const userId = useSelector((state) => state.session.user.id);
 
   const [name, setName] = useState("");
-  const [releaseYear, setReleaseYear] = useState("");
+  const [bio, setBio] = useState("");
   const [errors, setErrors] = useState({});
 
   const [image, setImage] = useState(null);
   const [imageLoading, setImageLoading] = useState(false);
 
-  function errorsChecked(name, releaseYear) {
-    const errors = {};
-    if (!name) errors.name = "Album name is required";
-    if (!releaseYear) errors.releaseYear = "Release year is required";
+  // function errorsChecked(name) {
+  //     const errors = {};
+  //     if (!name) errors.name = "Playlist name is required";
 
-    setErrors(errors);
+  //     setErrors(errors);
 
-    return errors;
-  }
+  //     return errors;
+  // }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const errorsFound = errorsChecked(name, releaseYear);
+    // const errorsFound = errorsChecked(name);
 
     const formData = new FormData();
-    formData.append("album_image", image);
+    formData.append("playlist_image", image);
     formData.append("user_id", userId);
-    formData.append("album_name", name);
-    formData.append("release_year", releaseYear);
+    formData.append("playlist_name", name);
+    formData.append("playlist_bio", bio);
+    //do i add bio????
 
     setImageLoading(true);
 
-    // const newAlbum = {
-    //   user_id: userId,
-    //   album_name: name,
-    //   release_year: releaseYear,
-    // };
+    // if (Object.keys(errorsFound).length === 0) {
+    const response = await dispatch(createPlaylistThunk(formData));
 
-    if (Object.keys(errorsFound).length === 0) {
-      const response = await dispatch(createAlbumThunk(formData));
-
-      if (response) {
-        history.push(`/albums/${response.id}`);
-      }
+    if (response) {
+      history.push(`/playlists/${response.id}`);
     }
+    // }
   };
 
   return (
     <>
       <div className="form-container">
-        <h1>Upload your Album</h1>
+        <h1>Create your Playlist</h1>
       </div>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="form-upload">
@@ -69,32 +63,33 @@ function CreateAlbumForm() {
 
         <div className="form-fields">
           <label>
-            Album
+            Playlist
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Album Name"
+              placeholder="Playlist Name"
             />
           </label>
-          {errors.name && <p className="errors">{errors.name}</p>}
+          {/* {errors.name && <p className="errors">{errors.name}</p>} */}
         </div>
         <div className="form-fields">
           <label>
-            Release Year
+            Playlist Bio
             <input
-              type="number"
-              value={releaseYear}
-              onChange={(e) => setReleaseYear(e.target.value)}
-              placeholder="Release Year"
+              type="textarea"
+              value={bio}
+              onChange={(e) => setBio(e.target.value)}
+              placeholder="Playlist Bio"
             />
           </label>
-          {errors.releaseYear && <p className="errors">{errors.releaseYear}</p>}
+
+          {/* {errors.releaseYear && <p className="errors">{errors.bio}</p>} */}
         </div>
-        <button type="submit">Upload Album</button>
+        <button type="submit">Create Playlist</button>
       </form>
     </>
   );
 }
 
-export default CreateAlbumForm;
+export default CreatePlaylistForm;
