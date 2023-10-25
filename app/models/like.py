@@ -7,15 +7,15 @@ class Like(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    song_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("songs.id")))
+    playlist_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("playlist.id")))
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
 
-    song = db.relationship("Song", back_populates="like")
+    playlist = db.relationship("Playlist", back_populates="like")
     user = db.relationship("User", back_populates="like")
 
     def to_dict(self):
         return {
             'id': self.id,
-            'song_id': self.song_id,
+            'playlist_id': self.playlist_id,
             'user_id': self.user_id,
         }
