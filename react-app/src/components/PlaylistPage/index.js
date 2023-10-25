@@ -62,9 +62,9 @@ function AllPlaylists() {
             {/* change to user_id name */}
             <div>{playlist.playlist_bio}</div>
             {/* <button onClick={handleAddSong}>Add Song</button> */}
-            <button onClick={() => handleLikeClick(playlist.id)}>
+            {/* <button onClick={() => handleLikeClick(playlist.id)}>
               {likedPlaylists.includes(playlist.id) ? "Unlike" : "Like"}
-            </button>
+            </button> */}
             <span>{likeCounts[playlist.id] || 0}</span>
           </div>
         ))}

@@ -45,14 +45,14 @@ function App() {
           <Route path="/songs">
             <SongPage />
           </Route>
-          <Route path="/playlists/create">
-            <CreatePlaylist />
+          <Route path="/playlists/:playlistId/edit">
+            <EditPlaylist />
           </Route>
           <Route path="/playlists/:playlistId">
             <SinglePlaylistPage />
           </Route>
-          <Route path="/playlist/:playlistId/edit">
-            <EditPlaylist />
+          <Route path="/playlists/create">
+            <CreatePlaylist />
           </Route>
           <Route path="/playlists">
             <PlaylistPage />
