@@ -10,6 +10,7 @@ function CreatePlaylistForm() {
 
   const [name, setName] = useState("");
   const [bio, setBio] = useState("");
+  const [pp, setPp] = useState(true);
   const [errors, setErrors] = useState({});
 
   const [image, setImage] = useState(null);
@@ -33,7 +34,7 @@ function CreatePlaylistForm() {
     formData.append("user_id", userId);
     formData.append("playlist_name", name);
     formData.append("playlist_bio", bio);
-    // formData.append('public', public)
+    formData.append('pp', pp)
     //do i add bio????
 
     setImageLoading(true);
@@ -78,11 +79,15 @@ function CreatePlaylistForm() {
           <label>
             Playlist Bio
             <input
-              type="text"
+              type="textarea"
               value={bio}
               onChange={(e) => setBio(e.target.value)}
               placeholder="Playlist Bio"
             />
+          </label>
+          <label class="switch">
+            <input type="checkbox" onChange={(e) => setPp(e.target.value)} placeholder="public" value="pp" />
+            <label>Private</label>
           </label>
           {/* {errors.releaseYear && <p className="errors">{errors.bio}</p>} */}
         </div>

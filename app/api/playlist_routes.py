@@ -43,6 +43,7 @@ def create_playlist():
             user_id = form.data['user_id'],
             playlist_image = upload['url'],
             playlist_bio = form.data['playlist_bio'],
+            pp = form.data['pp']
             # created_at = form.data['created_at']
             # updated_at = form.data['updated_at']
         )
@@ -62,6 +63,7 @@ def edit_playlist(id):
         playlist = Playlist.query.get(id)
         playlist.playlist_name = form.data['playlist_name']
         playlist.playlist_bio = form.data['playlist_bio']
+        playlist.pp = form.data['pp']
 
         db.session.commit()
         return playlist.to_dict()
