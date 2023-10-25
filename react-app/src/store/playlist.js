@@ -112,6 +112,21 @@ export const deletePlaylistThunk = (playlistId) => async (dispatch) => {
   }
 };
 
+export const addSongToPlaylistThunk = (playlistId, songId) => async (dispatch) => {
+  const response = await fetch(`/api/playlists/${playlistId}/add-song`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(songId),
+  });
+
+  if (response.ok) {
+    dispatch(addSongToPlaylist(playlistId, songId));
+  } else {
+    const errors = await response.json();
+    return errors;
+  }
+};
+
 
 
 //REDUCER
@@ -142,6 +157,13 @@ const playlistsReducer = (state = initialState, action) => {
     case DELETE_PLAYLIST:
       newState = { ...state };
       delete newState.allPlaylists[action.playlistId];
+      return newState;
+    case ADD_SONG_TO_PLAYLIST:
+      newState = { ...state };
+      const { playlistId, songId } = action;
+      if (newState.allPlaylists[playlistId]) {
+        newState.allPlaylists[playlistId].songs.push(songId)
+      }
       return newState;
     default:
       return state;

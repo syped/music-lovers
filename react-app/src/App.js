@@ -9,6 +9,7 @@ import AlbumPage from "./components/AlbumPage";
 import SongPage from "./components/SongPage";
 import PlaylistPage from "./components/PlaylistPage";
 import SingleAlbumPage from "./components/SingleAlbumPage";
+import SinglePlaylistPage from "./components/SinglePlaylistPage";
 import CreateAlbum from "./components/CreateAlbum";
 import CreateSong from "./components/CreateSong";
 import CreatePlaylist from "./components/CreatePlaylist";
@@ -46,6 +47,9 @@ function App() {
           </Route>
           <Route path="/playlists/create">
             <CreatePlaylist />
+          </Route>
+          <Route path="/playlists/:playlistId">
+            <SinglePlaylistPage />
           </Route>
           <Route path="/playlist/:playlistId/edit">
             <EditPlaylist />

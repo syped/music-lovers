@@ -1,7 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { getPlaylistsThunk } from "../../store/playlist";
+import { getPlaylistsThunk, addSongToPlaylistThunk } from "../../store/playlist";
 import { likePlaylist, unlikePlaylist } from "../../store/likes";
 import { useState, useEffect } from "react";
+import { useModal } from "../../context/Modal";
+import { useParams } from 'react-router-dom';
 
 function AllPlaylists() {
   const dispatch = useDispatch();
@@ -18,6 +20,10 @@ function AllPlaylists() {
       setLikeCounts(savedLikeCounts);
     }
   }, []);
+
+  // const handleAddSong = () => {
+  //   dispatch(addSongToPlaylistThunk(playlistId, songId))
+  // }
 
   const handleLikeClick = (playlistId) => {
     const isLiked = likedPlaylists.includes(playlistId);
@@ -55,7 +61,7 @@ function AllPlaylists() {
             <div>{playlist.user_id}</div>
             {/* change to user_id name */}
             <div>{playlist.playlist_bio}</div>
-            <div>{playlist.pp}</div>
+            {/* <button onClick={handleAddSong}>Add Song</button> */}
             <button onClick={() => handleLikeClick(playlist.id)}>
               {likedPlaylists.includes(playlist.id) ? "Unlike" : "Like"}
             </button>
