@@ -32,6 +32,12 @@ const deletePlaylist = (playlistId) => ({
   playlistId,
 });
 
+const addSongToPlaylist = (playlistId, songId) => ({
+  type: ADD_SONG_TO_PLAYLIST,
+  playlistId,
+  songId,
+})
+
 
 // THUNKS
 export const getPlaylistsThunk = () => async (dispatch) => {
@@ -105,6 +111,8 @@ export const deletePlaylistThunk = (playlistId) => async (dispatch) => {
     return errors;
   }
 };
+
+export const 
 
 //REDUCER
 const initialState = {
