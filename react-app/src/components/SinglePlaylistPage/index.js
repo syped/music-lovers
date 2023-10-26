@@ -10,7 +10,7 @@ import OpenModalButton from "../OpenModalButton";
 import AllSongsModal from "../AllSongsModal";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 // import { likePlaylist, unlikePlaylist } from "../../store/likes";
-import { toggleThunk, getLikeThunk } from "../../store/likes";
+import { getUsersThunk, getLikeThunk, likeThunk } from "../../store/session";
 
 function SinglePlaylistPage() {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ function SinglePlaylistPage() {
   const [numLikes, setNumLikes] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
   const allSongsObj = useSelector((state) => state.songs.allSongs);
-  const likedPlaylists = useSelector((state) => state.likes.likedPlaylists);
+  const likedPlaylists = useSelector((state) => state.session.userLikes);
   const [liked, setLiked] = useState(false);
 
   const singlePlaylistObj = useSelector(
@@ -30,25 +30,27 @@ function SinglePlaylistPage() {
   const arr = Object.values(allSongsObj);
   const playlistArr = Object.values(playlistSongs);
 
-  let handleLike;
+  // let handleLike;
 
-  useEffect(() => {
-    if (
-      likedPlaylists.user_id === sessionUser.id &&
-      likedPlaylists.playlistId === playlistId
-    ) {
-      setLiked("");
-      handleLike = () => {
-        dispatch(toggleThunk(playlistId));
-      };
-    } else {
-      setLiked("liked");
-    }
-  }, [likedPlaylists, playlistId]);
+  // useEffect(() => {
+  //   if (
+  //     likedPlaylists.user_id === sessionUser.id &&
+  //     likedPlaylists.playlistId === playlistId
+  //   ) {
+  //     setLiked("");
+  //     handleLike = () => {
+  //       dispatch(toggleThunk(playlistId));
+  //     };
+  //   } else {
+  //     setLiked("liked");
+  //   }
+  // }, [likedPlaylists, playlistId]);
 
   useEffect(() => {
     dispatch(getSinglePlaylistThunk(playlistId)).then(() => setIsLoaded(true));
     dispatch(getPlaylistSongsThunk(playlistId));
+    dispatch(getLikeThunk(playlistId));
+    dispatch(getUsersThunk());
   }, [dispatch, playlistId]);
 
   if (!arr || !arr.length) {
@@ -56,10 +58,19 @@ function SinglePlaylistPage() {
     return null;
   }
 
-  if (!likedPlaylists || !likedPlaylists.length) {
-    dispatch(getLikeThunk(playlistId));
-    return null;
-  }
+  const handleLike = async () => {
+    const addedLike = {
+      playlist_id: playlistId,
+      user_id: sessionUser.id,
+    };
+
+    dispatch(likeThunk(addedLike));
+  };
+
+  // if (!likedPlaylists || !likedPlaylists.length) {
+  //   dispatch(getLikeThunk(playlistId));
+  //   return null;
+  // }
 
   let playlistSongsArr = [];
 
