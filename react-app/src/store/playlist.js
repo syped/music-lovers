@@ -112,15 +112,16 @@ export const deletePlaylistThunk = (playlistId) => async (dispatch) => {
   }
 };
 
-export const addSongToPlaylistThunk = (playlistId, songId) => async (dispatch) => {
+export const addSongToPlaylistThunk = (playlistId, payload) => async (dispatch) => {
   const response = await fetch(`/api/playlists/${playlistId}/add-song`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(songId),
+    body: JSON.stringify(payload),
   });
 
   if (response.ok) {
-    dispatch(addSongToPlaylist(playlistId, songId));
+    const addedSong = await response.json()
+    dispatch(addSongToPlaylist(addedSong));
   } else {
     const errors = await response.json();
     return errors;

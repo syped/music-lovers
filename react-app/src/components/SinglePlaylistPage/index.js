@@ -8,7 +8,7 @@ import AllSongsModal from "../AllSongsModal";
 
 function SinglePlaylistPage() {
     const dispatch = useDispatch();
-    const { playlistId } = useParams;
+    const { playlistId } = useParams();
     const [isLoaded, setIsLoaded] = useState(false);
     const sessionUser = useSelector((state) => state.session.user);
     const allSongsObj = useSelector((state) => state.songs.allSongs);
@@ -30,20 +30,19 @@ function SinglePlaylistPage() {
 
     return (
         <>
-        {/* {isLoaded && ( */}
+        {isLoaded && (
             <div>
-                <div><p>HIIIIIIIHELLO</p></div>
                 <div>{singlePlaylistObj.playlist_name}</div>
                 <div className="song-container">
                     <OpenModalButton
                     buttonText="Add Song"
                     modalComponent={
-                        <AllSongsModal />
+                        <AllSongsModal playlistId={playlistId} />
                     }
                     />
                 </div>
             </div>
-        {/* )} */}
+        )}
         </>
     )
 }

@@ -1,7 +1,8 @@
 from flask import Blueprint, jsonify, request, redirect, url_for
 from flask_login import login_required
-from app.models import Playlist, Song, db
+from app.models import Playlist, PlaylistSong, Song, db
 from app.forms.playlist_form import PlaylistForm
+from app.forms.playlist_song_form import PlaylistSongForm
 from .auth_routes import validation_errors_to_error_messages
 
 from .aws_helpers import upload_file_to_s3, get_unique_filename, remove_file_from_s3
@@ -92,15 +93,28 @@ def delete_playlist(id):
         return {'error': 'Playlist does not exist'}, 404
 
 #ADD SONG TO PLAYLIST
-@playlist_routes.route('/add-song', methods=['POST'])
+@playlist_routes.route('/<int:id>/add-song', methods=['POST'])
 @login_required
-def create_playlist_song(playlist_id):
-    playlist = Playlist.query.get(playlist_id)
-    if playlist:
-        song_id = request.form.get("song_id")
-        song = Song.query.get(song_id)
-        playlist.songs.append(  song)
+def create_playlist_song():
+    form = PlaylistSongForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        new_playlist_song = PlaylistSong(
+             playlist_id=form.data['playlist_id'],
+             song_id=form.data['song_id']
+             )
+        db.session.add(new_playlist_song)
         db.session.commit()
-        return playlist.to_dict()
+        return new_playlist_song.to_dict()
     else:
-        return {'errors': "Relationship Failed Song to Playlist"}, 400
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+    # playlist = Playlist.query.get(playlist_id)
+    # if playlist:
+    #     song_id = request.form.get("song_id")
+    #     song = Song.query.get(song_id)
+    #     playlist.songs.append(song)
+    #     db.session.commit()
+    #     return playlist.to_dict()
+    # else:
+    #     return {'errors': "Relationship Failed Song to Playlist"}, 400
