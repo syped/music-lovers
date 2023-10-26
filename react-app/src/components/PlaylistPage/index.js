@@ -1,9 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
-import { getPlaylistsThunk, addSongToPlaylistThunk } from "../../store/playlist";
-import { likePlaylist, unlikePlaylist } from "../../store/likes";
+import {
+  getPlaylistsThunk,
+  addSongToPlaylistThunk,
+} from "../../store/playlist";
+// import { likePlaylist, unlikePlaylist } from "../../store/likes";
 import { useState, useEffect } from "react";
 import { useModal } from "../../context/Modal";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 
 function AllPlaylists() {
   const dispatch = useDispatch();
@@ -25,26 +28,26 @@ function AllPlaylists() {
   //   dispatch(addSongToPlaylistThunk(playlistId, songId))
   // }
 
-  const handleLikeClick = (playlistId) => {
-    const isLiked = likedPlaylists.includes(playlistId);
-    if (isLiked) {
-      dispatch(unlikePlaylist(playlistId));
-      setLikeCounts((prevCounts) => ({
-        ...prevCounts,
-        [playlistId]: (prevCounts[playlistId] || 0) - 1,
-      }));
-    } else {
-      dispatch(likePlaylist(playlistId));
-      setLikeCounts((prevCounts) => ({
-        ...prevCounts,
-        [playlistId]: (prevCounts[playlistId] || 0) + 1,
-      }));
-    }
-  };
+  // const handleLikeClick = (playlistId) => {
+  //   const isLiked = likedPlaylists.includes(playlistId);
+  //   if (isLiked) {
+  //     dispatch(unlikePlaylist(playlistId));
+  //     setLikeCounts((prevCounts) => ({
+  //       ...prevCounts,
+  //       [playlistId]: (prevCounts[playlistId] || 0) - 1,
+  //     }));
+  //   } else {
+  //     dispatch(likePlaylist(playlistId));
+  //     setLikeCounts((prevCounts) => ({
+  //       ...prevCounts,
+  //       [playlistId]: (prevCounts[playlistId] || 0) + 1,
+  //     }));
+  //   }
+  // };
 
-  useEffect(() => {
-    localStorage.setItem("likeCounts", JSON.stringify(likeCounts));
-  }, [likeCounts]);
+  // useEffect(() => {
+  //   localStorage.setItem("likeCounts", JSON.stringify(likeCounts));
+  // }, [likeCounts]);
 
   if (!arr || !arr.length) {
     dispatch(getPlaylistsThunk());
@@ -65,7 +68,7 @@ function AllPlaylists() {
             {/* <button onClick={() => handleLikeClick(playlist.id)}>
               {likedPlaylists.includes(playlist.id) ? "Unlike" : "Like"}
             </button> */}
-            <span>{likeCounts[playlist.id] || 0}</span>
+            {/* <span>{likeCounts[playlist.id] || 0}</span> */}
           </div>
         ))}
       </div>

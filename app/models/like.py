@@ -9,6 +9,7 @@ class Like(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     playlist_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("playlists.id")))
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
+    liked = db.Column(db.Integer)
 
     playlist = db.relationship("Playlist", back_populates="like")
     user = db.relationship("User", back_populates="like")
@@ -18,4 +19,5 @@ class Like(db.Model):
             'id': self.id,
             'playlist_id': self.playlist_id,
             'user_id': self.user_id,
+            'liked': self.liked
         }

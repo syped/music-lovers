@@ -1,4 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+# from .like import Like
 
 class Playlist(db.Model):
     __tablename__ = 'playlists'
@@ -19,6 +20,11 @@ class Playlist(db.Model):
     playlist_song = db.relationship("PlaylistSong", back_populates="playlist")
     # song = db.relationship("Song", back_populates="playlist")
     like = db.relationship("Like", back_populates="playlist")
+    # playlist_likes = db.relationship(
+    #     "User",
+    #     # secondary=Like,
+    #     back_populates="user_likes"
+    # )
 
     def to_dict(self):
         return {
@@ -28,6 +34,7 @@ class Playlist(db.Model):
             'playlist_image': self.playlist_image,
             # 'song_id': self.song_id,
             'user_id': self.user_id,
+            # 'likes': self.playlist_likes
             # 'created_at': self.created_at,
             # 'updated_at': self.updated_at,
         }
