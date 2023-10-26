@@ -93,21 +93,21 @@ def delete_playlist(id):
         return {'error': 'Playlist does not exist'}, 404
 
 #ADD SONG TO PLAYLIST
-@playlist_routes.route('/<int:id>/add-song', methods=['POST'])
-@login_required
-def create_playlist_song():
-    form = PlaylistSongForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        new_playlist_song = PlaylistSong(
-             playlist_id=form.data['playlist_id'],
-             song_id=form.data['song_id']
-             )
-        db.session.add(new_playlist_song)
-        db.session.commit()
-        return new_playlist_song.to_dict()
-    else:
-        return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+# @playlist_routes.route('/<int:id>/add-song', methods=['POST'])
+# @login_required
+# def create_playlist_song():
+#     form = PlaylistSongForm()
+#     form['csrf_token'].data = request.cookies['csrf_token']
+#     if form.validate_on_submit():
+#         new_playlist_song = PlaylistSong(
+#              playlist_id=form.data['playlist_id'],
+#              song_id=form.data['song_id']
+#              )
+#         db.session.add(new_playlist_song)
+#         db.session.commit()
+#         return new_playlist_song.to_dict()
+#     else:
+#         return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
     # playlist = Playlist.query.get(playlist_id)
     # if playlist:
@@ -118,3 +118,41 @@ def create_playlist_song():
     #     return playlist.to_dict()
     # else:
     #     return {'errors': "Relationship Failed Song to Playlist"}, 400
+
+@playlist_routes.route('/<int:id>/get-songs')
+@login_required
+def get_playlist_songs(id):
+    songs = PlaylistSong.query.filter_by(playlist_id=id).all()
+    return jsonify([song.to_dict() for song in songs])
+
+@playlist_routes.route('/<int:id>/add-song', methods=['POST'])
+@login_required
+def create_playlist_song(id):
+    form = PlaylistSongForm()  # Make sure the form corresponds to your requirements
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        # Extract playlist_id and song_id from the form data
+        playlist_id = form.data['playlist_id']
+        song_id = form.data['song_id']
+
+        # Check if the playlist and song exist in the database
+        playlist = Playlist.query.get(playlist_id)
+        song = Song.query.get(song_id)
+
+        if not playlist:
+            return {"error": "Playlist not found"}, 404
+        if not song:
+            return {"error": "Song not found"}, 404
+
+        # Create a new PlaylistSong entry to associate the song with the playlist
+        new_playlist_song = PlaylistSong(
+            playlist_id=playlist_id,
+            song_id=song_id
+        )
+
+        db.session.add(new_playlist_song)
+        db.session.commit()
+        return new_playlist_song.to_dict(), 201  # Respond with the added playlist song
+    else:
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 400
