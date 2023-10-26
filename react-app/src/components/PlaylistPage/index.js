@@ -1,9 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
-import { getPlaylistsThunk, addSongToPlaylistThunk } from "../../store/playlist";
+import {
+  getPlaylistsThunk,
+  addSongToPlaylistThunk,
+} from "../../store/playlist";
 import { likePlaylist, unlikePlaylist } from "../../store/likes";
 import { useState, useEffect } from "react";
 import { useModal } from "../../context/Modal";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 
 function AllPlaylists() {
   const dispatch = useDispatch();

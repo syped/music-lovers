@@ -9,15 +9,18 @@ import { getSongsThunk } from "../../store/song";
 import OpenModalButton from "../OpenModalButton";
 import AllSongsModal from "../AllSongsModal";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
+// import { likePlaylist, unlikePlaylist } from "../../store/likes";
+import { toggleThunk, getLikeThunk } from "../../store/likes";
 
 function SinglePlaylistPage() {
   const dispatch = useDispatch();
   const { playlistId } = useParams();
   const [isLoaded, setIsLoaded] = useState(false);
-  const [liked, setLiked] = useState(false);
-  const [numLikes, setNumLikes] = useState(false)
+  const [numLikes, setNumLikes] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
   const allSongsObj = useSelector((state) => state.songs.allSongs);
+  const likedPlaylists = useSelector((state) => state.likes.likedPlaylists);
+  const [liked, setLiked] = useState(false);
 
   const singlePlaylistObj = useSelector(
     (state) => state.playlists.singlePlaylist
@@ -27,39 +30,36 @@ function SinglePlaylistPage() {
   const arr = Object.values(allSongsObj);
   const playlistArr = Object.values(playlistSongs);
 
-  const addLike = () => {
-    setLiked(!liked);
-    setNumLikes(numLikes + 1);
-    localStorage.setItem(`likes_${playlistId}`, numLikes + 1)
-  };
+  let handleLike;
 
-  const removeLike = () => {
-    setLiked(!liked);
-    setNumLikes(numLikes - 1);
-    localStorage.setItem(`likes_${playlistId}`, numLikes - 1)
-  };
+  useEffect(() => {
+    if (
+      likedPlaylists.user_id === sessionUser.id &&
+      likedPlaylists.playlistId === playlistId
+    ) {
+      setLiked("");
+      handleLike = () => {
+        dispatch(toggleThunk(playlistId));
+      };
+    } else {
+      setLiked("liked");
+    }
+  }, [likedPlaylists, playlistId]);
 
   useEffect(() => {
     dispatch(getSinglePlaylistThunk(playlistId)).then(() => setIsLoaded(true));
     dispatch(getPlaylistSongsThunk(playlistId));
-    const likeStorage = localStorage.getItem(`likes_${playlistId}`)
-    if (likeStorage) {
-      setNumLikes(parseInt(likeStorage, 10))
-    }
   }, [dispatch, playlistId]);
-
-
 
   if (!arr || !arr.length) {
     dispatch(getSongsThunk());
     return null;
   }
-  //   let userPlaylistSongsArr
-  //   let playlistSongsArr
 
-  //     userPlaylistSongsArr = arr.map((song) => {
-  //       playlistSongsArr = playlistArr.filter((obj) => obj.song_id === song.id);
-  //     });
+  if (!likedPlaylists || !likedPlaylists.length) {
+    dispatch(getLikeThunk(playlistId));
+    return null;
+  }
 
   let playlistSongsArr = [];
 
@@ -73,11 +73,6 @@ function SinglePlaylistPage() {
       }
     }
   }
-
-  //   if (!playlistArr || !playlistArr.length) {
-  //     dispatch(getPlaylistSongsThunk(playlistId));
-  //     return null;
-  //   }
 
   if (!singlePlaylistObj || !singlePlaylistObj.id) return null;
 
@@ -95,16 +90,11 @@ function SinglePlaylistPage() {
               modalComponent={<AllSongsModal playlistId={playlistId} />}
             />
           </div>
-          {liked && sessionUser ? (
-            <FaHeart
-              className="nav-icon"
-              style={{ color: "purple" }}
-              onClick={removeLike}
-            />
-          ) : (
-            <FaRegHeart className="nav-icon" onClick={addLike} />
-          )}
-          <span>{ numLikes } likes</span>
+
+          <p>{singlePlaylistObj.playlist_bio}</p>
+          <button onClick={handleLike} className={liked ? "liked" : ""}>
+            {liked ? "Unlike" : "Like"}
+          </button>
         </div>
       )}
     </>

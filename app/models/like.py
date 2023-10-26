@@ -18,4 +18,11 @@ class Like(db.Model):
             'id': self.id,
             'playlist_id': self.playlist_id,
             'user_id': self.user_id,
+            # 'liked': self.liked
         }
+
+# likes = db.Table(
+#     'likes',
+#     db.Column('user_id', db.Integer, db.ForeignKey('users.id')),
+#     db.Column('playlist_id', db.Integer, db.ForeignKey('playlists.id'))
+# )

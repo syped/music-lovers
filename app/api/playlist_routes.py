@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request, redirect, url_for
-from flask_login import login_required
-from app.models import Playlist, PlaylistSong, Song, db
+from flask_login import login_required, current_user
+from app.models import Playlist, PlaylistSong, Song, db, Like
 from app.forms.playlist_form import PlaylistForm
 from app.forms.playlist_song_form import PlaylistSongForm
 from .auth_routes import validation_errors_to_error_messages
@@ -128,15 +128,15 @@ def get_playlist_songs(id):
 @playlist_routes.route('/<int:id>/add-song', methods=['POST'])
 @login_required
 def create_playlist_song(id):
-    form = PlaylistSongForm()  # Make sure the form corresponds to your requirements
+    form = PlaylistSongForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        # Extract playlist_id and song_id from the form data
+
         playlist_id = form.data['playlist_id']
         song_id = form.data['song_id']
 
-        # Check if the playlist and song exist in the database
+
         playlist = Playlist.query.get(playlist_id)
         song = Song.query.get(song_id)
 
@@ -145,7 +145,7 @@ def create_playlist_song(id):
         if not song:
             return {"error": "Song not found"}, 404
 
-        # Create a new PlaylistSong entry to associate the song with the playlist
+
         new_playlist_song = PlaylistSong(
             playlist_id=playlist_id,
             song_id=song_id
@@ -153,6 +153,49 @@ def create_playlist_song(id):
 
         db.session.add(new_playlist_song)
         db.session.commit()
-        return new_playlist_song.to_dict(), 201  # Respond with the added playlist song
+        return new_playlist_song.to_dict(), 201
     else:
         return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+@playlist_routes.route('/<int:id>/get-likes')
+@login_required
+def get_likes(id):
+    likes = Like.query.filter_by(playlist_id=id).all()
+    return jsonify([like.to_dict() for like in likes])
+
+# @playlist_routes.route('/<int:id>/edit-likes', methods=['PUT'])
+# @login_required
+# def edit_likes(id):
+#     form = LikeForm()
+#     form['csrf_token'].data = request.cookies['csrf_token']
+#     if form.validate_on_submit():
+#         like = Like.query.get()
+#         like.playlist_id = form.data['playlist_id']
+#         like.user_id = form.data['user_id']
+#         like.liked = form.data['liked']
+
+#         db.session.commit()
+#         return like.to_dict()
+#     else:
+#         return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+@playlist_routes.route('/<int:playlist_id>/edit-likes', methods=['PUT'])
+@login_required
+def edit_likes(playlist_id):
+    playlist = Playlist.query.get(playlist_id)
+
+    if not playlist:
+        return jsonify({'error': 'Playlist not found'}), 404
+
+    user_id = current_user.id
+    like = Like.query.filter_by(user_id=user_id, playlist_id=playlist_id).first()
+
+    if like:
+        db.session.delete(like)
+        db.session.commit()
+        return jsonify({'liked': False})
+    else:
+        new_like = Like(user_id=user_id, playlist_id=playlist_id)
+        db.session.add(new_like)
+        db.session.commit()
+        return jsonify({'liked': True})
