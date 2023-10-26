@@ -8,11 +8,14 @@ import {
 import { getSongsThunk } from "../../store/song";
 import OpenModalButton from "../OpenModalButton";
 import AllSongsModal from "../AllSongsModal";
+import { FaRegHeart, FaHeart } from "react-icons/fa";
 
 function SinglePlaylistPage() {
   const dispatch = useDispatch();
   const { playlistId } = useParams();
   const [isLoaded, setIsLoaded] = useState(false);
+  const [liked, setLiked] = useState(false);
+  const [numLikes, setNumLikes] = useState(false)
   const sessionUser = useSelector((state) => state.session.user);
   const allSongsObj = useSelector((state) => state.songs.allSongs);
 
@@ -24,10 +27,28 @@ function SinglePlaylistPage() {
   const arr = Object.values(allSongsObj);
   const playlistArr = Object.values(playlistSongs);
 
+  const addLike = () => {
+    setLiked(!liked);
+    setNumLikes(numLikes + 1);
+    localStorage.setItem(`likes_${playlistId}`, numLikes + 1)
+  };
+
+  const removeLike = () => {
+    setLiked(!liked);
+    setNumLikes(numLikes - 1);
+    localStorage.setItem(`likes_${playlistId}`, numLikes - 1)
+  };
+
   useEffect(() => {
     dispatch(getSinglePlaylistThunk(playlistId)).then(() => setIsLoaded(true));
     dispatch(getPlaylistSongsThunk(playlistId));
+    const likeStorage = localStorage.getItem(`likes_${playlistId}`)
+    if (likeStorage) {
+      setNumLikes(parseInt(likeStorage, 10))
+    }
   }, [dispatch, playlistId]);
+
+
 
   if (!arr || !arr.length) {
     dispatch(getSongsThunk());
@@ -53,8 +74,6 @@ function SinglePlaylistPage() {
     }
   }
 
-  console.log("hey", playlistSongsArr);
-
   //   if (!playlistArr || !playlistArr.length) {
   //     dispatch(getPlaylistSongsThunk(playlistId));
   //     return null;
@@ -76,6 +95,16 @@ function SinglePlaylistPage() {
               modalComponent={<AllSongsModal playlistId={playlistId} />}
             />
           </div>
+          {liked && sessionUser ? (
+            <FaHeart
+              className="nav-icon"
+              style={{ color: "purple" }}
+              onClick={removeLike}
+            />
+          ) : (
+            <FaRegHeart className="nav-icon" onClick={addLike} />
+          )}
+          <span>{ numLikes } likes</span>
         </div>
       )}
     </>
