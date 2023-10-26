@@ -129,7 +129,7 @@ def get_playlist_songs(id):
 @playlist_routes.route('/<int:id>/liked')
 @login_required
 def liked_playlist(id):
-    form = PlaylistLikedForm();
+    form = PlaylistLikedForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         playlist_id = form.data['playlist_id']
