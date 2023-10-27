@@ -1,0 +1,238 @@
+.library-container {
+  margin-left: 30px;
+  background: rgb(18, 18, 18);
+  color: white;
+  max-width: 250px;
+  /* max-height: 1000px; */
+  height: 500px;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.library-header {
+  margin-bottom: 0px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.library-icon {
+  height: 20px;
+  margin-right: 8px;
+  margin-top: 10px;
+}
+
+.library-title {
+  color: rgb(167, 167, 167);
+  font-size: 25px;
+  font-family: "Kanit", sans-serif;
+}
+
+.library-album-playlists {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 10px;
+  /* background-color: rgb(62, 61, 61); */
+  width: 230px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  /* border: 1px solid white; */
+  border-radius: 10px;
+}
+
+.your-albums,
+.your-playlists {
+  background-color: rgb(34, 34, 34);
+  color: rgb(167, 167, 167);
+  padding: 5px;
+  width: 100px;
+  border-radius: 10px;
+  font-family: "Kanit", sans-serif;
+  box-shadow: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.your-albums:hover,
+.your-playlists:hover {
+  background-color: rgb(75, 75, 75);
+  color: rgb(176, 83, 239);
+}
+
+.your-albums.active,
+.your-playlists.active {
+  background-color: white;
+  color: black;
+}
+
+.your-albums.active:hover,
+.your-playlists.active:hover {
+  color: rgb(176, 83, 239);
+  background-color: rgb(75, 75, 75);
+}
+
+.library-album-button,
+.library-playlist-button {
+  text-decoration: none;
+}
+
+.user-albums,
+.user-playlists {
+  margin-bottom: 10px;
+  display: flex;
+  width: 230px;
+  background-color: rgb(31, 31, 31);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.user-albums:hover,
+.user-playlists:hover {
+  color: rgb(176, 83, 239);
+  background-color: rgb(75, 75, 75);
+}
+
+.user-album-cover,
+.user-playlist-cover {
+  width: 45px;
+  height: 45px;
+  border-radius: 5px;
+  margin-right: 10px;
+  margin-top: 4px;
+  margin-left: 5px;
+}
+
+.album-title,
+.playlist-title {
+  font-family: "Kanit", sans-serif;
+  text-decoration: none;
+}
+
+.user-album-info,
+.user-playlist-info {
+  display: flex;
+  justify-content: center;
+}
+
+.user-album-name,
+.user-playlist-name {
+  color: rgb(167, 167, 167);
+  margin-top: 1px;
+  width: 128px;
+}
+
+.user-album-name:hover,
+.user-playlist-name:hover {
+  color: rgb(176, 83, 239);
+}
+
+.album-info-buttons,
+.playlist-info-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  /* margin-left: 25px; */
+}
+
+.album-edit-button button,
+.album-delete-button button,
+.playlist-edit-button button,
+.playlist-delete-button button {
+  margin-top: 6px;
+  /* margin-left: 30px; */
+  margin-bottom: 5px;
+  width: 40px;
+  height: 15px;
+  border-radius: 5px;
+  border: none;
+  font-size: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Kanit", sans-serif;
+  cursor: pointer;
+  color: rgb(167, 167, 167);
+  background-color: rgb(55, 55, 55);
+}
+
+.album-edit-button button:hover,
+.album-delete-button button:hover,
+.playlist-edit-button button:hover,
+.playlist-delete-button button:hover {
+  background-color: black;
+  color: rgb(176, 83, 239);
+}
+
+.library-create-album-msg,
+.library-create-playlist-msg {
+  color: rgb(167, 167, 167);
+  font-family: "Kanit", sans-serif;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.library-create-album,
+.library-create-playlist {
+  text-decoration: none;
+  color: rgb(18, 18, 18);
+  background-color: white;
+  padding: 3px;
+  display: flex;
+  width: 110px;
+  justify-content: center;
+  font-family: "Kanit", sans-serif;
+  font-size: 15px;
+  border-radius: 20px;
+  margin-top: 5px;
+}
+
+.library-create-album:hover,
+.library-create-playlist:hover {
+  background-color: rgb(75, 75, 75);
+  color: rgb(176, 83, 239);
+}
+
+.no-content-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.no-user-msg {
+  color: rgb(167, 167, 167);
+  font-family: "Kanit", sans-serif;
+  font-size: 18px;
+  /* display: flex;
+  justify-content: center;
+  text-align: center; */
+}
+
+.library-please {
+  margin-right: 3px;
+}
+
+.library-login {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.library-login button {
+  background-color: rgb(18, 18, 18);
+  border: none;
+  color: rgb(167, 167, 167);
+  font-family: "Kanit", sans-serif;
+  font-size: 17px;
+  text-decoration: underline;
+}
+
+.library-login button:hover {
+  color: white;
+  cursor: pointer;
+}
