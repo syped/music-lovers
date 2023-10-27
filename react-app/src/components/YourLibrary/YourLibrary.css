@@ -1,0 +1,43 @@
+.library-container {
+  margin-left: 30px;
+  background: rgb(31, 31, 31);
+  color: white;
+  max-width: 250px;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.library-title {
+  color: rgb(176, 83, 239);
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.library-album-playlists {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 10px;
+  background-color: rgb(62, 61, 61);
+  width: 230px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  /* border: 1px solid white; */
+  border-radius: 10px;
+}
+
+.your-albums,
+.your-playlists {
+  background-color: rgb(145, 142, 142);
+  color: white;
+  padding: 5px;
+  width: 80px;
+  border-radius: 10px;
+}
+
+.library-album-button,
+.library-playlist-button {
+  text-decoration: none;
+}
