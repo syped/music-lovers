@@ -120,12 +120,12 @@ function YourLibrary() {
                     <div className="library-create-album-msg">
                       Create your first album
                     </div>
-                    <NavLink
+                    {/* <NavLink
                       to="/albums/create"
                       className="library-create-album"
                     >
                       Create Album
-                    </NavLink>
+                    </NavLink> */}
                   </>
                 ) : (
                   <div className="no-user-msg">
@@ -142,6 +142,16 @@ function YourLibrary() {
                   </div>
                 )}
                 {isLoginModalOpen && <LoginFormModal />}
+              </div>
+            )}
+            {sessionUser && (
+              <div className="bleh-create-button">
+                <NavLink
+                  to="/albums/create"
+                  className="library-user-create-album"
+                >
+                  Create Album
+                </NavLink>
               </div>
             )}
           </div>
@@ -201,12 +211,12 @@ function YourLibrary() {
                         Create your first playlist
                       </div>
                     </div>
-                    <NavLink
+                    {/* <NavLink
                       to="/playlists/create"
                       className="library-create-playlist"
                     >
                       Create Playlist
-                    </NavLink>
+                    </NavLink> */}
                   </>
                 ) : (
                   <div className="no-user-msg">
@@ -223,6 +233,16 @@ function YourLibrary() {
                   </div>
                 )}
                 {isLoginModalOpen && <LoginFormModal />}
+              </div>
+            )}
+            {sessionUser && (
+              <div className="bleh-create-button">
+                <NavLink
+                  to="/playlists/create"
+                  className="library-user-create-playlist"
+                >
+                  Create Playlist
+                </NavLink>
               </div>
             )}
           </div>
