@@ -1,18 +1,22 @@
 body {
   background: black;
+  color: rgb(167, 167, 167);
 }
 
 .top-section {
   display: flex;
-  margin: 30px;
+  margin-top: 30px;
+  margin-left: 30px;
+  margin-right: 10px;
+  margin-bottom: 10px;
 }
 
 .logo-container {
-  padding-right: 15px;
+  padding-right: 10px;
 }
 
 .nav-container {
-  background: rgb(31, 31, 31);
+  background: rgb(18, 18, 18);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,18 +27,29 @@ body {
 }
 
 .nav-links {
-  color: white;
+  color: rgb(167, 167, 167);
   text-decoration: none;
+  font-family: "Kanit", sans-serif;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.nav-links:hover {
+  color: rgb(176, 83, 239);
+  cursor: pointer;
 }
 
 .pb-container {
-  background: rgb(31, 31, 31);
+  background: rgb(18, 18, 18);
   margin-left: auto;
   width: 100%;
   max-width: auto;
+  height: 60px;
+  border-radius: 10px;
 }
 
-ul {
+ul,
+li {
   list-style-type: none;
 }
 
@@ -48,7 +63,7 @@ ul {
 }
 
 img.logo {
-  max-width: 220px;
+  max-width: 240px;
   max-height: 60px;
 }
 
@@ -60,20 +75,184 @@ img.logo {
 }
 
 .heart-profile {
-  width: 25px;
-  height: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   position: relative;
-  z-index: 1;
+  width: 30px;
+  height: 30px;
+  margin-bottom: 35px;
+  /* border: 0.5px solid rgb(176, 83, 239); */
+  background-color: black;
+  border-radius: 30px;
+  padding: 3px;
 }
 
 .user-initial {
   color: white;
-  font-family: Andale Mono, monospace;
+  font-family: "Kanit", sans-serif;
   font-size: 10px;
-  margin-left: 9px;
-  margin-top: 7px;
+  margin-top: 10px;
   position: absolute;
-  top: 0;
-  left: 0;
   z-index: 2;
+}
+
+.button-container {
+  width: 30px;
+}
+
+.user-button {
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.user-button:focus {
+  outline: none;
+}
+
+.profile-dropdown {
+  position: absolute;
+  /* display: ${showMenu ? "block" : "none"}; */
+  width: 100px;
+  height: 155px;
+  right: 0;
+  top: 50px;
+  background: rgb(34, 34, 34);
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* padding: 10px; */
+  color: rgb(167, 167, 167);
+  z-index: 1;
+  margin-right: 30px;
+  margin-top: 30px;
+}
+
+.user-button {
+  position: absolute;
+  right: 20px;
+  top: 10%;
+  transform: translateY(-50%);
+}
+
+.user-info-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pb-username,
+.pb-name,
+.pb-email {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* margin-bottom: 5px; */
+  margin-right: 40px;
+  font-family: "Kanit", sans-serif;
+  width: 120px;
+  padding: 5px;
+}
+
+.pb-username {
+  margin-top: 3px;
+}
+
+.pb-email {
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgb(167, 167, 167);
+}
+
+.pb-logout button {
+  /* padding: 5px;
+  width: 80px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgb(167, 167, 167);
+  color: white; */
+  width: 130px;
+  height: 40px;
+  border: none;
+  background-color: rgb(34, 34, 34);
+  color: rgb(167, 167, 167);
+  font-size: 15px;
+  font-family: "Kanit", sans-serif;
+  /* padding-top: 5px; */
+  margin-right: 40px;
+  margin-bottom: 1px;
+  cursor: pointer;
+}
+
+.pb-username:hover,
+.pb-name:hover,
+.pb-email:hover {
+  background: rgb(62, 62, 62);
+  color: rgb(176, 83, 239);
+}
+
+.pb-logout button:hover {
+  background: rgb(62, 62, 62);
+  color: rgb(176, 83, 239);
+}
+
+/* .login-signup-menu {
+  position: absolute;
+  right: 20px;
+  margin-top: 20px;
+  margin-right: 10px;
+  transform: translateY(-50%);
+  display: flex;
+} */
+
+.signup-button button,
+.login-button button {
+  background-color: rgb(18, 18, 18);
+  border: none;
+  font-family: "Kanit", sans-serif;
+  position: absolute;
+  right: 20px;
+  margin-top: 20px;
+  margin-right: 10px;
+  transform: translateY(-50%);
+}
+
+.signup-button button {
+  color: rgb(167, 167, 167);
+  font-size: 15px;
+  margin-top: 10px;
+  margin-right: 120px;
+  width: 70px;
+}
+
+.signup-button button:hover {
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.login-button {
+  color: rgb(18, 18, 18);
+  padding: 10px;
+  width: 90px;
+  border-radius: 20px;
+  font-size: 15px;
+}
+
+.login-button button {
+  color: rgb(18, 18, 18);
+  background-color: white;
+  padding: 10px;
+  width: 90px;
+  border-radius: 20px;
+  font-size: 15px;
+  margin-top: 0px;
+}
+
+.login-button button:hover {
+  height: 44px;
+  width: 91px;
+  cursor: pointer;
 }
