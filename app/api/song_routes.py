@@ -73,7 +73,9 @@ def edit_song(id):
 @login_required
 def delete_song(id):
     song = Song.query.get(id)
-    if song:
+    file_to_delete = remove_file_from_s3(song.mp3)
+
+    if file_to_delete:
         db.session.delete(song)
         db.session.commit()
         return "Song successfully deleted."
