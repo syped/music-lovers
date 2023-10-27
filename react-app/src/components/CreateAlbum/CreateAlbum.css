@@ -1,0 +1,52 @@
+.upload-album-container {
+    background-color: rgb(31, 31, 31);
+    max-width: 275px;
+    border-radius: 10px;
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    padding-bottom: 10px;
+    padding-top: 5px;;
+}
+
+.upload-title {
+    color: white
+}
+
+.form-upload {
+    color: white;
+}
+
+.upload-button-container {
+    background-color: rgb(176, 83, 239);
+    border-radius: 10px;
+}
+
+
+.form-fields {
+    color: white;
+    text-align: center;
+}
+
+.album-name-box {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.album-name-box input {
+    background-color: rgb(31, 31, 31);
+    text-align: center;
+}
+
+.release-year-box {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.release-year-box input {
+    background-color: rgb(31, 31, 31);
+    text-align: center;
+}

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createSongThunk } from "../../store/song";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import "./CreateSong.css";
 
 function CreateSongForm() {
   const dispatch = useDispatch();
@@ -58,50 +59,60 @@ function CreateSongForm() {
   };
 
   return (
-    <>
+    <div className="create-song-container">
       <div className="create-song-form">
-        <h1>Upload your Song(s)</h1>
+        <div className="upload-song-title-container">
+        <h1 className="upload-song-title">Upload your Song(s)</h1>
+        </div>
         <form onSubmit={handleSubmit} encType="multipart/form-data">
           <div className="song-form-fields">
             <label>
               Song Name:
+              <div className="song-name-box">
               <input
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Song Name"
               />
+              </div>
             </label>
             {errors.name && <p className="errors">{errors.name}</p>}
           </div>
           <div className="song-form-fields">
             <label>
               Length:
+              <div className="length-box">
               <input
                 type="text"
                 value={length}
                 onChange={(e) => setLength(e.target.value)}
                 placeholder="Length of Song"
               />
+              </div>
             </label>
             {errors.name && <p className="errors">{errors.length}</p>}
           </div>
           <div className="song-form-fields">
             <label>
               Song File:
+              <div className="song-file-box">
               <input
                 type="file"
                 accept="audio/*"
                 onChange={(e) => setMp3(e.target.files[0])}
               />
+              </div>
               {mp3Loading && <p>Loading...</p>}
             </label>
             {errors.name && <p className="errors">{errors.mp3}</p>}
           </div>
+          <div className="create-song-button">
           <button type="submit">Upload Song</button>
+          </div>
         </form>
       </div>
-    </>
+    </div>
   );
 }
 
