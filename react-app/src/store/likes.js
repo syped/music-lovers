@@ -17,7 +17,7 @@ export const unlikePlaylist = (payload) => ({
 
 const toggleLike = (playlistId) => ({
   type: TOGGLE_LIKE,
-  payload: { playlistId },
+  payload: playlistId,
 });
 
 const getLike = (likes) => ({
@@ -96,7 +96,7 @@ const likeReducer = (state = initialState, action) => {
     case GET_LIKE:
       return {
         ...state,
-        likedPlaylists: [...state.likedPlaylists, action.likes],
+        likedPlaylists: [action.likes],
       };
     case TOGGLE_LIKE:
       const { playlistId } = action.payload;
@@ -105,7 +105,7 @@ const likeReducer = (state = initialState, action) => {
         ...state,
         likes: {
           ...state.likes,
-          [playlistId]: !currentLikeState,
+          ["liked"]: !currentLikeState,
         },
       };
     default:
