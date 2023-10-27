@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useModal } from "../../context/Modal";
 import { useDispatch } from "react-redux";
 import { deletePlaylistThunk } from "../../store/playlist";
+import "./DeletePlaylist.css";
 
 function DeletePlaylistModal ({ playlistId }) {
     const dispatch = useDispatch();
@@ -22,13 +23,13 @@ function DeletePlaylistModal ({ playlistId }) {
     return (
         <>
         {exist && (
-            <div className="delete-modal">
+            <div className="delete-playlist-modal">
                 <h2 className="delete-playlist">Confirm Delete</h2>
                 <div>Are you sure you want to remove this Playlist?</div>
-                <button className="yes-delete" onClick={confirmDelete}>
+                <button className="yes-delete-playlist" onClick={confirmDelete}>
                   Yes (Delete Playlist)
                 </button>
-                <button className="no-delete" onClick={cancelDelete}>
+                <button className="no-delete-playlist" onClick={cancelDelete}>
                   No (Keep Playlist)
                 </button>
             </div>

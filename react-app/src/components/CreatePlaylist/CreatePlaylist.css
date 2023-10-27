@@ -1,6 +1,14 @@
+.main-create-playlist-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -400px;
+}
+
 .create-playlist-container {
     background-color: rgb(31, 31, 31);
-    max-width: 275px;
+    width: 600px;
+    height: 365px;
     border-radius: 10px;
     margin-left: 30px;
     display: flex;
@@ -35,25 +43,26 @@
     padding: 10px;
 }
 
-
-.playlist-name-box input {
-    background-color: rgb(31, 31, 31);
-    text-align: center;
-    padding: 5px;
-}
-
-
-.playlist-bio-box input {
-    background-color: rgb(31, 31, 31);
-    text-align: center;
-    padding: 5px;
-}
-
 .playlist-form-fields {
     color: white;
     padding-top: 10px;
     padding-bottom: 10px;
+    text-align: center;
 }
+
+.playlist-name-box input,
+.playlist-bio-box input {
+  background-color: rgb(31, 31, 31);
+  text-align: center;
+  padding: 5px;
+  width: 80%;
+}
+
+.form-upload-playlist {
+    color: white;
+}
+
+
 
 
 /* .playlist-bio-form-fields {

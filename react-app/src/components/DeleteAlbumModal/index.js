@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useModal } from "../../context/Modal"
 import { useDispatch } from "react-redux"
 import { deleteAlbumThunk } from "../../store/album"
+import "./DeleteAlbumModal.css"
 
 function DeleteAlbumModal ({ albumId }) {
     const dispatch = useDispatch();
@@ -23,13 +24,13 @@ function DeleteAlbumModal ({ albumId }) {
         <>
         {exist && (
             <>
-            <div className="delete-modal">
+            <div className="delete-album-modal">
               <h2 className="delete-album">Confirm Delete</h2>
               <div>Are you sure you want to remove this album?</div>
-              <button className="yes-delete" onClick={confirmDelete}>
+              <button className="yes-delete-album" onClick={confirmDelete}>
                 Yes (Delete Album)
               </button>
-              <button className="no-delete" onClick={cancelDelete}>
+              <button className="no-delete-album" onClick={cancelDelete}>
                 No (Keep Album)
               </button>
             </div>

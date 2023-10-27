@@ -59,6 +59,7 @@ function CreateSongForm() {
   };
 
   return (
+    <div className="main-create-song-container">
     <div className="create-song-container">
       <div className="create-song-form">
         <div className="upload-song-title-container">
@@ -112,6 +113,8 @@ function CreateSongForm() {
           </div>
         </form>
       </div>
+    </div>
+
     </div>
   );
 }

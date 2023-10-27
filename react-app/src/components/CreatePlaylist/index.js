@@ -48,12 +48,13 @@ function CreatePlaylistForm() {
   };
 
   return (
+    <div className="main-create-playlist-container">
     <div className="create-playlist-container">
       <div className="form-container">
         <h1 className="create-playlist-title">Create your Playlist</h1>
       </div>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <div className="form-upload">
+        <div className="form-upload-playlist">
           <input
             type="file"
             accept="image/*"
@@ -95,6 +96,7 @@ function CreatePlaylistForm() {
         <button type="submit">Create Playlist</button>
         </div>
       </form>
+    </div>
     </div>
   );
 }

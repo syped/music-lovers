@@ -54,12 +54,13 @@ function CreateAlbumForm() {
   };
 
   return (
+    <div className="main-upload-album-container">
     <div className="upload-album-container">
       <div className="form-container">
         <h1 className="upload-title">Upload your Album</h1>
       </div>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <div className="form-upload">
+        <div className="form-upload-album">
           <input
             type="file"
             accept="image/*"
@@ -96,8 +97,11 @@ function CreateAlbumForm() {
           </label>
           {errors.releaseYear && <p className="errors">{errors.releaseYear}</p>}
         </div>
+        <div className="button-container">
         <button type="submit" className="upload-button-container">Upload Album</button>
+        </div>
       </form>
+    </div>
     </div>
   );
 }

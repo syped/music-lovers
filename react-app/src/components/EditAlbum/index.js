@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { updateAlbumThunk, getSingleAlbum } from "../../store/album";
+import "./EditAlbum.css";
 
 function EditAlbum({ albumId }) {
   const dispatch = useDispatch();
@@ -58,7 +59,7 @@ function EditAlbum({ albumId }) {
   };
 
   return (
-    <>
+    <div className="main-edit-album-container">
       <div className="form-container">
         <h1>Update your Album</h1>
       </div>
@@ -93,7 +94,7 @@ function EditAlbum({ albumId }) {
         </div>
         <button type="submit">Update Album</button>
       </form>
-    </>
+    </div>
   );
 }
 
