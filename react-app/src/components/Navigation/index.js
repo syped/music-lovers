@@ -14,7 +14,7 @@ function Navigation({ isLoaded }) {
         <li className="nav-container">
           <NavLink exact to="/">
             <img
-              src={process.env.PUBLIC_URL + "/ML_LOGO.png"}
+              src={process.env.PUBLIC_URL + "/images/ML_LOGO.png"}
               alt="ML LOGO"
               className="logo"
             ></img>

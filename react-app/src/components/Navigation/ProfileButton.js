@@ -5,6 +5,7 @@ import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import "./Navigation.css";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ function ProfileButton({ user }) {
   const ulRef = useRef();
   const history = useHistory();
 
-  const heartIcon = process.env.PUBLIC_URL + "/FULLHEART.svg";
+  const heartIcon = process.env.PUBLIC_URL + "/images/FULLHEART.svg";
 
   const openMenu = () => {
     if (showMenu) return;
@@ -44,11 +45,11 @@ function ProfileButton({ user }) {
   const closeMenu = () => setShowMenu(false);
 
   return (
-    <div className="profile-button-container">
-      {user ? (
-        <div className="logged-in-user">
-          <button className="button-container" onClick={openMenu}>
-            <ul>
+    <div className="profile-button-wrapper">
+      <div className="profile-button-container">
+        {user ? (
+          <div className="logged-in-user">
+            <button className="user-button" onClick={openMenu}>
               {user ? (
                 <div className="heart-profile-icon">
                   <img src={heartIcon} alt="Heart" className="heart-profile" />
@@ -59,37 +60,43 @@ function ProfileButton({ user }) {
                   <i className="fas fa-user-circle" />
                 </div>
               )}
+            </button>
+            <ul className={ulClassName} ref={ulRef}>
+              {user && (
+                <>
+                  <div className="user-info-button">
+                    <li className="pb-username">{user.username}</li>
+                    <li className="pb-name">
+                      {user.first_name} {user.last_name}
+                    </li>
+                    <li className="pb-email">{user.email}</li>
+                    <li className="pb-logout">
+                      <button onClick={handleLogout}>Log Out</button>
+                    </li>
+                  </div>
+                </>
+              )}
             </ul>
-          </button>
-          <ul className={ulClassName} ref={ulRef}>
-            {user && (
-              <>
-                <div className="user-info-button">
-                  <li>{user.username}</li>
-                  <li>{user.email}</li>
-                  <li>
-                    <button onClick={handleLogout}>Log Out</button>
-                  </li>
-                </div>
-              </>
-            )}
-          </ul>
-        </div>
-      ) : (
-        <>
-          <OpenModalButton
-            buttonText="Log In"
-            onItemClick={closeMenu}
-            modalComponent={<LoginFormModal />}
-          />
-
-          <OpenModalButton
-            buttonText="Sign Up"
-            onItemClick={closeMenu}
-            modalComponent={<SignupFormModal />}
-          />
-        </>
-      )}
+          </div>
+        ) : (
+          <div className="login-signup-menu">
+            <div className="signup-button">
+              <OpenModalButton
+                buttonText="Sign Up"
+                onItemClick={closeMenu}
+                modalComponent={<SignupFormModal />}
+              />
+            </div>
+            <div className="login-button">
+              <OpenModalButton
+                buttonText="Log In"
+                onItemClick={closeMenu}
+                modalComponent={<LoginFormModal />}
+              />
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
