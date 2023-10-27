@@ -16,7 +16,9 @@ class Playlist(db.Model):
     # updated_at = db.Column(db.Date)
 
     user = db.relationship("User", back_populates="playlist")
+    playlist_song = db.relationship("PlaylistSong", back_populates="playlist")
     # song = db.relationship("Song", back_populates="playlist")
+    like = db.relationship("Like", back_populates="playlist")
 
     def to_dict(self):
         return {

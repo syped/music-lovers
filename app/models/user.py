@@ -19,7 +19,16 @@ class User(db.Model, UserMixin):
     album = db.relationship("Album", back_populates="user")
     song = db.relationship("Song", back_populates="user")
     playlist = db.relationship("Playlist", back_populates="user")
+
     like = db.relationship("Like", back_populates="user")
+    # users = db.relationship(
+    #                         'User',
+    #                         secondary=likes,
+    #                         primaryjoin=(likes.c.user_id == id),
+    #                         secondaryjoin=(likes.c.playlist_id == id),
+    #                         backref=db.backref('liked', lazy='dynamic'),
+    #                         lazy='dynamic'
+    #                         )
 
     @property
     def password(self):

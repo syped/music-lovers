@@ -9,6 +9,7 @@ import AlbumPage from "./components/AlbumPage";
 import SongPage from "./components/SongPage";
 import PlaylistPage from "./components/PlaylistPage";
 import SingleAlbumPage from "./components/SingleAlbumPage";
+import SinglePlaylistPage from "./components/SinglePlaylistPage";
 import CreateAlbum from "./components/CreateAlbum";
 import CreateSong from "./components/CreateSong";
 import CreatePlaylist from "./components/CreatePlaylist";
@@ -32,40 +33,31 @@ function App() {
       <YourLibrary />
       {isLoaded && (
         <Switch>
-          <Route exact path="/">
-            <LandingPage />
-          </Route>
-          <Route path="/login">
-            <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-          <Route path="/songs">
-            <SongPage />
-          </Route>
-          <Route path="/playlists/create">
-            <CreatePlaylist />
-          </Route>
-          <Route path="/playlist/:playlistId/edit">
-            <EditPlaylist />
-          </Route>
-          <Route path="/playlists">
-            <PlaylistPage />
-          </Route>
-          <Route path="/albums/create">
-            <CreateAlbum />
-          </Route>
-          <Route path="/albums/:albumId/edit">
-            <EditAlbum />
-          </Route>
-          <Route path="/albums/:albumId">
-            <SingleAlbumPage />
-            <CreateSong />
-          </Route>
-          <Route path="/albums">
-            <AlbumPage />
-          </Route>
+          <Route exact path="/" component={LandingPage} />
+
+          <Route path="/login" component={LoginFormPage} />
+
+          <Route path="/signup" component={SignupFormPage} />
+
+          <Route exact path="/songs" component={SongPage} />
+
+          <Route path="/playlists/create" component={CreatePlaylist} />
+
+          <Route path="/playlists/:playlistId/edit" component={EditPlaylist} />
+
+          <Route path="/playlists/:playlistId" component={SinglePlaylistPage} />
+
+          <Route path="/playlists" component={PlaylistPage} />
+
+          <Route exact path="/albums/create" component={CreateAlbum} />
+
+          <Route path="/albums/:albumId/edit" component={EditAlbum} />
+
+          <Route path="/albums/:albumId" component={SingleAlbumPage} />
+
+          <Route exact path="/albums" component={AlbumPage} />
+
+          <Route>Page Not Found</Route>
         </Switch>
       )}
     </>

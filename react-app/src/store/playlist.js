@@ -4,6 +4,8 @@ const GET_SINGLE_PLAYLIST = "playlists/GET_SINGLE_PLAYLIST";
 const CREATE_PLAYLIST = "playlists/CREATE_PLAYLIST";
 const UPDATE_PLAYLIST = "playlists/UPDATE_PLAYLIST";
 const DELETE_PLAYLIST = "playlists/DELETE_PLAYLIST";
+const GET_PLAYLIST_SONGS = "playlists/GET_PLAYLIST_SONGS";
+const ADD_SONG_TO_PLAYLIST = "playlists/ADD_SONG_TO_PLAYLIST";
 
 // ACTION CREATORS
 const loadAllPlaylists = (playlists) => ({
@@ -29,6 +31,17 @@ const updatePlaylist = (playlist) => ({
 const deletePlaylist = (playlistId) => ({
   type: DELETE_PLAYLIST,
   playlistId,
+});
+
+const getPlaylistSongs = (songs) => ({
+  type: GET_PLAYLIST_SONGS,
+  songs,
+});
+
+const addSongToPlaylist = (playlistId, songId) => ({
+  type: ADD_SONG_TO_PLAYLIST,
+  playlistId,
+  songId,
 });
 
 // THUNKS
@@ -104,10 +117,39 @@ export const deletePlaylistThunk = (playlistId) => async (dispatch) => {
   }
 };
 
+export const getPlaylistSongsThunk = (playlistId) => async (dispatch) => {
+  const response = await fetch(`/api/playlists/${playlistId}/get-songs`);
+
+  if (response.ok) {
+    const songs = await response.json();
+    dispatch(getPlaylistSongs(songs));
+  }
+};
+
+export const addSongToPlaylistThunk = (payload) => async (dispatch) => {
+  const response = await fetch(
+    `/api/playlists/${payload.playlist_id}/add-song`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    }
+  );
+
+  if (response.ok) {
+    const addedSong = await response.json();
+    dispatch(addSongToPlaylist(addedSong));
+  } else {
+    const errors = await response.json();
+    return errors;
+  }
+};
+
 //REDUCER
 const initialState = {
   allPlaylists: {},
   singlePlaylist: {},
+  playlistSongs: {},
 };
 
 const playlistsReducer = (state = initialState, action) => {
@@ -132,6 +174,17 @@ const playlistsReducer = (state = initialState, action) => {
     case DELETE_PLAYLIST:
       newState = { ...state };
       delete newState.allPlaylists[action.playlistId];
+      return newState;
+    case GET_PLAYLIST_SONGS:
+      newState = { ...state };
+      newState.playlistSongs = action.songs;
+      return newState;
+    case ADD_SONG_TO_PLAYLIST:
+      newState = { ...state };
+      const { playlistId, songId } = action;
+      if (newState.allPlaylists[playlistId]) {
+        newState.allPlaylists[playlistId].songs.push(songId);
+      }
       return newState;
     default:
       return state;
