@@ -70,7 +70,9 @@ def edit_album(id):
 @login_required
 def delete_album(id):
     album = Album.query.get(id)
-    if album:
+    file_to_delete = remove_file_from_s3(album.album_image)
+
+    if file_to_delete:
         db.session.delete(album)
         db.session.commit()
         return "Album successfully deleted."

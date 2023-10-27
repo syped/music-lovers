@@ -6,6 +6,7 @@ import OpenModalButton from "../OpenModalButton";
 import { getSongsThunk } from "../../store/song";
 import EditSong from "../EditSong";
 import DeleteSong from "../DeleteSong";
+import CreateSong from "../CreateSong";
 
 function SingleAlbumPage() {
   const dispatch = useDispatch();
@@ -63,6 +64,7 @@ function SingleAlbumPage() {
                 ))
               : null}
           </div>
+          <CreateSong />
         </div>
       )}
     </>

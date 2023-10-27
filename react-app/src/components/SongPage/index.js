@@ -1,5 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { getSongsThunk } from "../../store/song";
+import AudioPlayer from "react-h5-audio-player";
+import "react-h5-audio-player/lib/styles.css";
 
 function AllSongs() {
   const dispatch = useDispatch();
@@ -25,6 +27,10 @@ function AllSongs() {
             <div>{song.album_id}</div>
           </div>
         ))}
+        <AudioPlayer
+          src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3"
+          volume={0.1}
+        />
       </div>
     </>
   );

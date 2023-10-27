@@ -1,0 +1,53 @@
+.album-page-img {
+  width: 130px;
+  height: 100px;
+  border-radius: 20px;
+  padding: 10px;
+  object-fit: cover;
+}
+
+.album-page-name {
+  color: aliceblue;
+  text-align: center;
+}
+
+.album-year {
+  color: aliceblue;
+  display: flex;
+  justify-content: center;
+}
+
+.main-album-card {
+  display: flex;
+  background-color: rgb(18, 18, 18);
+  width: 65%;
+  border-radius: 10px;
+  margin-right: 25px;
+}
+
+.album-body-card {
+  display: flex;
+  justify-content: end;
+  position: relative;
+  top: -375.5px;
+  height: 450px;
+}
+
+.solo-album-info-card {
+  display: grid;
+  justify-content: center;
+}
+
+.album-card {
+  height: 200px;
+  width: 150px;
+  background-color: rgb(31, 31, 31);
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 1px 0 1px rgb(0, 0, 0), -1px 0 1px rgb(0, 0, 0);
+}
+
+.album-card:hover {
+  cursor: pointer;
+  box-shadow: 3px 0 3px rgb(176, 83, 239), -3px 0 3px rgb(176, 83, 239);
+}

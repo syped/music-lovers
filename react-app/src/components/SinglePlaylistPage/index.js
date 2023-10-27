@@ -16,47 +16,70 @@ function SinglePlaylistPage() {
   const dispatch = useDispatch();
   const { playlistId } = useParams();
   const [isLoaded, setIsLoaded] = useState(false);
-  const [numLikes, setNumLikes] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
   const allSongsObj = useSelector((state) => state.songs.allSongs);
-  const likedPlaylists = useSelector((state) => state.likes.likedPlaylists);
-  const [liked, setLiked] = useState(false);
+  const allLikedPlaylists = useSelector((state) => state.likes.likedPlaylists);
+  const playlistSongs = useSelector((state) => state.playlists.playlistSongs);
+  const playlistArr = Object.values(playlistSongs);
+  const arr = Object.values(allSongsObj);
+  const allLikedArr = Object.values(allLikedPlaylists);
+  const [liked, setLiked] = useState("");
+  // console.log(allLikedArr.length);
 
   const singlePlaylistObj = useSelector(
     (state) => state.playlists.singlePlaylist
   );
-  const playlistSongs = useSelector((state) => state.playlists.playlistSongs);
 
-  const arr = Object.values(allSongsObj);
-  const playlistArr = Object.values(playlistSongs);
+  const handleLike = async () => {
+    await dispatch(toggleThunk(playlistId));
+    await dispatch(getLikeThunk(playlistId));
 
-  let handleLike;
-
-  useEffect(() => {
-    if (
-      likedPlaylists.user_id === sessionUser.id &&
-      likedPlaylists.playlistId === playlistId
-    ) {
+    if (liked) {
       setLiked("");
-      handleLike = () => {
-        dispatch(toggleThunk(playlistId));
-      };
     } else {
       setLiked("liked");
     }
-  }, [likedPlaylists, playlistId]);
+  };
 
   useEffect(() => {
-    dispatch(getSinglePlaylistThunk(playlistId)).then(() => setIsLoaded(true));
+    dispatch(getSinglePlaylistThunk(playlistId));
     dispatch(getPlaylistSongsThunk(playlistId));
+    dispatch(getLikeThunk(playlistId)).then(() => setIsLoaded(true));
   }, [dispatch, playlistId]);
+
+  useEffect(() => {
+    if (sessionUser) {
+      for (let i = 0; i < allLikedArr.length; i++) {
+        let like = allLikedArr[i][0];
+
+        if (
+          like &&
+          like.playlist_id === parseInt(playlistId) &&
+          like.user_id === sessionUser.id
+        ) {
+          setLiked("liked");
+        }
+
+        // for (let j = 0; j < playlistArr.length; j++) {
+        //   if (
+        //     like.playlist_id === playlistArr[j].id &&
+        //     like.user_id === sessionUser.id
+        //   ) {
+        //     setLiked("");
+        //   } else {
+        //     setLiked("liked");
+        //   }
+        // }
+      }
+    }
+  }, [allLikedArr, playlistArr, sessionUser]);
 
   if (!arr || !arr.length) {
     dispatch(getSongsThunk());
     return null;
   }
 
-  if (!likedPlaylists || !likedPlaylists.length) {
+  if (!allLikedArr || !allLikedArr.length) {
     dispatch(getLikeThunk(playlistId));
     return null;
   }
