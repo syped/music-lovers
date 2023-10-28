@@ -2,53 +2,66 @@
   width: 130px;
   height: 100px;
   border-radius: 20px;
-  padding: 10px;
+  padding: 10px 10px 0 10px;
   object-fit: cover;
 }
 
 .playlist-page-name {
   color: aliceblue;
+  font-size: 16px;
+  text-align: center;
+  margin-top: 20px;
+  width: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
 }
 
-.playlist-page-id {
+/* .playlist-page-id {
   color: aliceblue;
 }
 
 .playlist-page-bio {
   color: aliceblue;
-}
+} */
 
 .main-playlist-card {
-  display: flex;
-  background-color: rgb(18, 18, 18);
-  width: 65%;
+  display: grid;
+  grid: repeat(2, 300px) / auto-flow 250px;
+  background-color: transparent;
   border-radius: 10px;
-  margin-right: 25px;
+  margin-top: 10px;
 }
 
 .playlist-body-card {
   display: flex;
-  justify-content: end;
   position: relative;
-  top: -375.5px;
-  height: 450px;
+  top: -640px;
+  right: -310px;
+  height: 640px;
 }
 
 .solo-playlist-info-card {
-    display: flex;
-    justify-content: center;
+  display: grid;
+  justify-content: center;
 }
 
 .playlist-card {
-    height: 150px;
-    width: 150px;
-    background-color: rgb(31, 31, 31);
-    margin: 5px;
-    border-radius: 10px;
-    box-shadow: 1px 0 1px rgb(0, 0, 0), -1px 0 1px rgb(0, 0, 0);
+  height: 220px;
+  width: 150px;
+  background-color: rgb(31, 31, 31);
+  margin: 5px;
+  border-radius: 10px;
+  box-shadow: 1px 0 1px rgb(0, 0, 0), -1px 0 1px rgb(0, 0, 0);
+  transition: transform 0.2s ease;
+  margin-top: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+  display: grid;
 }
 
 .playlist-card:hover {
-    cursor: pointer;
-    box-shadow: 3px 0 3px rgb(176, 83, 239), -3px 0 3px rgb(176, 83, 239);
+  cursor: pointer;
+  transform: scale(1.05);
 }

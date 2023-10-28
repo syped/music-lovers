@@ -1,0 +1,39 @@
+.main-edit-song-container {
+    background-color: rgb(31, 31, 31);
+    height: 300px;
+    width: 330px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    text-align: center;
+}
+
+.update-song-title {
+    color: white;
+}
+
+.update-song-button button {
+    background-color: rgb(176, 83, 239);
+    border-radius: 10px;
+    padding: 7px;
+    border: none;
+}
+
+.errors {
+    color: white;
+    text-align: center;
+}
+
+.song-form-fields label {
+    color: white;
+    padding: 20px;
+}
+
+.edit-song-name-box input {
+    background-color: rgb(31, 31, 31);
+    color: white;
+    align-items: center;
+    text-align: center;
+}

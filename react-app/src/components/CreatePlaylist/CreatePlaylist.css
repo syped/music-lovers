@@ -1,0 +1,70 @@
+.main-create-playlist-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -400px;
+}
+
+.create-playlist-container {
+    background-color: rgb(31, 31, 31);
+    width: 600px;
+    height: 365px;
+    border-radius: 10px;
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    padding-bottom: 10px;
+    padding-top: 5px;
+}
+
+.create-playlist-title {
+    color: white;
+}
+
+.upload-song-title-container {
+    display: flex;
+    justify-content: center;
+    font-size: 15px;
+}
+
+.create-playlist-button button {
+    background-color: rgb(176, 83, 239);
+    border-radius: 10px;
+    padding: 7px;
+}
+
+.create-playlist-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.playlist-form-fields {
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.playlist-name-box input,
+.playlist-bio-box input {
+  background-color: rgb(31, 31, 31);
+  text-align: center;
+  padding: 5px;
+  width: 80%;
+}
+
+.form-upload-playlist {
+    color: white;
+}
+
+
+
+
+/* .playlist-bio-form-fields {
+    color: white;
+} */

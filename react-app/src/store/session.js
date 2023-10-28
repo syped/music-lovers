@@ -1,6 +1,7 @@
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
+// const GET_USERS = "session/GET_USERS";
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -10,6 +11,11 @@ const setUser = (user) => ({
 const removeUser = () => ({
   type: REMOVE_USER,
 });
+
+// const loadAllUsers = (users) => ({
+//   type: GET_USERS,
+//   users,
+// });
 
 const initialState = { user: null };
 
@@ -97,6 +103,19 @@ export const signUp =
       return ["An error occurred. Please try again."];
     }
   };
+
+// export const getUsersThunk = () => async (dispatch) => {
+//   const response = await fetch("/api/users");
+
+//   if (response.ok) {
+//     const users = await response.json();
+//     dispatch(loadAllUsers(users));
+//     return users;
+//   } else {
+//     const errors = await response.json();
+//     return errors;
+//   }
+// };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
