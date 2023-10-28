@@ -49,27 +49,31 @@ function LandingPage() {
       <div className="landing-page-main">
         <div className="random-album">
           <h2 className="random-album-header">Check this album out!</h2>
-          <NavLink
-            className="random-album-navlink"
-            to={`/albums/${randomAlbumObj.user_id}`}
-          >
-            <div className="entire-random-album">
-              <img
-                className="random-album-img"
-                src={randomAlbumObj.album_image}
-                alt={randomAlbumObj.album_name}
-              />
-              {/* <div className="random-album-artist">{artist}</div>*/}
-              <div className="random-album-info">
-                <div className="random-album-title">
-                  {randomAlbumObj.album_name}
-                </div>
-                <div className="random-album-release-year">
-                  {randomAlbumObj.release_year}
+          <div className="entire-random-album">
+            <NavLink
+              className="random-album-navlink"
+              to={`/albums/${randomAlbumObj.user_id}`}
+            >
+              <div className="random-album-div">
+                <img
+                  className="random-album-img"
+                  src={randomAlbumObj.album_image}
+                  alt={randomAlbumObj.album_name}
+                />
+                {/* <div className="random-album-artist">{artist}</div>*/}
+                <div className="random-album-info">
+                  <div className="random-info-info">
+                    <div className="random-album-title">
+                      {randomAlbumObj.album_name}
+                    </div>
+                    <div className="random-album-release-year">
+                      {randomAlbumObj.release_year}
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </NavLink>
+            </NavLink>
+          </div>
         </div>
         <div className="recent-playlists">
           <div className="recent-playlist-header">

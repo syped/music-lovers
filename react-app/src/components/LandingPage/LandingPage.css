@@ -3,33 +3,57 @@
   left: 330px;
   bottom: 710px;
   height: 800px;
-  width: 800px;
+  width: 100%;
+  z-index: 1;
 }
 
 .landing-page-main {
-  width: 850px;
+  width: 100%;
 }
 
 .landing-header {
   width: 400px;
 }
 
+/* .random-album {
+    display: flex;
+    flex-direction: column;
+    align-items: center
+} */
+
 .random-album-img {
   width: 300px;
-  margin-right: 40px;
+  height: 300px;
+  margin-right: 50px;
   border-radius: 20px;
+  position: relative;
 }
 
 .entire-random-album {
   display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
   justify-content: center;
-  text-decoration: none;
+  margin-right: 300px;
+}
+
+.random-album-div {
+  display: flex;
+  justify-content: center;
 }
 
 .random-album-info {
+  /* position: fixed; */
   display: flex;
-  flex-direction: column;
-  margin-top: 60px;
+  /* flex-direction: column; */
+  align-items: center;
+  width: 100%;
+  max-width: 340px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* margin-left: 600px; */
+  /* border: 1px solid white; */
+  height: 300px;
 }
 
 .random-album-title,
@@ -39,7 +63,7 @@
 }
 
 .random-album-title {
-  font-size: 50px;
+  font-size: 40px;
   color: white;
 }
 
@@ -54,6 +78,11 @@
   color: rgb(167, 167, 167);
 }
 
+/* .recent-playlists {
+  max-width: 1200px;
+  width: 100%;
+} */
+
 .recent-playlist-image {
   width: 100px;
   height: 100px;
@@ -64,20 +93,31 @@
 
 .all-recent-playlists {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  max-width: 73%;
+  width: 100%;
+  /* width: 800px; */
+  overflow-x: auto;
 }
 
 .recent-playlist-header {
   display: flex;
   height: 70px;
+  /* width: 1200px; */
+  width: 73%;
+  /* width: auto; */
+  justify-content: space-between;
+  /* border: 1px solid white; */
 }
 
 .recent-playlist-show-all {
   text-decoration: none;
   color: rgba(167, 167, 167, 0.575);
+  /* width: 100%; */
   font-size: 15px;
-  margin-left: 610px;
   margin-top: 28px;
+  /* margin-right: 35px; */
+  /* margin-left: 980px; */
 }
 
 .recent-playlist-show-all:hover {
