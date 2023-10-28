@@ -7,6 +7,8 @@ import { getSongsThunk } from "../../store/song";
 import EditSong from "../EditSong";
 import DeleteSong from "../DeleteSong";
 import CreateSong from "../CreateSong";
+import AudioPlayer from "react-h5-audio-player";
+import "react-h5-audio-player/lib/styles.css";
 
 function SingleAlbumPage() {
   const dispatch = useDispatch();
@@ -14,6 +16,8 @@ function SingleAlbumPage() {
   const [isLoaded, setIsLoaded] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
   const allSongsObj = useSelector((state) => state.songs.allSongs);
+  const [selectedSong, setSelectedSong] = useState();
+  const [submitted, setSubmitted] = useState(false);
 
   const singleAlbumObj = useSelector((state) => state.albums.singleAlbum);
 
@@ -21,30 +25,41 @@ function SingleAlbumPage() {
 
   useEffect(() => {
     dispatch(getSingleAlbum(albumId)).then(() => setIsLoaded(true));
+    dispatch(getSongsThunk());
   }, [dispatch, albumId]);
 
-  if (!arr || !arr.length) {
-    dispatch(getSongsThunk());
+  if (submitted) {
+    dispatch(getSingleAlbum(singleAlbumObj.id));
+    setSubmitted(false);
+  }
+
+  // if (!arr || !arr.length) {
+  //   dispatch(getSongsThunk());
+  //   return null;
+  // }
+
+  //   if (singleAlbumObj.id !== parseInt(albumId)) return null;
+  if (!singleAlbumObj) {
     return null;
   }
 
-  //   if (singleAlbumObj.id !== parseInt(albumId)) return null;
-  if (!singleAlbumObj || !singleAlbumObj.id) return null;
-
   let albumsSongsArr;
 
-  if (sessionUser.id === singleAlbumObj.user_id) {
-    albumsSongsArr = arr.filter((song) => song.album_id === singleAlbumObj.id);
-  }
+  albumsSongsArr = arr.filter((song) => song.album_id === singleAlbumObj.id);
 
   return (
     <>
       {isLoaded && (
         <div>
+          <img src={singleAlbumObj.album_image} />
           <div>{singleAlbumObj.album_name}</div>
           <div>
-            {sessionUser.id === singleAlbumObj.user_id
-              ? albumsSongsArr.map((song) => (
+            {albumsSongsArr.map((song) => (
+              <>
+                <div onClick={() => setSelectedSong(song.mp3)}>
+                  {song.song_name}
+                </div>
+                {sessionUser && sessionUser.id === singleAlbumObj.user_id ? (
                   <div className="song-edit-delete-container">
                     <div className="song-edit">
                       <OpenModalButton
@@ -61,10 +76,16 @@ function SingleAlbumPage() {
                       />
                     </div>
                   </div>
-                ))
-              : null}
+                ) : null}
+              </>
+            ))}
           </div>
-          <CreateSong />
+          {singleAlbumObj.id ? (
+            <div>
+              <CreateSong submitted={() => setSubmitted(true)} />
+              <AudioPlayer src={selectedSong} volume={0.1} />
+            </div>
+          ) : null}
         </div>
       )}
     </>

@@ -103,6 +103,7 @@ function SinglePlaylistPage() {
     <>
       {isLoaded && (
         <div>
+          <img src={singlePlaylistObj.playlist_image} />
           <div>{singlePlaylistObj.playlist_name}</div>
           {playlistSongsArr.map((song) => (
             <div>{song.song_name}</div>
