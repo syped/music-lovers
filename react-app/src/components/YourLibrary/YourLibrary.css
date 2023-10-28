@@ -90,6 +90,7 @@
   background-color: rgb(31, 31, 31);
   padding: 5px;
   border-radius: 5px;
+  overflow-y: auto;
 }
 
 .user-albums:hover,
@@ -255,9 +256,24 @@
   margin-top: 5px;
 }
 
+.library-user-create-album:hover,
+.library-user-create-playlist:hover {
+  background-color: rgb(176, 83, 239);
+  color: white;
+  cursor: pointer;
+}
+
 .bleh-create-button {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
+}
+
+.user-albums-container,
+.user-playlists-container {
+  overflow-y: auto;
+  width: 250px;
+  padding-right: 10px;
+  margin-left: 5px;
 }
