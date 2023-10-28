@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { updateSongThunk, getSingleSongThunk } from "../../store/song";
 import { useModal } from "../../context/Modal";
+import "./EditSong.css";
 
 function EditSong({ song, albumId }) {
   const dispatch = useDispatch();
@@ -74,19 +75,23 @@ function EditSong({ song, albumId }) {
   };
 
   return (
-    <>
-      <div className="create-song-form">
-        <h1>Update your Song(s)</h1>
+    <div className="main-edit-song-container">
+      <div className="update-song-form">
+        <div className="update-song-title">
+          <h1>Update your Song(s)</h1>
+        </div>
         <form onSubmit={handleSubmit} encType="multipart/form-data">
           <div className="song-form-fields">
             <label>
               Song Name:
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Song Name"
-              />
+              <div className="edit-song-name-box">
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Song Name"
+                />
+              </div>
             </label>
             {hasSubmitted && errors.name && (
               <p className="errors">{errors.name}</p>
@@ -108,10 +113,12 @@ function EditSong({ song, albumId }) {
             )}
           </div>
 
-          <button type="submit">Update Song</button>
+          <div className="update-song-button">
+            <button type="submit">Update Song</button>
+          </div>
         </form>
       </div>
-    </>
+    </div>
   );
 }
 

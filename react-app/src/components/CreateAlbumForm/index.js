@@ -46,6 +46,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createAlbumThunk } from "../../store/album";
 import { createSongThunk } from "../../store/song";
+import "./CreateAlbumForm.css"
+
 
 function CreateAlbumSongForm() {
   const [songAdded, setSongAdded] = useState(false);
@@ -142,13 +144,15 @@ function CreateAlbumSongForm() {
           <div className="form-fields">
             <label>
               Album
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Album Name"
-              />
             </label>
+            <div className="album-name-box">
+              <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Album Name"
+              />
+              </div>
           </div>
           <div className="form-fields">
             <label>
@@ -161,9 +165,11 @@ function CreateAlbumSongForm() {
               />
             </label>
           </div>
-          <button type="submit" disabled={!songAdded}>
+          <div className="upload-album-button">
+            <button type="submit" disabled={!songAdded}>
             Upload Album
           </button>
+          </div>
         </form>
       </>
       {[...Array(count)].map((_, index) => (

@@ -1,8 +1,9 @@
 from flask import Blueprint, jsonify, request, redirect, url_for
 from flask_login import login_required
-from app.models import Album, db
+from app.models import Album, db, User
 from app.forms.album_form import AlbumForm
 from .auth_routes import validation_errors_to_error_messages
+import random
 
 from .aws_helpers import upload_file_to_s3, get_unique_filename, remove_file_from_s3
 
@@ -22,6 +23,16 @@ def get_single_album(id):
         return album.to_dict()
     else:
         return {"error": "Album not found"}, 404
+    
+#GET RANDOM ALBUM
+@album_routes.route('/random', methods=['GET'])
+def get_random_album():
+    albums = Album.query.all()
+    if albums:
+        random_album = random.choice(albums)
+        return random_album.to_dict()
+    else:
+        return {"error": "No albums found"}, 404
 
 #CREATE AN ALBUM
 @album_routes.route('/create_album', methods=['POST'])

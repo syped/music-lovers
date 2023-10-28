@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createAlbumThunk } from "../../store/album";
+import "./CreateAlbum.css";
 
 function CreateAlbumForm({ reload }) {
   const dispatch = useDispatch();
@@ -54,12 +55,13 @@ function CreateAlbumForm({ reload }) {
   };
 
   return (
-    <>
+    <div className="main-upload-album-container">
+    <div className="upload-album-container">
       <div className="form-container">
-        <h1>Upload your Album</h1>
+        <h1 className="upload-title">Upload your Album</h1>
       </div>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <div className="form-upload">
+        <div className="form-upload-album">
           <input
             type="file"
             accept="image/*"
@@ -71,30 +73,37 @@ function CreateAlbumForm({ reload }) {
         <div className="form-fields">
           <label>
             Album
-            <input
+            <div className="album-name-box">
+              <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Album Name"
-            />
+              />
+            </div>
           </label>
           {errors.name && <p className="errors">{errors.name}</p>}
         </div>
         <div className="form-fields">
           <label>
             Release Year
-            <input
+            <div className="release-year-box">
+              <input
               type="number"
               value={releaseYear}
               onChange={(e) => setReleaseYear(e.target.value)}
               placeholder="Release Year"
-            />
+              />
+            </div>
           </label>
           {errors.releaseYear && <p className="errors">{errors.releaseYear}</p>}
         </div>
-        <button type="submit">Upload Album</button>
+        <div className="button-container">
+        <button type="submit" className="upload-button-container">Upload Album</button>
+        </div>
       </form>
-    </>
+    </div>
+    </div>
   );
 }
 
