@@ -41,7 +41,6 @@ def create_song():
             user_id = form.data['user_id'],
             album_id = form.data['album_id'],
             song_name = form.data['song_name'],
-            length = form.data['length'],
             mp3 = upload['url']
         )
         db.session.add(new_song)

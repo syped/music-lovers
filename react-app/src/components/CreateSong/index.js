@@ -3,23 +3,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createSongThunk } from "../../store/song";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { getSingleAlbum } from "../../store/album";
 
-function CreateSongForm() {
+function CreateSongForm({ submitted }) {
   const dispatch = useDispatch();
   const history = useHistory();
-  const userId = useSelector((state) => state.session.user.id);
+  const user = useSelector((state) => state.session.user);
   const { albumId } = useParams();
 
   const [name, setName] = useState("");
-  const [length, setLength] = useState("");
   const [mp3, setMp3] = useState(null);
   const [mp3Loading, setMp3Loading] = useState(false);
   const [errors, setErrors] = useState({});
 
-  function errorsChecked(name, length, mp3) {
+  function errorsChecked(name, mp3) {
     const errors = {};
     if (!name) errors.name = "Song name is required";
-    if (!length) errors.length = "Length of the song is required";
     if (!mp3) errors.mp3 = "Mp3 file is required";
 
     setErrors(errors);
@@ -29,14 +28,13 @@ function CreateSongForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const errorsFound = errorsChecked(name, length, mp3);
+    const errorsFound = errorsChecked(name, mp3);
 
     const formData = new FormData();
     formData.append("mp3", mp3);
-    formData.append("user_id", userId);
+    formData.append("user_id", user.id);
     formData.append("album_id", albumId);
     formData.append("song_name", name);
-    formData.append("length", length);
 
     setMp3Loading(true);
 
@@ -50,10 +48,18 @@ function CreateSongForm() {
 
     if (Object.keys(errorsFound).length === 0) {
       const response = await dispatch(createSongThunk(formData));
+      setMp3Loading(false);
 
-      //   if (response.ok) {
-      //     history.push(`/songs/${response.id}`);
-      //   }
+      setName("");
+      setMp3(null);
+
+      // console.log("first");
+      // dispatch(getSingleAlbum(albumId));
+      submitted();
+      // if (response.ok) {
+
+      // history.push(`/albums/${albumId}`);
+      // }
     }
   };
 
@@ -73,18 +79,6 @@ function CreateSongForm() {
               />
             </label>
             {errors.name && <p className="errors">{errors.name}</p>}
-          </div>
-          <div className="song-form-fields">
-            <label>
-              Length:
-              <input
-                type="text"
-                value={length}
-                onChange={(e) => setLength(e.target.value)}
-                placeholder="Length of Song"
-              />
-            </label>
-            {errors.name && <p className="errors">{errors.length}</p>}
           </div>
           <div className="song-form-fields">
             <label>

@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { updateAlbumThunk, getSingleAlbum } from "../../store/album";
+import { useModal } from "../../context/Modal";
 
-function EditAlbum({ albumId }) {
+function EditAlbum({ albumId, submitted }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const album = useSelector((state) => state.albums.singleAlbum);
   const userId = useSelector((state) => state.session.user.id);
+  const { closeModal } = useModal();
   // const { albumId } = useParams();
 
   const [name, setName] = useState(album.album_name);
@@ -52,7 +54,9 @@ function EditAlbum({ albumId }) {
       const response = await dispatch(updateAlbumThunk(updatedAlbum));
 
       if (response) {
-        history.push(`/albums/${response.id}`);
+        submitted();
+        dispatch(getSingleAlbum(albumId)).then(closeModal());
+        //   history.push(`/albums/${response.id}`);
       }
     }
   };
