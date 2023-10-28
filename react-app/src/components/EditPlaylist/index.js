@@ -5,8 +5,9 @@ import {
   updatePlaylistThunk,
   getSinglePlaylistThunk,
 } from "../../store/playlist";
+import { useModal } from "../../context/Modal";
 
-function EditPlaylist({ playlistId }) {
+function EditPlaylist({ playlistId, submitted }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const playlist = useSelector((state) => state.playlists.singlePlaylist);
@@ -16,6 +17,7 @@ function EditPlaylist({ playlistId }) {
   const [bio, setBio] = useState(playlist.playlist_bio);
   const [errors, setErrors] = useState({});
   const [hasSubmitted, setHasSubmitted] = useState(false);
+  const { closeModal } = useModal();
   //   const [image, setImage] = useState(null);
   //   const [imageLoading, setImageLoading] = useState(false);
 
@@ -64,7 +66,9 @@ function EditPlaylist({ playlistId }) {
       const response = await dispatch(updatePlaylistThunk(updatedPlaylist));
 
       if (response) {
-        history.push(`/playlists/${response.id}`);
+        submitted();
+        dispatch(getSinglePlaylistThunk(playlistId)).then(closeModal());
+        //   history.push(`/playlists/${response.id}`);
       }
     }
   };

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createAlbumThunk } from "../../store/album";
 
-function CreateAlbumForm() {
+function CreateAlbumForm({ reload }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const userId = useSelector((state) => state.session.user.id);
@@ -47,6 +47,7 @@ function CreateAlbumForm() {
       const response = await dispatch(createAlbumThunk(formData));
 
       if (response) {
+        reload();
         history.push(`/albums/${response.id}`);
       }
     }

@@ -39,22 +39,21 @@ function SingleAlbumPage() {
   // }
 
   //   if (singleAlbumObj.id !== parseInt(albumId)) return null;
-  if (!singleAlbumObj) {
-    return null;
-  }
 
   let albumsSongsArr;
 
-  albumsSongsArr = arr.filter((song) => song.album_id === singleAlbumObj.id);
+  if (singleAlbumObj) {
+    albumsSongsArr = arr.filter((song) => song.album_id === singleAlbumObj.id);
+  }
 
   return (
     <>
       {isLoaded && (
         <div>
-          <img src={singleAlbumObj.album_image} />
-          <div>{singleAlbumObj.album_name}</div>
+          <img src={singleAlbumObj?.album_image} />
+          <div>{singleAlbumObj?.album_name}</div>
           <div>
-            {albumsSongsArr.map((song) => (
+            {albumsSongsArr?.map((song) => (
               <>
                 <div onClick={() => setSelectedSong(song.mp3)}>
                   {song.song_name}
@@ -80,7 +79,7 @@ function SingleAlbumPage() {
               </>
             ))}
           </div>
-          {singleAlbumObj.id ? (
+          {singleAlbumObj?.id ? (
             <div>
               <CreateSong submitted={() => setSubmitted(true)} />
               <AudioPlayer src={selectedSong} volume={0.1} />

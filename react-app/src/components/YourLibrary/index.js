@@ -12,13 +12,13 @@ import { NavLink } from "react-router-dom";
 import LoginFormModal from "../LoginFormModal";
 import "./YourLibrary.css";
 
-function YourLibrary() {
+function YourLibrary({ reload }) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const allAlbumsObj = useSelector((state) => state.albums.allAlbums);
   const allPlaylistObj = useSelector((state) => state.playlists.allPlaylists);
   const [submitted, setSubmitted] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [reloaded, setReloaded] = useState(reload);
 
   const albumArr = Object.values(allAlbumsObj);
   const playlistArr = Object.values(allPlaylistObj);
@@ -37,7 +37,7 @@ function YourLibrary() {
   useEffect(() => {
     dispatch(getAlbums());
 
-    dispatch(getPlaylistsThunk()).then(() => setIsLoaded(true));
+    dispatch(getPlaylistsThunk());
   }, [dispatch]);
 
   if (!albumArr || !albumArr.length) {
@@ -47,10 +47,18 @@ function YourLibrary() {
 
   if (!playlistArr || !playlistArr.length) {
     dispatch(getPlaylistsThunk());
+    return null;
+  }
+
+  if (reloaded) {
+    dispatch(getAlbums());
+    dispatch(getPlaylistsThunk());
+    setReloaded(false);
   }
 
   if (submitted) {
     dispatch(getAlbums());
+    dispatch(getPlaylistsThunk());
     setSubmitted(false);
   }
 
@@ -120,7 +128,10 @@ function YourLibrary() {
                             className="user-edit-delete-button"
                             buttonText="Delete"
                             modalComponent={
-                              <DeleteAlbumModal albumId={album.id} />
+                              <DeleteAlbumModal
+                                albumId={album.id}
+                                submitted={() => setSubmitted(true)}
+                              />
                             }
                           />
                         </div>
@@ -190,7 +201,10 @@ function YourLibrary() {
                             className="user-edit-delete-button"
                             buttonText="Edit"
                             modalComponent={
-                              <EditPlaylist playlistId={playlist.id} />
+                              <EditPlaylist
+                                submitted={() => setSubmitted(true)}
+                                playlistId={playlist.id}
+                              />
                             }
                           />
                         </div>
@@ -199,7 +213,10 @@ function YourLibrary() {
                             className="user-edit-delete-button"
                             buttonText="Delete"
                             modalComponent={
-                              <DeletePlaylistModal playlistId={playlist.id} />
+                              <DeletePlaylistModal
+                                submitted={() => setSubmitted(true)}
+                                playlistId={playlist.id}
+                              />
                             }
                           />
                         </div>

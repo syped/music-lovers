@@ -169,11 +169,13 @@ const playlistsReducer = (state = initialState, action) => {
       return newState;
     case UPDATE_PLAYLIST:
       newState = { ...state };
-      newState.allPlaylists[action.playlist.id] = action.playlist;
+      // newState.allPlaylists[action.playlist.id] = action.playlist;
+      newState.singlePlaylist = action.playlist;
       return newState;
     case DELETE_PLAYLIST:
       newState = { ...state };
       delete newState.allPlaylists[action.playlistId];
+      delete newState.singlePlaylist;
       return newState;
     case GET_PLAYLIST_SONGS:
       newState = { ...state };
