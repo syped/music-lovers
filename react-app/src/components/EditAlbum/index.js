@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { updateAlbumThunk, getSingleAlbum } from "../../store/album";
+import { useModal } from "../../context/Modal";
+import "./EditAlbum.css";
 
-function EditAlbum({ albumId }) {
+function EditAlbum({ albumId, submitted }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const album = useSelector((state) => state.albums.singleAlbum);
   const userId = useSelector((state) => state.session.user.id);
+  const { closeModal } = useModal();
   // const { albumId } = useParams();
 
   const [name, setName] = useState(album.album_name);
@@ -52,48 +55,56 @@ function EditAlbum({ albumId }) {
       const response = await dispatch(updateAlbumThunk(updatedAlbum));
 
       if (response) {
-        history.push(`/albums/${response.id}`);
+        submitted();
+        dispatch(getSingleAlbum(albumId)).then(closeModal());
+        //   history.push(`/albums/${response.id}`);
       }
     }
   };
 
   return (
-    <>
-      <div className="form-container">
-        <h1>Update your Album</h1>
+    <div className="main-edit-album-form-container">
+      <div className="update-album-form-container">
+        <h1 className="update-your-album-title">Update your Album</h1>
       </div>
       <form onSubmit={handleSubmit}>
-        <div className="form-fields">
+        <div className="edit-album-form-fields">
           <label>
             Album
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Album Name"
-            />
+            <div className="edit-album-name-box">
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Album Name"
+              />
+            </div>
           </label>
           {hasSubmitted && errors.name && (
             <p className="errors">{errors.name}</p>
           )}
         </div>
-        <div className="form-fields">
+        <div className="edit-release-year-form-fields">
           <label>
             Release Year
-            <input
-              type="number"
-              value={releaseYear}
-              onChange={(e) => setReleaseYear(e.target.value)}
-              placeholder="Release Year"
-            />
+            <div className="edit-release-year-box">
+              <input
+                type="number"
+                value={releaseYear}
+                onChange={(e) => setReleaseYear(e.target.value)}
+                placeholder="Release Year"
+              />
+            </div>
           </label>
           {hasSubmitted && errors.releaseYear && (
             <p className="errors">{errors.releaseYear}</p>
           )}
         </div>
-        <button type="submit">Update Album</button>
+        <div className="update-album-button">
+          <button type="submit">Update Album</button>
+        </div>
       </form>
-    </>
+    </div>
   );
 }
 

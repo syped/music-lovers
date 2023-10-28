@@ -41,7 +41,6 @@ def create_song():
             user_id = form.data['user_id'],
             album_id = form.data['album_id'],
             song_name = form.data['song_name'],
-            length = form.data['length'],
             mp3 = upload['url']
         )
         db.session.add(new_song)
@@ -58,10 +57,17 @@ def edit_song(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         song = Song.query.get(id)
+
+        mp3 = form.data['mp3']
+        mp3.filename = get_unique_filename(mp3.filename)
+        upload = upload_file_to_s3(mp3)
+
+        if 'url' not in upload:
+            return {'errors': [upload]}
+
         song.album_id = form.data['album_id']
         song.song_name = form.data['song_name']
-        song.length = form.data['length']
-        song.mp3 = form.data['mp3']
+        song.mp3 = upload['url']
 
         db.session.commit()
         return song.to_dict()

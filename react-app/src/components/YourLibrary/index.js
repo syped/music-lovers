@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import OpenModalButton from "../OpenModalButton";
@@ -12,11 +12,13 @@ import { NavLink } from "react-router-dom";
 import LoginFormModal from "../LoginFormModal";
 import "./YourLibrary.css";
 
-function YourLibrary() {
+function YourLibrary({ reload }) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const allAlbumsObj = useSelector((state) => state.albums.allAlbums);
   const allPlaylistObj = useSelector((state) => state.playlists.allPlaylists);
+  const [submitted, setSubmitted] = useState(false);
+  const [reloaded, setReloaded] = useState(reload);
 
   const albumArr = Object.values(allAlbumsObj);
   const playlistArr = Object.values(allPlaylistObj);
@@ -32,12 +34,32 @@ function YourLibrary() {
     setLoginModalOpen(true);
   };
 
+  useEffect(() => {
+    dispatch(getAlbums());
+
+    dispatch(getPlaylistsThunk());
+  }, [dispatch]);
+
   if (!albumArr || !albumArr.length) {
     dispatch(getAlbums());
+    return null;
   }
 
   if (!playlistArr || !playlistArr.length) {
     dispatch(getPlaylistsThunk());
+    return null;
+  }
+
+  if (reloaded) {
+    dispatch(getAlbums());
+    dispatch(getPlaylistsThunk());
+    setReloaded(false);
+  }
+
+  if (submitted) {
+    dispatch(getAlbums());
+    dispatch(getPlaylistsThunk());
+    setSubmitted(false);
   }
 
   const userAlbumsArr = sessionUser
@@ -93,7 +115,12 @@ function YourLibrary() {
                           <OpenModalButton
                             className="user-edit-delete-button"
                             buttonText="Edit"
-                            modalComponent={<EditAlbum albumId={album.id} />}
+                            modalComponent={
+                              <EditAlbum
+                                submitted={() => setSubmitted(true)}
+                                albumId={album.id}
+                              />
+                            }
                           />
                         </div>
                         <div className="album-delete-button">
@@ -101,7 +128,10 @@ function YourLibrary() {
                             className="user-edit-delete-button"
                             buttonText="Delete"
                             modalComponent={
-                              <DeleteAlbumModal albumId={album.id} />
+                              <DeleteAlbumModal
+                                albumId={album.id}
+                                submitted={() => setSubmitted(true)}
+                              />
                             }
                           />
                         </div>
@@ -120,12 +150,12 @@ function YourLibrary() {
                     <div className="library-create-album-msg">
                       Create your first album
                     </div>
-                    <NavLink
+                    {/* <NavLink
                       to="/albums/create"
                       className="library-create-album"
                     >
                       Create Album
-                    </NavLink>
+                    </NavLink> */}
                   </>
                 ) : (
                   <div className="no-user-msg">
@@ -142,6 +172,16 @@ function YourLibrary() {
                   </div>
                 )}
                 {isLoginModalOpen && <LoginFormModal />}
+              </div>
+            )}
+            {sessionUser && (
+              <div className="bleh-create-button">
+                <NavLink
+                  to="/albums/create"
+                  className="library-user-create-album"
+                >
+                  Create Album
+                </NavLink>
               </div>
             )}
           </div>
@@ -171,7 +211,10 @@ function YourLibrary() {
                             className="user-edit-delete-button"
                             buttonText="Edit"
                             modalComponent={
-                              <EditPlaylist playlistId={playlist.id} />
+                              <EditPlaylist
+                                submitted={() => setSubmitted(true)}
+                                playlistId={playlist.id}
+                              />
                             }
                           />
                         </div>
@@ -180,7 +223,10 @@ function YourLibrary() {
                             className="user-edit-delete-button"
                             buttonText="Delete"
                             modalComponent={
-                              <DeletePlaylistModal playlistId={playlist.id} />
+                              <DeletePlaylistModal
+                                submitted={() => setSubmitted(true)}
+                                playlistId={playlist.id}
+                              />
                             }
                           />
                         </div>
@@ -201,12 +247,12 @@ function YourLibrary() {
                         Create your first playlist
                       </div>
                     </div>
-                    <NavLink
+                    {/* <NavLink
                       to="/playlists/create"
                       className="library-create-playlist"
                     >
                       Create Playlist
-                    </NavLink>
+                    </NavLink> */}
                   </>
                 ) : (
                   <div className="no-user-msg">
@@ -223,6 +269,16 @@ function YourLibrary() {
                   </div>
                 )}
                 {isLoginModalOpen && <LoginFormModal />}
+              </div>
+            )}
+            {sessionUser && (
+              <div className="bleh-create-button">
+                <NavLink
+                  to="/playlists/create"
+                  className="library-user-create-playlist"
+                >
+                  Create Playlist
+                </NavLink>
               </div>
             )}
           </div>

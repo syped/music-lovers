@@ -16,11 +16,40 @@ function AllAlbums() {
     return null;
   }
 
+  const handleLoop = () => {
+    for (let i = 0; i < 5; i++) {
+      const album = arr[i];
+      console.log(album);
+      return (
+        <div
+          className="album-card"
+          onClick={() => {
+            history.push(`/albums/${album.id}`);
+          }}
+        >
+          <img className="album-page-img" src={album.album_image} />
+          <div className="solo-album-info-card">
+            <div className="album-page-name">{album.album_name}</div>
+            <div className="album-year">{album.release_year}</div>
+          </div>
+        </div>
+      );
+    }
+  };
+
+  const fiveAlbum = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    const album = arr[i];
+    fiveAlbum.push(album)
+  }
+
+
   return (
     <>
       <div className="album-body-card">
         <div className="main-album-card">
-          {arr.map((album) => (
+          {fiveAlbum.map((album) => (
             // navlink to album details page
             <div
               className="album-card"

@@ -1,0 +1,51 @@
+.main-edit-playlist-form-container {
+    background-color: rgb(31, 31, 31);
+    height: 300px;
+    width: 330px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    text-align: center;
+  }
+
+  .update-your-playlist-title {
+    color: white;
+  }
+
+.playlist-label,
+.playlist-bio-label {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .edit-playlist-name-box input,
+  .edit-playlist-bio-box input {
+    padding: 5px;
+    color: white;
+    background-color: rgb(31, 31, 31);
+    text-align: center;
+  }
+
+  .edit-playlist-name-form-fields label {
+    align-items: center;
+  }
+
+  .edit-playlist-name-form-fields {
+    background-color: rgb(31, 31, 31);
+  }
+
+  .update-playlist-button button {
+    background-color: rgb(176, 83, 239);
+    border-radius: 10px;
+    padding: 7px;
+    border: none;
+  }
+
+  .errors {
+    color: white;
+    text-align: center;
+  }

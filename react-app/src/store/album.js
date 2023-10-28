@@ -1,6 +1,7 @@
 // ACTION TYPE
 const GET_ALBUMS = "albums/GET_ALBUMS";
 const GET_SINGLE_ALBUM = "albums/GET_SINGLE_ALBUM";
+const GET_RANDOM_ALBUM = "albums/GET_RANDOM_ALBUM";
 const CREATE_ALBUM = "albums/CREATE_ALBUM";
 const UPDATE_ALBUM = "albums/UPDATE_ALBUM";
 const DELETE_ALBUM = "albums/DELETE_ALBUM";
@@ -13,6 +14,11 @@ const loadAllAlbums = (albums) => ({
 
 const loadSingleAlbum = (album) => ({
   type: GET_SINGLE_ALBUM,
+  album,
+});
+
+const loadRandomAlbum = (album) => ({
+  type: GET_RANDOM_ALBUM,
   album,
 });
 
@@ -52,6 +58,17 @@ export const getSingleAlbum = (albumId) => async (dispatch) => {
     const album = await response.json();
     dispatch(loadSingleAlbum(album));
     return album;
+  } else {
+    const errors = await response.json();
+    return errors;
+  }
+};
+
+export const getRandomAlbum = () => async (dispatch) => {
+  const response = await fetch("/api/albums/random");
+  if (response.ok) {
+    const album = await response.json();
+    dispatch(loadRandomAlbum(album));
   } else {
     const errors = await response.json();
     return errors;
@@ -109,6 +126,7 @@ export const deleteAlbumThunk = (albumId) => async (dispatch) => {
 const initialState = {
   allAlbums: {},
   singleAlbum: {},
+  randomAlbum: {},
 };
 
 const albumsReducer = (state = initialState, action) => {
@@ -122,17 +140,22 @@ const albumsReducer = (state = initialState, action) => {
       newState = { ...state };
       newState.singleAlbum = action.album;
       return newState;
+    case GET_RANDOM_ALBUM:
+      newState = { ...state };
+      newState.randomAlbum = action.album;
+      return newState;
     case CREATE_ALBUM:
       newState = { ...state };
       newState.allAlbums[action.album.id] = action.album;
       return newState;
     case UPDATE_ALBUM:
       newState = { ...state };
-      newState.allAlbums[action.album.id] = action.album;
+      newState.singleAlbum = action.album;
       return newState;
     case DELETE_ALBUM:
       newState = { ...state };
       delete newState.allAlbums[action.albumId];
+      delete newState.singleAlbum;
       return newState;
     default:
       return state;

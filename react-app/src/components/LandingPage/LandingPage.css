@@ -1,0 +1,120 @@
+.landing-page-container {
+  position: relative;
+  left: 330px;
+  bottom: 710px;
+  height: 800px;
+  width: 800px;
+}
+
+.landing-page-main {
+  width: 850px;
+}
+
+.landing-header {
+  width: 400px;
+}
+
+.random-album-img {
+  width: 300px;
+  margin-right: 40px;
+  border-radius: 20px;
+}
+
+.entire-random-album {
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.random-album-info {
+  display: flex;
+  flex-direction: column;
+  margin-top: 60px;
+}
+
+.random-album-title,
+.random-album-release-year {
+  text-decoration: none;
+  /* color: white; */
+}
+
+.random-album-title {
+  font-size: 50px;
+  color: white;
+}
+
+.random-album-navlink {
+  text-decoration: none;
+}
+
+.random-album-release-year {
+  font-size: 30px;
+  /* text-decoration: none; */
+  font-style: italic;
+  color: rgb(167, 167, 167);
+}
+
+.recent-playlist-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 20px;
+  padding: 10px 10px 0 10px;
+  object-fit: cover;
+}
+
+.all-recent-playlists {
+  display: flex;
+  justify-content: space-around;
+}
+
+.recent-playlist-header {
+  display: flex;
+  height: 70px;
+}
+
+.recent-playlist-show-all {
+  text-decoration: none;
+  color: rgba(167, 167, 167, 0.575);
+  font-size: 15px;
+  margin-left: 610px;
+  margin-top: 28px;
+}
+
+.recent-playlist-show-all:hover {
+  color: white;
+}
+
+.recent-playlist-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.recent-playlist-navlink {
+  text-decoration: none;
+}
+
+.recent-playlist-name {
+  color: white;
+  margin-top: 14px;
+}
+
+.recent-playlist-card {
+  /* border: 1px solid white; */
+  width: 140px;
+  height: 170px;
+  display: flex;
+  justify-content: center;
+  background-color: #1f1f1f;
+  border-radius: 15px;
+}
+
+.recent-playlist-card:hover .recent-playlist-name {
+  color: rgb(176, 83, 239);
+}
+
+.recent-playlist-card:hover {
+  background-color: #373737;
+  border-radius: 15px;
+}

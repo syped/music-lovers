@@ -23,14 +23,18 @@ import CreateAlbumSongForm from "./components/CreateAlbumForm";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  const [reload, setReload] = useState(false);
+
   useEffect(() => {
-    dispatch(authenticate()).then(() => setIsLoaded(true));
+    dispatch(authenticate())
+      .then(() => setIsLoaded(true))
+      .then(() => setReload(false));
   }, [dispatch]);
 
   return (
     <>
       <Navigation isLoaded={isLoaded} />
-      <YourLibrary />
+      <YourLibrary reload={reload} />
       {isLoaded && (
         <Switch>
           <Route exact path="/" component={LandingPage} />
@@ -49,11 +53,15 @@ function App() {
 
           <Route path="/playlists" component={PlaylistPage} />
 
-          <Route exact path="/albums/create" component={CreateAlbum} />
+          <Route exact path="/albums/create">
+            <CreateAlbum reload={() => setReload(true)} />
+          </Route>
 
           <Route path="/albums/:albumId/edit" component={EditAlbum} />
 
-          <Route path="/albums/:albumId" component={SingleAlbumPage} />
+          <Route path="/albums/:albumId">
+            <SingleAlbumPage />
+          </Route>
 
           <Route exact path="/albums" component={AlbumPage} />
 

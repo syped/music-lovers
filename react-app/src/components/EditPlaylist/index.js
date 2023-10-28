@@ -5,8 +5,10 @@ import {
   updatePlaylistThunk,
   getSinglePlaylistThunk,
 } from "../../store/playlist";
+import { useModal } from "../../context/Modal";
+import "./EditPlaylist.css";
 
-function EditPlaylist({ playlistId }) {
+function EditPlaylist({ playlistId, submitted }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const playlist = useSelector((state) => state.playlists.singlePlaylist);
@@ -16,6 +18,7 @@ function EditPlaylist({ playlistId }) {
   const [bio, setBio] = useState(playlist.playlist_bio);
   const [errors, setErrors] = useState({});
   const [hasSubmitted, setHasSubmitted] = useState(false);
+  const { closeModal } = useModal();
   //   const [image, setImage] = useState(null);
   //   const [imageLoading, setImageLoading] = useState(false);
 
@@ -64,46 +67,58 @@ function EditPlaylist({ playlistId }) {
       const response = await dispatch(updatePlaylistThunk(updatedPlaylist));
 
       if (response) {
-        history.push(`/playlists/${response.id}`);
+        submitted();
+        dispatch(getSinglePlaylistThunk(playlistId)).then(closeModal());
+        //   history.push(`/playlists/${response.id}`);
       }
     }
   };
 
   return (
-    <>
-      <div className="form-container">
-        <h1>Update your Playlist</h1>
+    <div className="main-edit-playlist-form-container">
+      <div className="edit-playlist-form-container">
+        <h1 className="update-your-playlist-title">Update your Playlist</h1>
       </div>
       <form onSubmit={handleSubmit}>
-        <div className="form-fields">
-          <label>
-            Playlist
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Playlist Name"
-            />
-          </label>
+        <div className="edit-playlist-name-form-fields">
+          <div className="playlist-label">
+            <label>
+              Playlist
+              <div className="edit-playlist-name-box">
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Playlist Name"
+                />
+              </div>
+            </label>
+          </div>
           {hasSubmitted && errors.name && (
             <p className="errors">{errors.name}</p>
           )}
         </div>
-        <div className="form-fields">
-          <label>
-            Playlist Bio
-            <input
-              type="text"
-              value={bio}
-              onChange={(e) => setBio(e.target.value)}
-              placeholder="Playlist Bio"
-            />
-          </label>
+        <div className="edit-playlist-bio-form-fields">
+          <div className="playlist-bio-label">
+            <label>
+              Playlist Bio
+              <div className="edit-playlist-bio-box">
+                <input
+                  type="text"
+                  value={bio}
+                  onChange={(e) => setBio(e.target.value)}
+                  placeholder="Playlist Bio"
+                />
+              </div>
+            </label>
+          </div>
           {hasSubmitted && errors.bio && <p className="errors">{errors.bio}</p>}
         </div>
-        <button type="submit">Update Playlist</button>
+        <div className="update-playlist-button">
+          <button type="submit">Update Playlist</button>
+        </div>
       </form>
-    </>
+    </div>
   );
 }
 
