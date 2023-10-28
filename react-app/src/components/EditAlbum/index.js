@@ -2,11 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { updateAlbumThunk, getSingleAlbum } from "../../store/album";
-<<<<<<< HEAD
 import { useModal } from "../../context/Modal";
-=======
 import "./EditAlbum.css";
->>>>>>> ab068c6df3da77228a78d8f155bca9f49fba500c
 
 function EditAlbum({ albumId, submitted }) {
   const dispatch = useDispatch();
@@ -75,12 +72,12 @@ function EditAlbum({ albumId, submitted }) {
           <label>
             Album
             <div className="edit-album-name-box">
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Album Name"
-            />
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Album Name"
+              />
             </div>
           </label>
           {hasSubmitted && errors.name && (
@@ -91,12 +88,12 @@ function EditAlbum({ albumId, submitted }) {
           <label>
             Release Year
             <div className="edit-release-year-box">
-            <input
-              type="number"
-              value={releaseYear}
-              onChange={(e) => setReleaseYear(e.target.value)}
-              placeholder="Release Year"
-            />
+              <input
+                type="number"
+                value={releaseYear}
+                onChange={(e) => setReleaseYear(e.target.value)}
+                placeholder="Release Year"
+              />
             </div>
           </label>
           {hasSubmitted && errors.releaseYear && (
@@ -104,7 +101,7 @@ function EditAlbum({ albumId, submitted }) {
           )}
         </div>
         <div className="update-album-button">
-        <button type="submit">Update Album</button>
+          <button type="submit">Update Album</button>
         </div>
       </form>
     </div>

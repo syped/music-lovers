@@ -86,18 +86,6 @@ function CreateSongForm({ submitted }) {
             </div>
             <div className="song-form-fields">
               <label>
-                Length:
-                <input
-                  type="text"
-                  value={length}
-                  onChange={(e) => setLength(e.target.value)}
-                  placeholder="Length of Song"
-                />
-              </label>
-              {errors.name && <p className="errors">{errors.length}</p>}
-            </div>
-            <div className="song-form-fields">
-              <label>
                 Song File:
                 <div className="song-file-box">
                   <input
