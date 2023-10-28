@@ -23,6 +23,7 @@
 
 .upload-title {
     color: white;
+    font-family: "Kanit", sans-serif;
 }
 
 .form-container {
@@ -34,7 +35,8 @@
     border-radius: 10px;
     display: flex;
     justify-content: center;
-
+    width: 250px;
+    cursor: pointer;
 }
 
 .button-container {
@@ -43,6 +45,9 @@
     padding: 30px;
 }
 
+.button-container button:hover {
+    background-color: rgb(167, 167, 167);
+}
 
 .form-fields {
     color: white;
@@ -56,8 +61,12 @@
 }
 
 .album-name-box input {
-    background-color: rgb(31, 31, 31);
+    background-color: white;
+    color: rgb(167, 167, 167);
     text-align: center;
+    width: 250px;
+    border-radius: 5px;
+    font-family: "Kanit", sans-serif;
 }
 
 .release-year-box {
@@ -66,11 +75,14 @@
 }
 
 .release-year-box input {
-    background-color: rgb(31, 31, 31);
+    background-color: white;
+    color: rgb(167, 167, 167);
     text-align: center;
+    width: 250px;
+    border-radius: 5px;
+    font-family: "Kanit", sans-serif;
 }
 
 .form-upload-album {
     color: white;
 }
-

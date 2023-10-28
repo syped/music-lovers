@@ -23,13 +23,19 @@
 .upload-song-title {
     color: white;
     align-items: center;
+    font-family: "Kanit", sans-serif;
 }
 
 .create-song-button button {
     background-color: rgb(176, 83, 239);
     border-radius: 10px;
     padding: 7px;
+    width: 400px;
+    cursor: pointer;
+}
 
+.create-song-button button:hover {
+  background-color: rgb(167, 167, 167);
 }
 
 .create-song-button {
@@ -42,19 +48,24 @@
 .song-form-fields label {
     text-align: center;
     padding: 5px;
+    font-family: "Kanit", sans-serif;
   }
 
   .song-form-fields {
     text-align: center;
     padding: 5px;
     color: white;
+    font-family: "Kanit", sans-serif;
   }
 
   .song-form-fields .song-name-box input,
   .song-form-fields .length-box input,
   .song-form-fields .song-file-box input {
-    background-color: rgb(31, 31, 31);
+    background-color: white;
     text-align: center;
     padding: 5px;
-    color: white;
+    color: rgb(167, 167, 167);
+    font-family: "Kanit", sans-serif;
+    border-radius: 5px;
+    width: 400px;
   }

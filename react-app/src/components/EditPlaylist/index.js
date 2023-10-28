@@ -99,7 +99,7 @@ function EditPlaylist({ playlistId }) {
           <label>
             Playlist Bio
             <div className="edit-playlist-bio-box">
-            <input
+            <textarea
               type="text"
               value={bio}
               onChange={(e) => setBio(e.target.value)}

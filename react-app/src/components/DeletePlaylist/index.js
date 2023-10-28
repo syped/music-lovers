@@ -26,9 +26,11 @@ function DeletePlaylistModal ({ playlistId }) {
             <div className="delete-playlist-modal">
                 <h2 className="delete-playlist">Confirm Delete</h2>
                 <div>Are you sure you want to remove this Playlist?</div>
+                <div className="main-delete-playlist">
                 <button className="yes-delete-playlist" onClick={confirmDelete}>
                   Yes (Delete Playlist)
                 </button>
+                </div>
                 <button className="no-delete-playlist" onClick={cancelDelete}>
                   No (Keep Playlist)
                 </button>

@@ -12,6 +12,7 @@
 
 .update-song-title {
     color: white;
+    font-family: "Kanit", sans-serif;
 }
 
 .update-song-button button {
@@ -19,12 +20,15 @@
     border-radius: 10px;
     padding: 7px;
     border: none;
+    width: 250px;
+    height: 25px;
+    cursor: pointer;
 }
 
-.errors {
-    color: white;
-    text-align: center;
+.update-song-button button:hover {
+    background-color: rgb(167, 167, 167);
 }
+
 
 .song-form-fields label {
     color: white;
@@ -32,8 +36,16 @@
 }
 
 .edit-song-name-box input {
-    background-color: rgb(31, 31, 31);
-    color: white;
+    background-color: white;
+    color: rgb(167, 167, 167);
     align-items: center;
+    text-align: center;
+    width: 250px;
+    height: 25px;
+    border-radius: 5px;
+}
+
+.errors {
+    color: white;
     text-align: center;
 }
