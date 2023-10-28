@@ -33,8 +33,8 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
-      <YourLibrary reload={reload} />
+      <Navigation reload={reload} isLoaded={isLoaded} />
+      {/* <YourLibrary reload={reload} /> */}
       {isLoaded && (
         <Switch>
           <Route exact path="/" component={LandingPage} />
