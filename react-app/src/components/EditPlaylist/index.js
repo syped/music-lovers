@@ -72,7 +72,7 @@ function EditPlaylist({ playlistId }) {
 
   return (
     <div className="main-edit-playlist-form-container">
-      <div className="edit-form-container">
+      <div className="edit-playlist-form-container">
         <h1 className="update-your-playlist-title">Update your Playlist</h1>
       </div>
       <form onSubmit={handleSubmit}>
