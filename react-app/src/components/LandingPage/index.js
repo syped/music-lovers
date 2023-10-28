@@ -20,7 +20,7 @@ function LandingPage() {
   const albumArr = Object.values(randomAlbumObj);
 
   useEffect(() => {
-    dispatch(getPlaylistsThunk(5));
+    dispatch(getPlaylistsThunk());
   }, [dispatch]);
 
   if (!albumArr || !albumArr.length) {
@@ -28,7 +28,13 @@ function LandingPage() {
     return null;
   }
 
-  playlists = playlists.slice(0, 5);
+  let arr = [];
+
+  if (!playlists) {
+    console.log(playlists);
+    return null;
+  }
+  // arr = playlists.slice(0, 5);
 
   // const albumUser = randomAlbumObj.user_id;
 
@@ -84,7 +90,7 @@ function LandingPage() {
           </div>
 
           <div className="all-recent-playlists">
-            {playlists.map((playlist) => (
+            {arr.map((playlist) => (
               <div className="recent-playlist-card">
                 <NavLink
                   className="recent-playlist-navlink"

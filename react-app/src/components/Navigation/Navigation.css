@@ -3,7 +3,7 @@ body {
   color: rgb(167, 167, 167);
   font-family: "Kanit", sans-serif;
   overflow-x: hidden;
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
 }
 
 .page-grid {

@@ -1,1 +1,49 @@
 /* TODO Add site wide styles */
+
+.rhap_container {
+  background-color: black;
+}
+
+.rhap_container svg {
+  color: rgb(176, 83, 239);
+}
+
+.rhap_time {
+  color: white;
+}
+
+.rhap_progress-filled {
+  background-color: rgb(176, 83, 239);
+}
+
+.rhap_progress-indicator {
+  background-color: rgb(176, 83, 239);
+  opacity: 0;
+}
+
+.rhap_progress-container {
+  cursor: default;
+}
+
+.rhap_progress-container:hover
+  > .rhap_progress-bar-show-download
+  > .rhap_progress-indicator {
+  opacity: 100;
+}
+
+.rhap_volume-indicator {
+  background-color: rgb(176, 83, 239);
+  opacity: 100;
+}
+
+.rhap_progress-bar {
+  background-color: white;
+}
+
+.rhap_download-progress {
+  background-color: white;
+}
+
+.rhap_volume-bar {
+  background: white;
+}
