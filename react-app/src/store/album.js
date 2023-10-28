@@ -128,7 +128,7 @@ const albumsReducer = (state = initialState, action) => {
       return newState;
     case UPDATE_ALBUM:
       newState = { ...state };
-      newState.allAlbums[action.album.id] = action.album;
+      newState.singleAlbum = action.album;
       return newState;
     case DELETE_ALBUM:
       newState = { ...state };

@@ -6,8 +6,7 @@ def seed_songs():
         user_id=1,
         album_id=1,
         song_name="Whistle",
-        length=3.31,
-        mp3='random1'
+        mp3='https://music-lovers-images.s3.amazonaws.com/%ED%9C%98%ED%8C%8C%EB%9E%8C+(Whistle).mp3'
     )
     db.session.add(song1)
 
@@ -15,8 +14,7 @@ def seed_songs():
         user_id=1,
         album_id=1,
         song_name="Boombayah",
-        length=4.00,
-        mp3='random2'
+        mp3='https://music-lovers-images.s3.amazonaws.com/%EB%B6%90%EB%B0%94%EC%95%BC+(Boombayah).mp3'
     )
     db.session.add(song2)
 
@@ -24,8 +22,7 @@ def seed_songs():
         user_id=1,
         album_id=2,
         song_name="Playing With Fire",
-        length=3.17,
-        mp3='random3'
+        mp3='https://music-lovers-images.s3.amazonaws.com/%EB%B6%88%EC%9E%A5%EB%82%9C+(Playing+With+Fire).mp3'
     )
     db.session.add(song3)
 
@@ -33,8 +30,7 @@ def seed_songs():
         user_id=1,
         album_id=2,
         song_name="Stay",
-        length=3.50,
-        mp3='random4'
+        mp3='https://music-lovers-images.s3.amazonaws.com/Stay.mp3'
     )
     db.session.add(song4)
 
@@ -42,8 +38,7 @@ def seed_songs():
         user_id=1,
         album_id=2,
         song_name="Whistle (Acoustic Ver.)",
-        length=3.52,
-        mp3='random5'
+        mp3='https://music-lovers-images.s3.amazonaws.com/%ED%9C%98%ED%8C%8C%EB%9E%8C+(Whistle)+(Acoustic+Version).mp3'
     )
     db.session.add(song5)
 

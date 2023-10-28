@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import OpenModalButton from "../OpenModalButton";
@@ -17,6 +17,8 @@ function YourLibrary() {
   const sessionUser = useSelector((state) => state.session.user);
   const allAlbumsObj = useSelector((state) => state.albums.allAlbums);
   const allPlaylistObj = useSelector((state) => state.playlists.allPlaylists);
+  const [submitted, setSubmitted] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const albumArr = Object.values(allAlbumsObj);
   const playlistArr = Object.values(allPlaylistObj);
@@ -32,12 +34,24 @@ function YourLibrary() {
     setLoginModalOpen(true);
   };
 
+  useEffect(() => {
+    dispatch(getAlbums());
+
+    dispatch(getPlaylistsThunk()).then(() => setIsLoaded(true));
+  }, [dispatch]);
+
   if (!albumArr || !albumArr.length) {
     dispatch(getAlbums());
+    return null;
   }
 
   if (!playlistArr || !playlistArr.length) {
     dispatch(getPlaylistsThunk());
+  }
+
+  if (submitted) {
+    dispatch(getAlbums());
+    setSubmitted(false);
   }
 
   const userAlbumsArr = sessionUser
@@ -93,7 +107,12 @@ function YourLibrary() {
                           <OpenModalButton
                             className="user-edit-delete-button"
                             buttonText="Edit"
-                            modalComponent={<EditAlbum albumId={album.id} />}
+                            modalComponent={
+                              <EditAlbum
+                                submitted={() => setSubmitted(true)}
+                                albumId={album.id}
+                              />
+                            }
                           />
                         </div>
                         <div className="album-delete-button">

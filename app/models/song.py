@@ -8,7 +8,6 @@ class Song(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     song_name = db.Column(db.String(255), nullable=False)
-    length = db.Column(db.Float)
     mp3 = db.Column(db.String)
     album_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("albums.id")))
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
@@ -21,7 +20,6 @@ class Song(db.Model):
         return {
             'id': self.id,
             'song_name': self.song_name,
-            'length': self.length,
             'mp3': self.mp3,
             'album_id': self.album_id,
             'user_id': self.user_id,
