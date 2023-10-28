@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { updateSongThunk, getSingleSongThunk } from "../../store/song";
+import "./EditSong.css";
 
 function EditSong({ song, albumId }) {
   const dispatch = useDispatch();
@@ -11,7 +12,6 @@ function EditSong({ song, albumId }) {
   // const { songId } = useParams();
 
   const [name, setName] = useState(song.song_name);
-  const [length, setLength] = useState(song.length);
   const [errors, setErrors] = useState({});
   const [hasSubmitted, setHasSubmitted] = useState(false);
 
@@ -21,14 +21,12 @@ function EditSong({ song, albumId }) {
 
   useEffect(() => {
     setName(song.song_name || "");
-    setLength(song.length || "");
   }, [song]);
 
-  function errorsChecked(name, length) {
+  function errorsChecked(name) {
     const errors = {};
 
-    if (!name) errors.name = "Album name is required";
-    if (!length) errors.length = "Length of song is required";
+    if (!name) errors.name = "Song name is required";
 
     setErrors(errors);
 
@@ -38,14 +36,13 @@ function EditSong({ song, albumId }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setHasSubmitted(true);
-    const errorsFound = errorsChecked(name, length);
+    const errorsFound = errorsChecked(name);
 
     const updatedSong = {
       id: song.id,
       user_id: userId,
       album_id: albumId, //HARD-CODED, FIX TO ALBUM NAME
       song_name: name,
-      length: length,
       mp3: song.mp3,
     };
 
@@ -59,43 +56,34 @@ function EditSong({ song, albumId }) {
   };
 
   return (
-    <>
-      <div className="create-song-form">
+    <div className="main-edit-song-container">
+      <div className="update-song-form">
+        <div className="update-song-title">
         <h1>Update your Song(s)</h1>
+        </div>
         <form onSubmit={handleSubmit}>
           <div className="song-form-fields">
             <label>
               Song Name:
+              <div className="edit-song-name-box">
               <input
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Song Name"
               />
+              </div>
             </label>
             {hasSubmitted && errors.name && (
               <p className="errors">{errors.name}</p>
             )}
           </div>
-          <div className="song-form-fields">
-            <label>
-              Length:
-              <input
-                type="text"
-                value={length}
-                onChange={(e) => setLength(e.target.value)}
-                placeholder="Length of Song"
-              />
-            </label>
-            {hasSubmitted && errors.name && (
-              <p className="errors">{errors.length}</p>
-            )}
-          </div>
-
+          <div className="update-song-button">
           <button type="submit">Update Song</button>
+          </div>
         </form>
       </div>
-    </>
+    </div>
   );
 }
 

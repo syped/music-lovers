@@ -1,0 +1,41 @@
+.main-edit-album-form-container {
+    background-color: rgb(31, 31, 31);
+    height: 300px;
+    width: 330px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    text-align: center;
+}
+
+.update-your-album-title {
+    color: white;
+}
+
+.edit-album-form-fields,
+.edit-release-year-form-fields {
+    color: white;
+    padding: 10px;
+}
+
+.edit-album-name-box input,
+.edit-release-year-box input {
+    background-color: rgb(31, 31, 31);
+    color: white;
+    align-items: center;
+    text-align: center;
+}
+
+.update-album-button button {
+    background-color: rgb(176, 83, 239);
+    border-radius: 10px;
+    padding: 7px;
+    border: none;
+  }
+
+.errors {
+    color: white;
+    text-align: center;
+  }

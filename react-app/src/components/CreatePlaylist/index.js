@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createPlaylistThunk } from "../../store/playlist";
+import "./CreatePlaylist.css";
 
 function CreatePlaylistForm() {
   const dispatch = useDispatch();
@@ -47,12 +48,13 @@ function CreatePlaylistForm() {
   };
 
   return (
-    <>
+    <div className="main-create-playlist-container">
+    <div className="create-playlist-container">
       <div className="form-container">
-        <h1>Create your Playlist</h1>
+        <h1 className="create-playlist-title">Create your Playlist</h1>
       </div>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <div className="form-upload">
+        <div className="form-upload-playlist">
           <input
             type="file"
             accept="image/*"
@@ -61,34 +63,41 @@ function CreatePlaylistForm() {
           {imageLoading && <p>Loading...</p>}
         </div>
 
-        <div className="form-fields">
+        <div className="playlist-form-fields">
           <label>
             Playlist
+            <div className="playlist-name-box">
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Playlist Name"
             />
+            </div>
           </label>
           {/* {errors.name && <p className="errors">{errors.name}</p>} */}
         </div>
         <div className="form-fields">
           <label>
             Playlist Bio
+            <div className="playlist-bio-box">
             <input
               type="textarea"
               value={bio}
               onChange={(e) => setBio(e.target.value)}
               placeholder="Playlist Bio"
             />
+            </div>
           </label>
 
           {/* {errors.releaseYear && <p className="errors">{errors.bio}</p>} */}
         </div>
+        <div className="create-playlist-button">
         <button type="submit">Create Playlist</button>
+        </div>
       </form>
-    </>
+    </div>
+    </div>
   );
 }
 
