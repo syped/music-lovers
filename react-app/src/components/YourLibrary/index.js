@@ -174,18 +174,15 @@ function YourLibrary({ reload }) {
                 {isLoginModalOpen && <LoginFormModal />}
               </div>
             )}
-            {sessionUser && (
-              <div className="bleh-create-button">
-                <NavLink
-                  to="/albums/create"
-                  className="library-user-create-album"
-                >
-                  Create Album
-                </NavLink>
-              </div>
-            )}
           </div>
         ) : null}
+        {sessionUser && currAlbum && (
+          <div className="bleh-create-button">
+            <NavLink to="/albums/create" className="library-user-create-album">
+              Create Album
+            </NavLink>
+          </div>
+        )}
         {currPlaylist ? (
           <div className="user-playlists-container">
             {userPlaylistsArr.length > 0 ? (
@@ -271,18 +268,18 @@ function YourLibrary({ reload }) {
                 {isLoginModalOpen && <LoginFormModal />}
               </div>
             )}
-            {sessionUser && (
-              <div className="bleh-create-button">
-                <NavLink
-                  to="/playlists/create"
-                  className="library-user-create-playlist"
-                >
-                  Create Playlist
-                </NavLink>
-              </div>
-            )}
           </div>
         ) : null}
+        {sessionUser && currPlaylist && (
+          <div className="bleh-create-button">
+            <NavLink
+              to="/playlists/create"
+              className="library-user-create-playlist"
+            >
+              Create Playlist
+            </NavLink>
+          </div>
+        )}
       </div>
     </>
   );

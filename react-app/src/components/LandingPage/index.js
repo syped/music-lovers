@@ -34,7 +34,7 @@ function LandingPage() {
     console.log(playlists);
     return null;
   }
-  // arr = playlists.slice(0, 5);
+  arr = playlists.slice(0, 5);
 
   // const albumUser = randomAlbumObj.user_id;
 
@@ -83,7 +83,7 @@ function LandingPage() {
         </div>
         <div className="recent-playlists">
           <div className="recent-playlist-header">
-            <h2 className="recent-playlists-title">Recent Playlists</h2>
+            <h2 className="recent-playlists-title">Popular Playlists</h2>
             <NavLink className="recent-playlist-show-all" to={"/playlists/"}>
               Show All
             </NavLink>
