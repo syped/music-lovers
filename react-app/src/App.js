@@ -52,7 +52,7 @@ function App() {
     <>
       <Navigation reload={reload} isLoaded={isLoaded} />
       <AudioPlayer
-        src={song.mp3}
+        src={song.mp3 || null}
         volume={0.1}
         autoPlay
         onEnded={() => {
