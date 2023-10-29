@@ -29,77 +29,86 @@ function SignupFormModal() {
       }
     } else {
       setErrors([
-        "confirm: Confirm Password field must be the same as the Password field",
+        "Confirm Password field must be the same as the Password field",
       ]);
     }
   };
 
+  const handleClose = () => {
+    closeModal();
+  };
+
   return (
-    <>
-      <h1>Sign Up</h1>
+    <div className="entire-signup">
+      <button className="close-button" onClick={handleClose}>
+        X
+      </button>
+      <h1 className="signup-header">Sign Up</h1>
       <form noValidate onSubmit={handleSubmit}>
-        <ul>
+        <ul className="signup-error">
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
         </ul>
-        <label>
-          Email
+        <div className="signup-email">
+          <label>Email</label>
           <input
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </label>
-        <label>
-          Username
+        </div>
+        <div className="signup-username">
+          <label>Username</label>
           <input
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
-        </label>
-        <label>
-          First Name
+        </div>
+        <div className="signup-firstname">
+          <label>First Name</label>
           <input
             type="text"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             required
           />
-        </label>
-        <label>
-          Last Name
+        </div>
+        <div className="signup-lastname">
+          <label>Last Name</label>
           <input
             type="text"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             required
           />
-        </label>
-        <label>
-          Password
+        </div>
+        <div className="signup-password">
+          <label>Password</label>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </label>
-        <label>
-          Confirm Password
+        </div>
+        <div className="signup-confirm">
+          <label>Confirm Password</label>
           <input
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
-        </label>
-        <button type="submit">Sign Up</button>
+        </div>
+        <div className="signup-submit-button">
+          <button type="submit">Sign Up</button>
+        </div>
       </form>
-    </>
+    </div>
   );
 }
 

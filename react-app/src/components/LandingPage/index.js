@@ -34,7 +34,7 @@ function LandingPage() {
     console.log(playlists);
     return null;
   }
-  // arr = playlists.slice(0, 5);
+  arr = playlists.slice(0, 5);
 
   // const albumUser = randomAlbumObj.user_id;
 

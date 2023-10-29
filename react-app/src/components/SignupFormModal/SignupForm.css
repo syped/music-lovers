@@ -1,6 +1,6 @@
 .entire-signup {
   width: 600px;
-  height: 650px;
+  height: 700px;
   background: black;
   border: 1px solid white;
   border-radius: 15px;
@@ -13,7 +13,7 @@
   justify-content: center;
   /* text-align: center; */
   margin-top: 30px;
-  margin-left: 20px;
+  margin-left: 0px;
   color: white;
 }
 
@@ -61,12 +61,12 @@
 .signup-password input,
 .signup-confirm input {
   margin-left: 180px;
-  width: 250px;
+  width: 230px;
   padding: 5px;
   border-radius: 5px;
   border: 0px;
   margin-bottom: 8px;
-  height: 20px;
+  height: 15px;
   /* text-align: center; */
 }
 
@@ -75,7 +75,7 @@
   background-color: rgb(176, 83, 239);
   color: white;
   padding: 10px;
-  width: 260px;
+  width: 240px;
   margin-top: 20px;
   margin-left: 180px;
   border-radius: 20px;
@@ -110,6 +110,9 @@
   color: #ff0000;
   margin-top: 5px;
   font-size: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 #modal-content {

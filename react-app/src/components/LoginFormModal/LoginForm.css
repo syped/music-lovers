@@ -1,6 +1,6 @@
 .entire-login {
   width: 400px;
-  height: 410px;
+  height: 450px;
   background: black;
   border: 1px solid white;
   border-radius: 15px;
@@ -84,4 +84,13 @@
   background-color: rgb(176, 83, 239);
   color: white;
   cursor: pointer;
+}
+
+.login-error {
+  color: #ff0000;
+  margin-top: 5px;
+  font-size: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
