@@ -16,6 +16,8 @@ function CreateAlbumForm({ reload }) {
   const [image, setImage] = useState(null);
   const [imageLoading, setImageLoading] = useState(false);
 
+  const soundWaves = process.env.PUBLIC_URL + "/images/MUSICWAVES.gif";
+
   function errorsChecked(name, releaseYear) {
     const errors = {};
     if (!name) errors.name = "Album name is required";
@@ -56,53 +58,67 @@ function CreateAlbumForm({ reload }) {
 
   return (
     <div className="main-upload-album-container">
-    <div className="upload-album-container">
-      <div className="form-container">
-        <h1 className="upload-title">Upload your Album</h1>
-      </div>
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <div className="form-upload-album">
-          <input
-            type="file"
-            accept="image/*"
-            onChange={(e) => setImage(e.target.files[0])}
-          />
-          {imageLoading && <p>Loading...</p>}
-        </div>
+      <div className="upload-album-container">
+        <div className="upload-background">
+          <div className="form-container">
+            <div className="upload-title">Create your Album</div>
+          </div>
+          <form
+            className="upload-form"
+            onSubmit={handleSubmit}
+            encType="multipart/form-data"
+          >
+            <div className="form-upload-album">
+              {" "}
+              <label>Upload your Album Picture:</label>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => setImage(e.target.files[0])}
+              />
+              {imageLoading && <p>Loading...</p>}
+            </div>
 
-        <div className="form-fields">
-          <label>
-            Album
-            <div className="album-name-box">
-              <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Album Name"
-              />
+            <div className="form-upload-album">
+              <label>
+                Album Name
+                <div className="album-name-box">
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Album Name"
+                  />
+                </div>
+              </label>
+              {errors.name && (
+                <p className="upload-album-errors">{errors.name}</p>
+              )}
             </div>
-          </label>
-          {errors.name && <p className="errors">{errors.name}</p>}
-        </div>
-        <div className="form-fields">
-          <label>
-            Release Year
-            <div className="release-year-box">
-              <input
-              type="number"
-              value={releaseYear}
-              onChange={(e) => setReleaseYear(e.target.value)}
-              placeholder="Release Year"
-              />
+            <div className="form-upload-album">
+              <label>
+                Release Year
+                <div className="release-year-box">
+                  <input
+                    type="number"
+                    value={releaseYear}
+                    onChange={(e) => setReleaseYear(e.target.value)}
+                    placeholder="Release Year"
+                  />
+                </div>
+              </label>
+              {errors.releaseYear && (
+                <p className="upload-album-errors">{errors.releaseYear}</p>
+              )}
             </div>
-          </label>
-          {errors.releaseYear && <p className="errors">{errors.releaseYear}</p>}
+            <div className="upload-album-button">
+              <button type="submit" className="upload-button-container">
+                Create Album
+              </button>
+            </div>
+          </form>
         </div>
-        <div className="button-container">
-        <button type="submit" className="upload-button-container">Upload Album</button>
-        </div>
-      </form>
-    </div>
+      </div>
     </div>
   );
 }

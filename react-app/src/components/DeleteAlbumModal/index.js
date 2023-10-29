@@ -21,19 +21,30 @@ function DeleteAlbumModal({ albumId, submitted }) {
     closeModal();
   };
 
+  const handleClose = () => {
+    closeModal();
+  };
+
   return (
     <>
       {exist && (
         <>
           <div className="delete-album-modal">
+            <button className="close-button" onClick={handleClose}>
+              X
+            </button>
             <h2 className="delete-album">Confirm Delete</h2>
-            <div>Are you sure you want to remove this album?</div>
-            <button className="yes-delete-album" onClick={confirmDelete}>
-              Yes (Delete Album)
-            </button>
-            <button className="no-delete-album" onClick={cancelDelete}>
-              No (Keep Album)
-            </button>
+            <div className="are-you-sure">
+              Are you sure you want to remove this album?
+            </div>
+            <div className="delete-modal-buttons">
+              <button className="yes-delete-album" onClick={confirmDelete}>
+                Yes (Delete Album)
+              </button>
+              <button className="no-delete-album" onClick={cancelDelete}>
+                No (Keep Album)
+              </button>
+            </div>
           </div>
         </>
       )}

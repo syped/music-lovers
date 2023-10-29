@@ -74,13 +74,20 @@ function EditPlaylist({ playlistId, submitted }) {
     }
   };
 
+  const handleClose = () => {
+    closeModal();
+  };
+
   return (
     <div className="main-edit-playlist-form-container">
+      <button className="close-button" onClick={handleClose}>
+        X
+      </button>
       <div className="edit-playlist-form-container">
         <h1 className="update-your-playlist-title">Update your Playlist</h1>
       </div>
-      <form onSubmit={handleSubmit}>
-        <div className="edit-playlist-name-form-fields">
+      <form className="edit-playlist-form" onSubmit={handleSubmit}>
+        <div className="edit-playlist-form-fields">
           <div className="playlist-label">
             <label>
               Playlist
@@ -98,12 +105,12 @@ function EditPlaylist({ playlistId, submitted }) {
             <p className="errors">{errors.name}</p>
           )}
         </div>
-        <div className="edit-playlist-bio-form-fields">
-          <div className="playlist-bio-label">
+        <div className="edit-playlist-form-fields">
+          <div className="playlist-label">
             <label>
               Playlist Bio
               <div className="edit-playlist-bio-box">
-                <input
+                <textarea
                   type="text"
                   value={bio}
                   onChange={(e) => setBio(e.target.value)}

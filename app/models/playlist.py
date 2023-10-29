@@ -9,7 +9,7 @@ class Playlist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     playlist_name = db.Column(db.String(255), nullable=False)
     playlist_bio = db.Column(db.String(999), nullable=False)
-    playlist_image = db.Column(db.String, nullable=False)
+    playlist_image = db.Column(db.Text, nullable=False)
     # song_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("songs.id")))
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
     # created_at = db.Column(db.Date)

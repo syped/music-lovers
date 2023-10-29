@@ -1,76 +1,146 @@
 .main-upload-album-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: -400px;
+  position: relative;
+  left: 330px;
+  bottom: 650px;
+  height: 800px;
+  width: 100%;
+  z-index: 0;
 }
 
-
 .upload-album-container {
-    background-color: rgb(31, 31, 31);
-    width: 600px;
-    height: 385px;
-    border-radius: 10px;
-    margin-left: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-    /* padding-bottom: 10px;
-    padding-top: 5px; */
+  background-image: url("../../../public/images/MUSICWAVES.gif");
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid white; */
+  width: 76%;
+  height: 550px;
+}
+
+.upload-background {
+  background-color: rgba(0, 0, 0, 0.723);
+  width: 500px;
+  height: 700px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .upload-title {
-    color: white;
-}
-
-.form-container {
-    margin-top: -10px;
-}
-
-.upload-button-container {
-    background-color: rgb(176, 83, 239);
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-
-}
-
-.button-container {
-    display: flex;
-    justify-content: center;
-    padding: 30px;
-}
-
-
-.form-fields {
-    color: white;
-    text-align: center;
-}
-
-
-.album-name-box {
-    padding-top: 30px;
-    padding-bottom: 30px;
-}
-
-.album-name-box input {
-    background-color: rgb(31, 31, 31);
-    text-align: center;
-}
-
-.release-year-box {
-    padding-top: 30px;
-    padding-bottom: 30px;
-}
-
-.release-year-box input {
-    background-color: rgb(31, 31, 31);
-    text-align: center;
+  font-size: 35px;
+  color: white;
+  text-align: center;
+  padding: 10px;
 }
 
 .form-upload-album {
-    color: white;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
 }
 
+.form-upload-album:hover {
+  color: rgb(176, 83, 239);
+  transition: color 0.3s;
+}
+
+.form-upload-album label {
+  font-size: 20px;
+  margin-left: 5px;
+}
+
+.form-upload-album input {
+  border: none;
+  padding: 10px;
+  width: 200px;
+  border-radius: 10px;
+}
+
+.upload-button-container {
+  border: none;
+  margin-left: 5px;
+  padding: 10px;
+  width: 218px;
+  border-radius: 20px;
+  margin-top: 10px;
+  font-family: "Kanit", sans-serif;
+  background-color: rgb(176, 83, 239);
+  color: white;
+}
+
+.upload-button-container:hover {
+  background-color: rgb(167, 167, 167);
+  color: rgb(176, 83, 239);
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.upload-album-errors {
+  color: red;
+}
+
+/* .upload-album-container {
+  background-color: rgb(31, 31, 31);
+  width: 600px;
+  height: 385px;
+  border-radius: 10px;
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.upload-title {
+  color: white;
+}
+
+.form-container {
+  margin-top: -10px;
+}
+
+.upload-button-container {
+  background-color: rgb(176, 83, 239);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+}
+
+.form-fields {
+  color: white;
+  text-align: center;
+}
+
+.album-name-box {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.album-name-box input {
+  background-color: rgb(31, 31, 31);
+  text-align: center;
+}
+
+.release-year-box {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.release-year-box input {
+  background-color: rgb(31, 31, 31);
+  text-align: center;
+}
+
+.form-upload-album {
+  color: white;
+} */
