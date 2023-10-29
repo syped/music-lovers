@@ -10,13 +10,13 @@ import CreateSong from "../CreateSong";
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 
-function SingleAlbumPage() {
+function SingleAlbumPage({ selectedSong, selectedList }) {
   const dispatch = useDispatch();
   const { albumId } = useParams();
   const [isLoaded, setIsLoaded] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
   const allSongsObj = useSelector((state) => state.songs.allSongs);
-  const [selectedSong, setSelectedSong] = useState();
+  // const [selectedSong, setSelectedSong] = useState();
   const [submitted, setSubmitted] = useState(false);
 
   const singleAlbumObj = useSelector((state) => state.albums.singleAlbum);
@@ -41,50 +41,92 @@ function SingleAlbumPage() {
   //   if (singleAlbumObj.id !== parseInt(albumId)) return null;
 
   let albumsSongsArr;
+  let count;
 
   if (singleAlbumObj) {
     albumsSongsArr = arr.filter((song) => song.album_id === singleAlbumObj.id);
+    if (albumsSongsArr.length === 1)
+      count = count = `· ${albumsSongsArr.length} song`;
+    else if (albumsSongsArr.length > 1)
+      count = `· ${albumsSongsArr.length} songs`;
+    else {
+      count = "· New";
+    }
   }
+
+  const handleClick = (id) => {
+    for (let i = 0; i < albumsSongsArr.length; i++) {
+      if (id === albumsSongsArr[i].id) {
+        console.log("first", i);
+        selectedSong(i);
+      }
+    }
+  };
 
   return (
     <>
       {isLoaded && (
-        <div>
-          <img src={singleAlbumObj?.album_image} />
-          <div>{singleAlbumObj?.album_name}</div>
-          <div>
+        <div className="single-album-container">
+          <img
+            src={singleAlbumObj?.album_image}
+            className="single-album-image"
+          />
+          <div className="single-album-name">{singleAlbumObj?.album_name}</div>
+          <div className="single-album-year">
+            {singleAlbumObj?.release_year}
+          </div>
+          <div className="single-album-count">{count}</div>
+          <div className="single-album-add-song">
+            {singleAlbumObj?.id ? (
+              <div>
+                <OpenModalButton
+                  className="add-song-button"
+                  buttonText="Add Song"
+                  modalComponent={
+                    <CreateSong
+                      albumId={albumId}
+                      submitted={() => setSubmitted(true)}
+                    />
+                  }
+                />
+              </div>
+            ) : null}
+          </div>
+          <div className="single-album-song-container">
             {albumsSongsArr?.map((song) => (
-              <>
-                <div onClick={() => setSelectedSong(song.mp3)}>
-                  {song.song_name}
-                </div>
-                {sessionUser && sessionUser.id === singleAlbumObj.user_id ? (
-                  <div className="song-edit-delete-container">
-                    <div className="song-edit">
-                      <OpenModalButton
-                        buttonText="Edit"
-                        modalComponent={
-                          <EditSong albumId={albumId} song={song} />
-                        }
-                      />
-                    </div>
-                    <div className="song-delete">
-                      <OpenModalButton
-                        buttonText="Delete"
-                        modalComponent={<DeleteSong song={song} />}
-                      />
-                    </div>
+              <div key={song.id}>
+                <>
+                  <div
+                    onClick={() => {
+                      handleClick(song.id);
+                      selectedList(albumsSongsArr);
+                    }}
+                  >
+                    {song.song_name}
                   </div>
-                ) : null}
-              </>
+                  {sessionUser && sessionUser.id === singleAlbumObj.user_id ? (
+                    <div className="song-edit-delete-container">
+                      <div className="song-edit">
+                        <OpenModalButton
+                          buttonText="Edit"
+                          modalComponent={
+                            <EditSong albumId={albumId} song={song} />
+                          }
+                        />
+                      </div>
+                      <div className="song-delete">
+                        <OpenModalButton
+                          buttonText="Delete"
+                          modalComponent={<DeleteSong song={song} />}
+                        />
+                      </div>
+                    </div>
+                  ) : null}
+                </>
+              </div>
             ))}
           </div>
-          {singleAlbumObj?.id ? (
-            <div>
-              <CreateSong submitted={() => setSubmitted(true)} />
-              <AudioPlayer src={selectedSong} volume={0.1} />
-            </div>
-          ) : null}
+          <div className="single-album-song-background"></div>
         </div>
       )}
     </>

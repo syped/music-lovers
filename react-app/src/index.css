@@ -2,6 +2,14 @@
 
 .rhap_container {
   background-color: black;
+  z-index: 10;
+  position: fixed;
+  bottom: 0;
+  padding: 25px 40px;
+}
+
+.rhap_container > * {
+  z-index: 10;
 }
 
 .rhap_container svg {
@@ -46,4 +54,123 @@
 
 .rhap_volume-bar {
   background: white;
+}
+
+.single-album-container {
+  position: relative;
+  left: 330px;
+  bottom: 630px;
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+  max-width: 100%;
+  max-height: 600px;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.single-album-image {
+  height: 250px;
+  border-radius: 10px;
+  transition: all 0.2s ease-in-out;
+}
+
+.single-album-image:hover {
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 0 20px #dbdbdb7e;
+}
+
+.single-album-name {
+  font-size: 50pt;
+  font-weight: bolder;
+  color: white;
+}
+
+.user-albums:hover {
+  transition: all 0.2s ease-in-out;
+  transform: scale(1.02);
+}
+
+.user-albums {
+  transition: all 0.2s ease-in-out;
+  margin-left: 2px;
+}
+
+.user-album-name {
+  text-align: start;
+  margin-top: 15px;
+}
+
+.active {
+  transition: all 0.2s ease-in-out;
+}
+
+.active:hover {
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-links {
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-links:hover {
+  transform: scale(1.05);
+}
+
+.library-user-create-album,
+.library-user-create-playlist {
+  transition: all 0.2s ease-in-out;
+  border-radius: 10px;
+}
+
+.library-user-create-album:hover,
+.library-user-create-playlist:hover {
+  transition: all 0.2s ease-in-out;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.single-album-year {
+  position: absolute;
+  left: 285px;
+  top: 215px;
+}
+
+.single-album-count {
+  position: absolute;
+  left: 325px;
+  top: 215px;
+}
+
+.single-album-song-container {
+  position: absolute;
+  top: 350px;
+  left: 50px;
+}
+
+.single-album-song-background {
+  height: 500px;
+  width: 100%;
+  background-color: black;
+  opacity: 20%;
+  position: absolute;
+  left: -35px;
+  top: 275px;
+  z-index: -1;
 }

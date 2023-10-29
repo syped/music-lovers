@@ -21,6 +21,7 @@ function CreateAlbumForm({ reload }) {
   function errorsChecked(name, releaseYear) {
     const errors = {};
     if (!name) errors.name = "Album name is required";
+    if (name.length > 35) errors.name = "Album name is too long";
     if (!releaseYear) errors.releaseYear = "Release year is required";
 
     setErrors(errors);
@@ -59,6 +60,7 @@ function CreateAlbumForm({ reload }) {
   return (
     <div className="main-upload-album-container">
       <div className="upload-album-container">
+
         <div className="upload-background">
           <div className="form-container">
             <div className="upload-title">Create your Album</div>
@@ -118,6 +120,7 @@ function CreateAlbumForm({ reload }) {
             </div>
           </form>
         </div>
+
       </div>
     </div>
   );
