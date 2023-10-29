@@ -19,16 +19,13 @@ function AllPlaylists() {
       <h1 className="all-playlists-header">All Albums</h1>
       <div className="idk-if-needed-div">
         <div className="main-playlist-card">
-          {albumsArr.map((playlist) => (
-            <NavLink
-              className="playlists-navlink"
-              to={`/playlists/${playlist.id}`}
-            >
+          {albumsArr.map((album) => (
+            <NavLink className="playlists-navlink" to={`/albums/${album.id}`}>
               <div className="playlist-card">
-                <img className="playlist-card-img" src={playlist.album_image} />
+                <img className="playlist-card-img" src={album.album_image} />
                 <div className="playlist-card-name-bio">
-                  <p className="playlist-card-name">{playlist.album_name}</p>
-                  <p className="playlist-card-bio">{playlist.release_year}</p>
+                  <p className="playlist-card-name">{album.album_name}</p>
+                  <p className="playlist-card-bio">{album.release_year}</p>
                 </div>
               </div>
             </NavLink>
