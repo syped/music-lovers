@@ -45,7 +45,7 @@ function App() {
   if (!song || !song.mp3) song = { mp3: null };
 
   const handleSong = (songData) => {
-    setSelectedSong(songData);
+    setCurrentSong(songData);
   };
 
   return (
@@ -53,7 +53,7 @@ function App() {
       <Navigation reload={reload} isLoaded={isLoaded} />
       <AudioPlayer
         src={song.mp3 || null}
-        volume={0.1}
+        volume={0.2}
         autoPlay
         onEnded={() => {
           if (currentSong < songList.length - 1) {

@@ -4,11 +4,11 @@ import { useHistory } from "react-router-dom";
 import { createSongThunk } from "../../store/song";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
-function CreateSongForm({ submitted }) {
+function CreateSongForm({ submitted, albumId }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((state) => state.session.user);
-  const { albumId } = useParams();
+  // const { albumId } = useParams();
 
   const [name, setName] = useState("");
   const [mp3, setMp3] = useState(null);

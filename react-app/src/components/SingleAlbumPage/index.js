@@ -41,25 +41,64 @@ function SingleAlbumPage({ selectedSong, selectedList }) {
   //   if (singleAlbumObj.id !== parseInt(albumId)) return null;
 
   let albumsSongsArr;
+  let count;
 
   if (singleAlbumObj) {
     albumsSongsArr = arr.filter((song) => song.album_id === singleAlbumObj.id);
+    if (albumsSongsArr.length === 1)
+      count = count = `· ${albumsSongsArr.length} song`;
+    else if (albumsSongsArr.length > 1)
+      count = `· ${albumsSongsArr.length} songs`;
+    else {
+      count = "· New";
+    }
   }
 
+  const handleClick = (id) => {
+    for (let i = 0; i < albumsSongsArr.length; i++) {
+      if (id === albumsSongsArr[i].id) {
+        console.log("first", i);
+        selectedSong(i);
+      }
+    }
+  };
+
   return (
-    <div className="single-album-container">
+    <>
       {isLoaded && (
-        <div>
-          <img src={singleAlbumObj?.album_image} />
-          <div>{singleAlbumObj?.album_name}</div>
-          <div>{singleAlbumObj?.release_year}</div>
-          <div>
+        <div className="single-album-container">
+          <img
+            src={singleAlbumObj?.album_image}
+            className="single-album-image"
+          />
+          <div className="single-album-name">{singleAlbumObj?.album_name}</div>
+          <div className="single-album-year">
+            {singleAlbumObj?.release_year}
+          </div>
+          <div className="single-album-count">{count}</div>
+          <div className="single-album-add-song">
+            {singleAlbumObj?.id ? (
+              <div>
+                <OpenModalButton
+                  className="add-song-button"
+                  buttonText="Add Song"
+                  modalComponent={
+                    <CreateSong
+                      albumId={albumId}
+                      submitted={() => setSubmitted(true)}
+                    />
+                  }
+                />
+              </div>
+            ) : null}
+          </div>
+          <div className="single-album-song-container">
             {albumsSongsArr?.map((song) => (
               <div key={song.id}>
                 <>
                   <div
                     onClick={() => {
-                      selectedSong(song.mp3);
+                      handleClick(song.id);
                       selectedList(albumsSongsArr);
                     }}
                   >
@@ -87,15 +126,10 @@ function SingleAlbumPage({ selectedSong, selectedList }) {
               </div>
             ))}
           </div>
-          {singleAlbumObj?.id ? (
-            <div>
-              <CreateSong submitted={() => setSubmitted(true)} />
-              {/* <AudioPlayer src={selectedSong} volume={0.1} /> */}
-            </div>
-          ) : null}
+          <div className="single-album-song-background"></div>
         </div>
       )}
-    </div>
+    </>
   );
 }
 
