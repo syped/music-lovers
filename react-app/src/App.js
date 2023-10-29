@@ -19,11 +19,16 @@ import EditPlaylist from "./components/EditPlaylist";
 import LandingPage from "./components/LandingPage";
 import YourLibrary from "./components/YourLibrary";
 import CreateAlbumSongForm from "./components/CreateAlbumForm";
+import AudioPlayer from "react-h5-audio-player";
+import "react-h5-audio-player/lib/styles.css";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   const [reload, setReload] = useState(false);
+  const [selectedSong, setSelectedSong] = useState(null);
+  const [songList, setSongList] = useState([]);
+  const [currentSong, setCurrentSong] = useState(0);
 
   useEffect(() => {
     dispatch(authenticate())
@@ -31,11 +36,33 @@ function App() {
       .then(() => setReload(false));
   }, [dispatch]);
 
+  const handleList = (listData) => {
+    setSongList(listData);
+  };
+
+  let song = songList[currentSong];
+
+  if (!song || !song.mp3) song = { mp3: null };
+
+  const handleSong = (songData) => {
+    setSelectedSong(songData);
+  };
+
   return (
     <>
-
       <Navigation reload={reload} isLoaded={isLoaded} />
-
+      <AudioPlayer
+        src={song.mp3}
+        volume={0.1}
+        autoPlay
+        onEnded={() => {
+          if (currentSong < songList.length - 1) {
+            setCurrentSong((i) => i + 1);
+          } else {
+            setCurrentSong(0);
+          }
+        }}
+      />
       {/* <YourLibrary reload={reload} /> */}
       {isLoaded && (
         <Switch>
@@ -62,7 +89,10 @@ function App() {
           <Route path="/albums/:albumId/edit" component={EditAlbum} />
 
           <Route path="/albums/:albumId">
-            <SingleAlbumPage />
+            <SingleAlbumPage
+              selectedSong={handleSong}
+              selectedList={handleList}
+            />
           </Route>
 
           <Route exact path="/albums" component={AlbumPage} />

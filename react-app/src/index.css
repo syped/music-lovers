@@ -2,6 +2,14 @@
 
 .rhap_container {
   background-color: black;
+  z-index: 10;
+  position: fixed;
+  bottom: 0;
+  padding: 25px 40px;
+}
+
+.rhap_container > * {
+  z-index: 10;
 }
 
 .rhap_container svg {
@@ -46,4 +54,13 @@
 
 .rhap_volume-bar {
   background: white;
+}
+
+.single-album-container {
+  position: relative;
+  left: 330px;
+  bottom: 730px;
+  height: 800px;
+  width: 100%;
+  z-index: 0;
 }
