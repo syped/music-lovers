@@ -43,7 +43,8 @@ function SinglePlaylistPage({ selectedSong, selectedList }) {
     }
   };
 
-  const isOwner = sessionUser && singlePlaylistObj.user_id === sessionUser.id;
+  // const isOwner = sessionUser && singlePlaylistObj.user_id === sessionUser.id;
+  // const isLoggedIn = !!sessionUser;
 
   useEffect(() => {
     dispatch(getSinglePlaylistThunk(playlistId));
@@ -117,7 +118,7 @@ function SinglePlaylistPage({ selectedSong, selectedList }) {
       {isLoaded && (
         <div className="single-album-container">
           <img
-            className="single-album-image"
+            className="single-playlist-image"
             src={singlePlaylistObj.playlist_image}
           />
           <div className="single-playlist-name-bio">
@@ -128,14 +129,16 @@ function SinglePlaylistPage({ selectedSong, selectedList }) {
               {singlePlaylistObj.playlist_bio}
             </div>
           </div>
-          <button
-            onClick={handleLike}
-            id="playlist-like"
-            className={liked ? "liked" : ""}
-          >
-            {liked ? "Unlike" : "Like"}
-          </button>
-          {isOwner && (
+          {sessionUser && !(singlePlaylistObj.user_id === sessionUser.id) && (
+            <button
+              onClick={handleLike}
+              id="playlist-like"
+              className={liked ? "liked" : ""}
+            >
+              {liked ? "Unlike" : "Like"}
+            </button>
+          )}
+          {sessionUser && singlePlaylistObj.user_id === sessionUser.id && (
             <div className="add-song-button-playlist">
               <OpenModalButton
                 buttonText="Add Song"

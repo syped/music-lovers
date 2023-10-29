@@ -48,11 +48,11 @@ function SingleAlbumPage({ selectedSong, selectedList }) {
   if (singleAlbumObj) {
     albumsSongsArr = arr.filter((song) => song.album_id === singleAlbumObj.id);
     if (albumsSongsArr.length === 1)
-      count = count = `· ${albumsSongsArr.length} song`;
+      count = count = `${albumsSongsArr.length} song`;
     else if (albumsSongsArr.length > 1)
-      count = `· ${albumsSongsArr.length} songs`;
+      count = `${albumsSongsArr.length} songs`;
     else {
-      count = "· New";
+      count = "New";
     }
   }
 
@@ -77,9 +77,11 @@ function SingleAlbumPage({ selectedSong, selectedList }) {
           <div className="single-album-year">
             {singleAlbumObj?.release_year}
           </div>
-          <div className="single-album-count">{count}</div>
+          <div className="single-album-count"> · {count}</div>
           <div className="single-album-add-song">
-            {singleAlbumObj?.id ? (
+            {sessionUser &&
+            singleAlbumObj?.id &&
+            sessionUser.id === singleAlbumObj.user_id ? (
               <div className="add-song-button">
                 <OpenModalButton
                   buttonText="Add Song"

@@ -74,8 +74,15 @@ function EditSong({ song, albumId }) {
     }
   };
 
+  const handleClose = () => {
+    closeModal();
+  };
+
   return (
     <div className="main-edit-song-container">
+      <button className="close-button" onClick={handleClose}>
+        X
+      </button>
       <div className="update-song-form">
         <div className="update-song-title">
           <h1>Update your Song(s)</h1>
@@ -98,7 +105,7 @@ function EditSong({ song, albumId }) {
             )}
           </div>
 
-          <div className="song-form-fields">
+          <div className="song-file-fields">
             <label>
               Song File:
               <input

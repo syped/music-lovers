@@ -84,10 +84,35 @@
   box-shadow: 0 0 20px #dbdbdb7e;
 }
 
+.single-playlist-image {
+  height: 250px;
+  border-radius: 10px;
+  transition: all 0.2s ease-in-out;
+  width: 250px;
+  /* margin-top: -100px; */
+}
+
+.single-playlist-image:hover {
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 0 20px #dbdbdb7e;
+}
+
 .single-album-name {
-  font-size: 50pt;
+  font-size: 40pt;
   font-weight: bolder;
   color: white;
+  width: 630px;
+  height: 150px;
+  margin-bottom: 100px;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.single-playlist-bio {
+  margin-bottom: 70px;
+  width: 600px;
+  margin-top: -100px;
 }
 
 .user-albums:hover {
@@ -168,13 +193,13 @@
 .single-album-year {
   position: absolute;
   left: 285px;
-  top: 215px;
+  top: 200px;
 }
 
 .single-album-count {
   position: absolute;
   left: 325px;
-  top: 215px;
+  top: 200px;
 }
 
 .single-album-song-container {
@@ -205,17 +230,17 @@
 
 .add-song-button > button {
   position: absolute;
-  left: 450px;
-  top: 215px;
+  left: 400px;
+  top: 200px;
   text-decoration: none;
   color: rgb(18, 18, 18);
   background-color: white;
   padding: 5px;
   display: flex;
-  width: 110px;
+  width: 90px;
   justify-content: center;
   font-family: "Kanit", sans-serif;
-  font-size: 15px;
+  font-size: 13px;
   border-radius: 10px;
   border: none;
   transition: all 0.2s ease-in-out;
@@ -326,10 +351,19 @@
   cursor: pointer;
 }
 
+.single-album-song-play {
+  width: 15px;
+  position: absolute;
+  left: 10px;
+  margin-top: 0px;
+  padding: 15px;
+  top: 0px;
+}
+
 #playlist-like {
   position: absolute;
-  left: 360px;
-  top: 225px;
+  left: 280px;
+  top: 210px;
 
   text-decoration: none;
   color: rgb(18, 18, 18);
@@ -354,8 +388,8 @@
 
 .add-song-button-playlist > button {
   position: absolute;
-  left: 500px;
-  top: 225px;
+  left: 280px;
+  top: 210px;
   text-decoration: none;
   color: rgb(18, 18, 18);
   background-color: white;

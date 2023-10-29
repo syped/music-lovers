@@ -1,4 +1,4 @@
-.main-create-song-container {
+/* .main-create-song-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -56,4 +56,56 @@
   text-align: center;
   padding: 5px;
   color: white;
+} */
+
+.upload-song-file-fields {
+  display: flex;
+  flex-direction: column;
+  margin-left: 40px;
+  margin-bottom: 30px;
+}
+
+.upload-song-file-fields input {
+  margin-left: 0px;
+}
+
+.upload-song-form-fields {
+  margin-bottom: 20px;
+}
+
+.upload-song-form-fields input {
+  color: rgb(31, 31, 31);
+  background-color: white;
+  /* text-align: center; */
+  border: none;
+  padding: 5px;
+  width: 200px;
+  height: 25px;
+  border-radius: 10px;
+  margin-bottom: 0px;
+}
+
+.uploading-songs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.upload-song-button button {
+  background-color: rgb(176, 83, 239);
+  color: white;
+  border-radius: 10px;
+  padding: 7px;
+  border: none;
+  width: 200px;
+  margin-right: 5px;
+  height: 35px;
+}
+
+.upload-song-button button:hover {
+  background-color: rgb(167, 167, 167);
+  color: rgb(176, 83, 239);
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
 }

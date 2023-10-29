@@ -64,7 +64,7 @@ function LandingPage() {
           <div className="entire-random-album">
             <NavLink
               className="random-album-navlink"
-              to={`/albums/${randomAlbumObj.user_id}`}
+              to={`/albums/${randomAlbumObj.id}`}
             >
               <div className="random-album-div">
                 <img
