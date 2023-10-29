@@ -6,7 +6,7 @@ import YourLibrary from "../YourLibrary";
 
 import "./Navigation.css";
 
-function Navigation({ isLoaded }) {
+function Navigation({ isLoaded, reload }) {
   const sessionUser = useSelector((state) => state.session.user);
 
   return (
@@ -39,7 +39,7 @@ function Navigation({ isLoaded }) {
         )}
       </div>
       <div className="your-library-cont">
-        <YourLibrary />
+        <YourLibrary reload={reload} />
       </div>
     </div>
   );

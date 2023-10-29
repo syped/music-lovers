@@ -33,7 +33,9 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
+
+      <Navigation reload={reload} isLoaded={isLoaded} />
+
       {/* <YourLibrary reload={reload} /> */}
       {isLoaded && (
         <Switch>
