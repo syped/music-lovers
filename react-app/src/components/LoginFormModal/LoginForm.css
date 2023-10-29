@@ -4,6 +4,7 @@
   background: black;
   border: 1px solid white;
   border-radius: 15px;
+  z-index: 9999;
 }
 
 .login-header {

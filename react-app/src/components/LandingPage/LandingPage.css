@@ -1,10 +1,10 @@
 .landing-page-container {
   position: relative;
   left: 330px;
-  bottom: 710px;
+  bottom: 730px;
   height: 800px;
   width: 100%;
-  z-index: 1;
+  z-index: 0;
 }
 
 .landing-page-main {
@@ -54,7 +54,19 @@
   /* margin-left: 600px; */
   /* border: 1px solid white; */
   height: 300px;
+  margin-right: 30px;
 }
+
+.random-album-title:hover {
+  color: rgb(176, 83, 239);
+  transition: color 0.3s;
+}
+
+/* .random-album-img:hover {
+  width: 305px;
+  height: 305px;
+  transition: width 0.3s height 0.3s;
+} */
 
 .random-album-title,
 .random-album-release-year {
@@ -157,4 +169,5 @@
 .recent-playlist-card:hover {
   background-color: #373737;
   border-radius: 15px;
+  transition: background-color 0.3s, color 0.3s;
 }
