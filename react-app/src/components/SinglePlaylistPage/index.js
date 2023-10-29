@@ -12,7 +12,7 @@ import { FaRegHeart, FaHeart } from "react-icons/fa";
 // import { likePlaylist, unlikePlaylist } from "../../store/likes";
 import { toggleThunk, getLikeThunk } from "../../store/likes";
 
-function SinglePlaylistPage() {
+function SinglePlaylistPage({ selectedSong, selectedList }) {
   const dispatch = useDispatch();
   const { playlistId } = useParams();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -29,6 +29,8 @@ function SinglePlaylistPage() {
   const singlePlaylistObj = useSelector(
     (state) => state.playlists.singlePlaylist
   );
+
+  const playIcon = process.env.PUBLIC_URL + "/images/PLAY.svg";
 
   const handleLike = async () => {
     await dispatch(toggleThunk(playlistId));
@@ -99,26 +101,60 @@ function SinglePlaylistPage() {
 
   if (!singlePlaylistObj || !singlePlaylistObj.id) return null;
 
+  const handleClick = (id) => {
+    for (let i = 0; i < playlistSongsArr.length; i++) {
+      if (id === playlistSongsArr[i].id) {
+        console.log("first", i);
+        selectedSong(i);
+      }
+    }
+  };
+
   return (
     <>
       {isLoaded && (
-        <div>
-          <img src={singlePlaylistObj.playlist_image} />
-          <div>{singlePlaylistObj.playlist_name}</div>
-          {playlistSongsArr.map((song) => (
-            <div>{song.song_name}</div>
-          ))}
-          <div className="song-container">
+        <div className="single-album-container">
+          <img
+            className="single-album-image"
+            src={singlePlaylistObj.playlist_image}
+          />
+          <div className="single-album-name">
+            {singlePlaylistObj.playlist_name}
+          </div>
+          <div className="single-playlist-bio">
+            {singlePlaylistObj.playlist_bio}
+          </div>
+          <button
+            onClick={handleLike}
+            id="playlist-like"
+            className={liked ? "liked" : ""}
+          >
+            {liked ? "Unlike" : "Like"}
+          </button>
+          <div className="add-song-button-playlist">
             <OpenModalButton
               buttonText="Add Song"
               modalComponent={<AllSongsModal playlistId={playlistId} />}
             />
           </div>
-
-          <p>{singlePlaylistObj.playlist_bio}</p>
-          <button onClick={handleLike} className={liked ? "liked" : ""}>
-            {liked ? "Unlike" : "Like"}
-          </button>
+          <h3 className="single-album-header">Title</h3>
+          <div className="underline"></div>
+          <div className="single-album-song-container">
+            {playlistSongsArr.map((song) => (
+              <div className="single-album-song">
+                <img
+                  onClick={() => {
+                    handleClick(song.id); //ADDDDDDDDDDD SONGGG
+                    selectedList(playlistSongsArr);
+                  }}
+                  className="song-play-playlist"
+                  src={playIcon}
+                />
+                <div>{song.song_name}</div>
+              </div>
+            ))}
+          </div>
+          <div className="single-album-song-background"></div>
         </div>
       )}
     </>

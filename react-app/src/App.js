@@ -72,13 +72,20 @@ function App() {
 
           <Route path="/signup" component={SignupFormPage} />
 
-          <Route exact path="/songs" component={SongPage} />
+          <Route exact path="/songs">
+            <SongPage selectedSong={handleSong} selectedList={handleList} />
+          </Route>
 
           <Route path="/playlists/create" component={CreatePlaylist} />
 
           <Route path="/playlists/:playlistId/edit" component={EditPlaylist} />
 
-          <Route path="/playlists/:playlistId" component={SinglePlaylistPage} />
+          <Route path="/playlists/:playlistId">
+            <SinglePlaylistPage
+              selectedSong={handleSong}
+              selectedList={handleList}
+            />
+          </Route>
 
           <Route path="/playlists" component={PlaylistPage} />
 

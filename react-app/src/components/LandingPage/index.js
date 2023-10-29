@@ -34,7 +34,13 @@ function LandingPage() {
     console.log(playlists);
     return null;
   }
-  arr = playlists.slice(0, 5);
+
+  if (playlists) {
+    for (let i = 0; i < 6; i++) {
+      arr.push(playlists[i]);
+    }
+    // arr = playlists.slice(0, 7);
+  }
 
   // const albumUser = randomAlbumObj.user_id;
 
@@ -94,16 +100,16 @@ function LandingPage() {
               <div className="recent-playlist-card">
                 <NavLink
                   className="recent-playlist-navlink"
-                  to={`/playlists/${playlist.id}`}
+                  to={`/playlists/${playlist?.id}`}
                 >
                   <div className="recent-playlist-content">
                     <img
                       className="recent-playlist-image"
-                      src={playlist.playlist_image}
-                      alt={playlist.playlist_name}
+                      src={playlist?.playlist_image}
+                      alt={playlist?.playlist_name}
                     />
                     <div className="recent-playlist-name">
-                      {playlist.playlist_name}
+                      {playlist?.playlist_name}
                     </div>
                   </div>
                 </NavLink>

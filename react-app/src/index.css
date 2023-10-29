@@ -74,6 +74,7 @@
   height: 250px;
   border-radius: 10px;
   transition: all 0.2s ease-in-out;
+  width: 250px;
 }
 
 .single-album-image:hover {
@@ -92,12 +93,27 @@
   transform: scale(1.02);
 }
 
+.user-playlists:hover {
+  transition: all 0.2s ease-in-out;
+  transform: scale(1.02);
+}
+
 .user-albums {
   transition: all 0.2s ease-in-out;
   margin-left: 2px;
 }
 
+.user-playlists {
+  transition: all 0.2s ease-in-out;
+  margin-left: 2px;
+}
+
 .user-album-name {
+  text-align: start;
+  margin-top: 15px;
+}
+
+.user-playlist-name {
   text-align: start;
   margin-top: 15px;
 }
@@ -122,6 +138,7 @@
 .library-user-create-playlist {
   transition: all 0.2s ease-in-out;
   border-radius: 10px;
+  background-color: white;
 }
 
 .library-user-create-album:hover,
@@ -161,7 +178,10 @@
 .single-album-song-container {
   position: absolute;
   top: 350px;
-  left: 50px;
+  left: 15px;
+  overflow-y: auto;
+  height: inherit;
+  width: 70%;
 }
 
 .single-album-song-background {
@@ -173,4 +193,227 @@
   left: -35px;
   top: 275px;
   z-index: -1;
+}
+
+.landing-header,
+.random-album-header,
+.recent-playlists-title {
+  color: white;
+}
+
+.add-song-button > button {
+  position: absolute;
+  left: 450px;
+  top: 215px;
+  text-decoration: none;
+  color: rgb(18, 18, 18);
+  background-color: white;
+  padding: 5px;
+  display: flex;
+  width: 110px;
+  justify-content: center;
+  font-family: "Kanit", sans-serif;
+  font-size: 15px;
+  border-radius: 10px;
+  border: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.add-song-button > button:hover {
+  transition: all 0.2s ease-in-out;
+  color: rgb(176, 83, 239);
+  background-color: black;
+  cursor: pointer;
+}
+
+.upload-album-container {
+  width: 75%;
+}
+
+.playlists-navlink {
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-top: 15px;
+}
+
+.playlists-navlink:hover {
+  transform: none;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 0 20px #dbdbdb7e;
+}
+
+.playlists-navlink:hover
+  > .playlist-card
+  > .playlist-card-name-bio
+  > .playlist-card-name {
+  transition: all 0.2s ease-in-out;
+  color: rgb(176, 83, 239);
+}
+
+.single-album-song {
+  margin-bottom: 10px;
+  border-radius: 10px;
+  width: 1225px;
+  max-width: 100%;
+  padding: 10px;
+  padding-left: 60px;
+}
+
+.single-album-song:hover {
+  transition: all 0.2s ease-in-out;
+  background-color: rgb(75, 75, 75);
+}
+
+.song-edit-delete-container {
+  display: flex;
+}
+
+.song-edit > button,
+.song-delete > button {
+  margin-top: 6px;
+  /* margin-left: 30px; */
+  margin-bottom: 5px;
+  width: 40px;
+  height: 15px;
+  border-radius: 5px;
+  border: none;
+  font-size: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Kanit", sans-serif;
+  cursor: pointer;
+  color: rgb(167, 167, 167);
+  background-color: rgb(55, 55, 55);
+  margin-right: 10px;
+}
+
+.song-edit > button:hover,
+.song-delete > button:hover {
+  transition: all 0.2s ease-in-out;
+  color: rgb(176, 83, 239);
+  background-color: black;
+}
+
+.single-album-header {
+  position: absolute;
+  top: 275px;
+  left: 75px;
+}
+
+.underline {
+  background-color: rgb(167, 167, 167);
+  position: absolute;
+  bottom: -85px;
+  height: 0px;
+  width: 74%;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+  border-bottom: 1px solid;
+}
+
+.song-play {
+  width: 15px;
+  position: absolute;
+  left: 10px;
+  margin-top: 5px;
+  padding: 15px;
+}
+
+.song-play:hover {
+  cursor: pointer;
+}
+
+#playlist-like {
+  position: absolute;
+  left: 360px;
+  top: 225px;
+
+  text-decoration: none;
+  color: rgb(18, 18, 18);
+  background-color: white;
+  padding: 5px;
+  display: flex;
+  width: 110px;
+  justify-content: center;
+  font-family: "Kanit", sans-serif;
+  font-size: 15px;
+  border-radius: 10px;
+  border: none;
+  transition: all 0.2s ease-in-out;
+}
+
+#playlist-like:hover {
+  transition: all 0.2s ease-in-out;
+  color: rgb(176, 83, 239);
+  background-color: black;
+  cursor: pointer;
+}
+
+.add-song-button-playlist > button {
+  position: absolute;
+  left: 500px;
+  top: 225px;
+  text-decoration: none;
+  color: rgb(18, 18, 18);
+  background-color: white;
+  padding: 5px;
+  display: flex;
+  width: 110px;
+  justify-content: center;
+  font-family: "Kanit", sans-serif;
+  font-size: 15px;
+  border-radius: 10px;
+  border: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.add-song-button-playlist > button:hover {
+  transition: all 0.2s ease-in-out;
+  color: rgb(176, 83, 239);
+  background-color: black;
+  cursor: pointer;
+}
+
+.song-play-playlist {
+  width: 15px;
+  position: absolute;
+  left: 10px;
+  margin-top: -10px;
+  padding: 15px;
+}
+
+.song-play-playlist:hover {
+  cursor: pointer;
+}
+
+.song-container {
+  position: absolute;
+  top: 350px;
+  left: 15px;
+  overflow-y: auto;
+}
+
+.profile-dropdown {
+  position: absolute;
+  right: 1px;
+  top: 80px;
+  background-color: #111;
+  border: black 1px solid;
+  border-radius: 5px;
+  width: 150px;
+  max-width: 150px;
+  border-top: 5px solid rgb(176, 83, 239);
+  z-index: 1;
+  color: #c7c7c7;
+  text-align: center;
+  height: fit-content;
+  /* margin-bottom: 10px; */
+  padding-top: 10px;
+  padding-bottom: 15px;
+}
+
+.all-playlists-header,
+.all-albums-header {
+  color: white;
 }

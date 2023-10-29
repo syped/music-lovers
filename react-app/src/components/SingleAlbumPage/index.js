@@ -23,6 +23,8 @@ function SingleAlbumPage({ selectedSong, selectedList }) {
 
   const arr = Object.values(allSongsObj);
 
+  const playIcon = process.env.PUBLIC_URL + "/images/PLAY.svg";
+
   useEffect(() => {
     dispatch(getSingleAlbum(albumId)).then(() => setIsLoaded(true));
     dispatch(getSongsThunk());
@@ -78,9 +80,8 @@ function SingleAlbumPage({ selectedSong, selectedList }) {
           <div className="single-album-count">{count}</div>
           <div className="single-album-add-song">
             {singleAlbumObj?.id ? (
-              <div>
+              <div className="add-song-button">
                 <OpenModalButton
-                  className="add-song-button"
                   buttonText="Add Song"
                   modalComponent={
                     <CreateSong
@@ -92,18 +93,21 @@ function SingleAlbumPage({ selectedSong, selectedList }) {
               </div>
             ) : null}
           </div>
+          <h3 className="single-album-header">Title</h3>
+          <div className="underline"></div>
           <div className="single-album-song-container">
             {albumsSongsArr?.map((song) => (
-              <div key={song.id}>
+              <div className="single-album-song" key={song.id}>
                 <>
-                  <div
+                  <img
                     onClick={() => {
                       handleClick(song.id);
                       selectedList(albumsSongsArr);
                     }}
-                  >
-                    {song.song_name}
-                  </div>
+                    className="song-play"
+                    src={playIcon}
+                  />
+                  <div>{song.song_name}</div>
                   {sessionUser && sessionUser.id === singleAlbumObj.user_id ? (
                     <div className="song-edit-delete-container">
                       <div className="song-edit">
