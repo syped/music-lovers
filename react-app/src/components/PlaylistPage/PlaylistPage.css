@@ -1,8 +1,8 @@
 .entire-playlists-container {
   position: relative;
   left: 330px;
-  bottom: 730px;
-  height: 800px;
+  bottom: 700px;
+  height: 780px;
   width: 100%;
   z-index: 0;
 }
@@ -29,9 +29,10 @@
   display: flex;
   /* flex-direction: column; */
   justify-content: center;
-  height: 250px;
+  height: 240px;
   border-radius: 15px;
   text-decoration: none;
+  width: 160px;
 }
 
 .playlists-navlink:hover {

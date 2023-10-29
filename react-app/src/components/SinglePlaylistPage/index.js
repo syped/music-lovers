@@ -43,6 +43,8 @@ function SinglePlaylistPage({ selectedSong, selectedList }) {
     }
   };
 
+  const isOwner = sessionUser && singlePlaylistObj.user_id === sessionUser.id;
+
   useEffect(() => {
     dispatch(getSinglePlaylistThunk(playlistId));
     dispatch(getPlaylistSongsThunk(playlistId));
@@ -118,11 +120,13 @@ function SinglePlaylistPage({ selectedSong, selectedList }) {
             className="single-album-image"
             src={singlePlaylistObj.playlist_image}
           />
-          <div className="single-album-name">
-            {singlePlaylistObj.playlist_name}
-          </div>
-          <div className="single-playlist-bio">
-            {singlePlaylistObj.playlist_bio}
+          <div className="single-playlist-name-bio">
+            <div className="single-album-name">
+              {singlePlaylistObj.playlist_name}
+            </div>
+            <div className="single-playlist-bio">
+              {singlePlaylistObj.playlist_bio}
+            </div>
           </div>
           <button
             onClick={handleLike}
@@ -131,12 +135,14 @@ function SinglePlaylistPage({ selectedSong, selectedList }) {
           >
             {liked ? "Unlike" : "Like"}
           </button>
-          <div className="add-song-button-playlist">
-            <OpenModalButton
-              buttonText="Add Song"
-              modalComponent={<AllSongsModal playlistId={playlistId} />}
-            />
-          </div>
+          {isOwner && (
+            <div className="add-song-button-playlist">
+              <OpenModalButton
+                buttonText="Add Song"
+                modalComponent={<AllSongsModal playlistId={playlistId} />}
+              />
+            </div>
+          )}
           <h3 className="single-album-header">Title</h3>
           <div className="underline"></div>
           <div className="single-album-song-container">
