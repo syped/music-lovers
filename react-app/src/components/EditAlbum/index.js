@@ -62,12 +62,19 @@ function EditAlbum({ albumId, submitted }) {
     }
   };
 
+  const handleClose = () => {
+    closeModal();
+  };
+
   return (
     <div className="main-edit-album-form-container">
+      <button className="close-button" onClick={handleClose}>
+        X
+      </button>
       <div className="update-album-form-container">
         <h1 className="update-your-album-title">Update your Album</h1>
       </div>
-      <form onSubmit={handleSubmit}>
+      <form className="edit-album-form" onSubmit={handleSubmit}>
         <div className="edit-album-form-fields">
           <label>
             Album
@@ -84,7 +91,7 @@ function EditAlbum({ albumId, submitted }) {
             <p className="errors">{errors.name}</p>
           )}
         </div>
-        <div className="edit-release-year-form-fields">
+        <div className="edit-album-form-fields">
           <label>
             Release Year
             <div className="edit-release-year-box">

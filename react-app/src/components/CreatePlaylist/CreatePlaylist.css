@@ -1,4 +1,47 @@
-.main-create-playlist-container {
+.playlist-bio textarea {
+  border: none;
+  padding: 10px;
+  width: 200px;
+  height: 100px;
+  border-radius: 10px;
+  margin-left: 5px;
+}
+
+.playlist-bio label {
+  font-size: 20px;
+  margin-left: 5px;
+}
+
+.playlist-bio:hover {
+  color: rgb(176, 83, 239);
+  transition: color 0.3s;
+}
+
+.create-button-container {
+  border: none;
+  margin-left: 5px;
+  padding: 10px;
+  width: 218px;
+  border-radius: 20px;
+  margin-top: 20px;
+  font-family: "Kanit", sans-serif;
+  background-color: rgb(176, 83, 239);
+  color: white;
+}
+
+.create-button-container:hover {
+  background-color: rgb(167, 167, 167);
+  color: rgb(176, 83, 239);
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.create-button-disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* .main-create-playlist-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -60,10 +103,7 @@
 
 .form-upload-playlist {
     color: white;
-}
-
-
-
+} */
 
 /* .playlist-bio-form-fields {
     color: white;
