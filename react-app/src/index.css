@@ -5,7 +5,7 @@
   z-index: 10;
   position: fixed;
   bottom: 0;
-  padding: 25px 40px;
+  padding: 10px 40px;
 }
 
 .rhap_container > * {
@@ -14,6 +14,8 @@
 
 .rhap_container svg {
   color: rgb(176, 83, 239);
+  /* height: 30px; */
+  /* margin-top: 0px; */
 }
 
 .rhap_time {
