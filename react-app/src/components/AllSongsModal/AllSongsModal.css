@@ -32,7 +32,7 @@
   padding: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
-  border: 1px solid pink;
+  /* border: 1px solid pink; */
 }
 
 .song-card {
@@ -45,6 +45,10 @@
   /* padding: 5px; */
   /* padding: 5px;
   padding-top: 10px; */
+}
+
+.song-card:hover {
+  color: rgb(176, 83, 239);
 }
 
 .song-card-album-cover {
@@ -76,4 +80,5 @@
 .add-songs-modal-button:hover {
   background-color: white;
   color: rgb(176, 83, 239);
+  cursor: pointer;
 }
