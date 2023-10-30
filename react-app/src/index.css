@@ -423,11 +423,21 @@
   cursor: pointer;
 }
 
+.all-song-container {
+  position: absolute;
+  /* height: 400px; */
+  top: 350px;
+  left: 15px;
+  overflow-y: auto;
+}
+
 .song-container {
   position: absolute;
   top: 350px;
   left: 15px;
   overflow-y: auto;
+  height: 500px;
+  width: 75%;
 }
 
 .profile-dropdown {

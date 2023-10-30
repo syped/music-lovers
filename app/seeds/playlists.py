@@ -5,13 +5,13 @@ def seed_playlists():
     playlist1 = Playlist(
         user_id=1,
         playlist_name="Favorites",
-        playlist_bio="My favorite songs",
+        playlist_bio="My favorite bops and chops",
         playlist_image="https://i.kym-cdn.com/entries/icons/facebook/000/022/615/CybuEaUVIAAF_HV.jpg"
     )
     db.session.add(playlist1)
 
     playlist2 = Playlist(
-        user_id=1,
+        user_id=2,
         playlist_name="RoBroken",
         playlist_bio="In my sad boi era",
         playlist_image="https://i.kym-cdn.com/photos/images/newsfeed/002/328/211/810.jpg"
@@ -19,7 +19,7 @@ def seed_playlists():
     db.session.add(playlist2)
 
     playlist3 = Playlist(
-        user_id=2,
+        user_id=3,
         playlist_name="Mujahid's Oppas",
         playlist_bio="Mujahid's KoreaBoo playlist",
         playlist_image="https://i.ytimg.com/vi/vAigwiOrl-k/maxresdefault.jpg"
@@ -43,7 +43,7 @@ def seed_playlists():
     db.session.add(playlist5)
 
     playlist6 = Playlist(
-        user_id=1,
+        user_id=4,
         playlist_name="Vibes",
         playlist_bio="The vibey playlist",
         playlist_image="https://media.self.com/photos/63a1eb6b0248395e19a5ede7/3:2/w_1800,h_1200,c_limit/Self%20Playlist%20flattened.jpg"
@@ -51,7 +51,7 @@ def seed_playlists():
     db.session.add(playlist6)
 
     playlist7 = Playlist(
-        user_id=1,
+        user_id=3,
         playlist_name="Car BOPS",
         playlist_bio="The car playlist",
         playlist_image="https://as2.ftcdn.net/v2/jpg/05/72/67/79/1000_F_572677902_81yN2FWPAobXTgfGc4HH3M0QcjAthPGm.jpg"
@@ -59,7 +59,7 @@ def seed_playlists():
     db.session.add(playlist7)
 
     playlist8 = Playlist(
-        user_id=2,
+        user_id=1,
         playlist_name="Plane BOPS",
         playlist_bio="The plane playlist",
         playlist_image="https://wallpapers.com/images/featured/plane-desktop-background-dnc62a0eoyniwrfl.jpg"
@@ -67,7 +67,7 @@ def seed_playlists():
     db.session.add(playlist8)
 
     playlist9 = Playlist(
-        user_id=1,
+        user_id=5,
         playlist_name="Just Chill",
         playlist_bio="CHILL playlist",
         playlist_image="https://i.pinimg.com/1200x/11/17/57/111757ad3dc8123c12f263ecc003b009.jpg"
@@ -83,10 +83,10 @@ def seed_playlists():
     db.session.add(playlist10)
 
     playlist11 = Playlist(
-        user_id=1,
-        playlist_name="Dishes",
-        playlist_bio="Dishes playlist",
-        playlist_image="https://www.thespruce.com/thmb/SSwhoJMTF1KQxyKp_kJR4rgvwq8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/easy-washing-dishes-4174811-hero-617c4e3694d1417b82b2eaaf2db70f5b.jpg"
+        user_id=5,
+        playlist_name="Simpy Pimpy",
+        playlist_bio="got my kokoro going bADUMP BADUMP",
+        playlist_image="https://i.imgflip.com/7dafgs.png"
     )
     db.session.add(playlist11)
 
