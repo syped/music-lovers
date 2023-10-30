@@ -28,9 +28,9 @@ def seed_albums():
 
     album4 = Album(
         user_id=2,
-        album_name="THE WAY IT WAS",
-        release_year=2011,
-        album_image="https://i.imgur.com/WhaBXBw.jpg"
+        album_name="THE CHAOS CHAPTER: FIGHT OR ESCAPE",
+        release_year=2021,
+        album_image="https://images.genius.com/ce9b744e7827f9b996c2997e67eb02d0.787x787x1.jpg"
     )
     db.session.add(album4)
 
@@ -52,43 +52,59 @@ def seed_albums():
 
     album7 = Album(
         user_id=4,
-        album_name="CHEMISTRY",
-        release_year=2023,
-        album_image="https://m.media-amazon.com/images/I/718rCS-3K0L._UF1000,1000_QL80_.jpg"
+        album_name="DIMENSION: ANSWER",
+        release_year=2022,
+        album_image="https://sahiphopza.co/wp-content/uploads/2022/01/album-enhypen-dimension-answer-Mp3-Download.jpg"
     )
     db.session.add(album7)
 
     album8 = Album(
         user_id=4,
-        album_name="WHEN WE ALL FALL ASLEEP WHERE DO WE GO",
+        album_name="WILL YOU BE ALRIGHT",
         release_year=2019,
-        album_image="https://www.udiscovermusic.com/wp-content/uploads/2015/10/Billie-Eilish-When-We-All-Fall-Asleep-Where-Do-We-Go.jpg"
+        album_image="https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/90/aa/90/90aa90f2-4d99-e037-c92d-1728bba3dc26/Will_you_be_alright.jpg/1200x1200bb.jpg"
     )
     db.session.add(album8)
 
     album9 = Album(
-        user_id=2,
-        album_name="ABBEY ROAD",
-        release_year=1969,
-        album_image="https://www.udiscovermusic.com/wp-content/uploads/2015/10/The-Beatles-Abbey-Road-Album-cover-web-optimised-820.jpg"
+        user_id=5,
+        album_name="MAGIC MAN",
+        release_year=2022,
+        album_image="https://upload.wikimedia.org/wikipedia/en/5/5f/MagicMancover.jpg"
     )
     db.session.add(album9)
 
     album10 = Album(
         user_id=5,
-        album_name="1989",
+        album_name="IDENTIFY",
         release_year=2014,
-        album_image="https://www.udiscovermusic.com/wp-content/uploads/2015/10/Taylor-Swift-1989.jpg"
+        album_image="https://upload.wikimedia.org/wikipedia/en/2/2e/GOT7_1st_album.jpg"
     )
     db.session.add(album10)
 
     album11 = Album(
         user_id=1,
-        album_name="NATIVE",
-        release_year=2013,
-        album_image="https://m.media-amazon.com/images/I/71YyUE+g4oS._UF1000,1000_QL80_.jpg"
+        album_name="ANTIFRAGILE",
+        release_year=2022,
+        album_image="https://sourcemusic.com/resources/discography/cfae49df-6597-465f-b21f-7b7597560ed1.png"
     )
     db.session.add(album11)
+
+    album12 = Album(
+        user_id=5,
+        album_name="MAD",
+        release_year=2015,
+        album_image="https://upload.wikimedia.org/wikipedia/en/2/29/Mad_%28Got7_EP%29-cover.jpg"
+    )
+    db.session.add(album12)
+
+    album13 = Album(
+        user_id=4,
+        album_name="POSITIVE(EP)",
+        release_year=2018,
+        album_image="https://upload.wikimedia.org/wikipedia/en/e/ef/Pentagon_-_Positive_%28EP%29.jpg"
+    )
+    db.session.add(album13)
 
     db.session.commit()
 

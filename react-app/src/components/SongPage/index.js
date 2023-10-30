@@ -12,13 +12,17 @@ function AllSongs({ selectedSong, selectedList }) {
   const allAlbums = useSelector((state) => state.albums.allAlbums);
 
   const arr = Object.values(allSongsObj);
+  const allAlbumsArr = Object.values(allAlbums);
 
   if (!arr || !arr.length) {
+    dispatch(getAlbums());
     dispatch(getSongsThunk());
     return null;
   }
 
   const playIcon = process.env.PUBLIC_URL + "/images/PLAY.svg";
+
+  // const album = allAlbumsArr.filter((album) => album.id) ===
 
   const handleClick = (id) => {
     for (let i = 0; i < arr.length; i++) {
@@ -42,8 +46,12 @@ function AllSongs({ selectedSong, selectedList }) {
               {/* add picture */}
               <img
                 className="song-card-album-cover"
-                src={allAlbums[song.album_id]?.album_image}
+                src={
+                  allAlbums[song.album_id] &&
+                  allAlbums[song.album_id]?.album_image
+                }
               />
+              {console.log("AHAHAHHAHAHHAAH", song.album_id)}
               <img
                 onClick={() => {
                   handleClick(song.id); //ADDDDDDDDDDD SONGGG
@@ -53,11 +61,9 @@ function AllSongs({ selectedSong, selectedList }) {
                 src={playIcon}
               />
               <div>{song.song_name}</div>
-
-              {/* add .firstName to song.user_id */}
               <div className="songs-album-name">
                 {allAlbums[song.album_id] &&
-                  allAlbums[song.album_id].album_name}
+                  allAlbums[song.album_id]?.album_name}
               </div>
             </div>
           ))}

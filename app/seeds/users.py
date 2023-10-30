@@ -8,18 +8,18 @@ def seed_users():
         username='blackpink', email='demo@aa.io', password='password', first_name='BLACKPINK', last_name='INYOURAREA')
     robert = User(
         username='robert', email='robert@aa.io', password='password', first_name='Robert', last_name='Ly')
-    viv = User(
-        username='viv', email='viv@aa.io', password='password', first_name='Viviane', last_name='Le')
     mujahid = User(
         username='mujahid', email='mujahid@aa.io', password='password', first_name='Mujahid', last_name='Ghazal')
+    viv = User(
+        username='viv', email='viv@aa.io', password='password', first_name='Viviane', last_name='Le')
     camille = User(
         username='camille', email='camille@aa.io', password='password', first_name='Camille', last_name='Huang')
     
 
     db.session.add(demo)
     db.session.add(robert)
-    db.session.add(viv)
     db.session.add(mujahid)
+    db.session.add(viv)
     db.session.add(camille)
     db.session.commit()
 

@@ -9,13 +9,14 @@
     border-radius: 30px;
     text-align: center; */
   background-color: black;
-  height: 350px;
+  height: fit-content;
   width: 380px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   border-radius: 30px;
   border: 1px solid white;
+  padding-bottom: 20px;
 }
 
 .update-song-title {
@@ -103,4 +104,9 @@
   height: 25px;
   border-radius: 10px;
   margin-bottom: 20px;
+}
+
+.errors {
+  text-align: center;
+  color: red;
 }
