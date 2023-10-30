@@ -33,6 +33,8 @@ function EditAlbum({ albumId, submitted }) {
 
     if (!name) errors.name = "Album name is required";
     if (!releaseYear) errors.releaseYear = "Release year is required";
+    if (releaseYear.length !== 4)
+      errors.releaseYear = "Release year must be valid";
 
     setErrors(errors);
 

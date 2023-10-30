@@ -98,7 +98,7 @@ function CreateSongForm({ submitted, albumId }) {
               accept="audio/*"
               onChange={(e) => setMp3(e.target.files[0])}
             />
-
+            {mp3Loading && <p>Loading...</p>}
             {errors.mp3 && <p className="errors">{errors.mp3}</p>}
           </div>
 
