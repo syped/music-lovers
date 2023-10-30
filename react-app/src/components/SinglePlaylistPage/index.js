@@ -81,10 +81,6 @@ function SinglePlaylistPage({ selectedSong, selectedList }) {
     }
   }, [allLikedArr, playlistArr, sessionUser]);
 
-  // if (!singlePlaylistObj) {
-  //   return <Redirect to="/" />;
-  // }
-
   if (!arr || !arr.length) {
     dispatch(getSongsThunk());
     return null;
@@ -93,6 +89,10 @@ function SinglePlaylistPage({ selectedSong, selectedList }) {
   if ((singlePlaylistObj && !allLikedArr) || !allLikedArr.length) {
     dispatch(getLikeThunk(playlistId));
     return null;
+  }
+
+  if (!singlePlaylistObj) {
+    return <Redirect to="/" />;
   }
 
   let playlistSongsArr = [];

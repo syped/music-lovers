@@ -18,11 +18,14 @@ function CreateAlbumForm({ reload }) {
 
   const soundWaves = process.env.PUBLIC_URL + "/images/MUSICWAVES.gif";
 
-  function errorsChecked(name, releaseYear) {
+  function errorsChecked(name, releaseYear, image) {
     const errors = {};
     if (!name) errors.name = "Album name is required";
     if (name.length > 35) errors.name = "Album name is too long";
     if (!releaseYear) errors.releaseYear = "Release year is required";
+    if (releaseYear.length !== 4)
+      errors.releaseYear = "Release year must be valid";
+    if (!image) errors.image = "Image is required";
 
     setErrors(errors);
 
@@ -31,15 +34,13 @@ function CreateAlbumForm({ reload }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const errorsFound = errorsChecked(name, releaseYear);
+    const errorsFound = errorsChecked(name, releaseYear, image);
 
     const formData = new FormData();
     formData.append("album_image", image);
     formData.append("user_id", userId);
     formData.append("album_name", name);
     formData.append("release_year", releaseYear);
-
-    setImageLoading(true);
 
     // const newAlbum = {
     //   user_id: userId,
@@ -49,6 +50,7 @@ function CreateAlbumForm({ reload }) {
 
     if (Object.keys(errorsFound).length === 0) {
       const response = await dispatch(createAlbumThunk(formData));
+      setImageLoading(true);
 
       if (response) {
         reload();
@@ -60,7 +62,6 @@ function CreateAlbumForm({ reload }) {
   return (
     <div className="main-upload-album-container">
       <div className="upload-album-container">
-
         <div className="upload-background">
           <div className="form-container">
             <div className="upload-title">Create your Album</div>
@@ -78,6 +79,9 @@ function CreateAlbumForm({ reload }) {
                 accept="image/*"
                 onChange={(e) => setImage(e.target.files[0])}
               />
+              {errors.image && (
+                <p className="upload-album-errors">{errors.image}</p>
+              )}
               {imageLoading && <p>Loading...</p>}
             </div>
 
@@ -120,7 +124,6 @@ function CreateAlbumForm({ reload }) {
             </div>
           </form>
         </div>
-
       </div>
     </div>
   );

@@ -11,7 +11,8 @@ function DeleteAlbumModal({ albumId, submitted }) {
 
   const confirmDelete = (e) => {
     e.preventDefault();
-    dispatch(deleteAlbumThunk(albumId)).then(closeModal);
+    dispatch(deleteAlbumThunk(albumId));
+    closeModal();
     submitted();
     setExist(false);
   };

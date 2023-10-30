@@ -49,13 +49,13 @@ function AllSongsModal({ playlistId, submitted }) {
             <div className="song-card" key={song.id}>
               <img
                 className="song-card-album-cover"
-                src={allAlbums[song.album_id].album_image}
+                src={allAlbums[song.album_id]?.album_image}
               />
               <div className="add-songs-modal-name">{song.song_name}</div>
               {/* add .firstName to song.user_id */}
               <div className="add-songs-album-name">
                 {allAlbums[song.album_id] &&
-                  allAlbums[song.album_id].album_name}
+                  allAlbums[song.album_id]?.album_name}
               </div>
               <button
                 className="add-songs-modal-button"

@@ -61,8 +61,10 @@
 .upload-song-file-fields {
   display: flex;
   flex-direction: column;
-  margin-left: 40px;
-  margin-bottom: 30px;
+  /* margin-left: 40px;
+  margin-bottom: 30px; */
+  width: 210px;
+  /* height: fit-content; */
 }
 
 .upload-song-file-fields input {
@@ -101,6 +103,7 @@
   width: 200px;
   margin-right: 5px;
   height: 35px;
+  margin-top: 20px;
 }
 
 .upload-song-button button:hover {

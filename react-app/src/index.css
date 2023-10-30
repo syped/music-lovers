@@ -444,14 +444,13 @@
 .profile-dropdown {
   position: absolute;
   right: 1px;
-  top: 80px;
+  top: 90px;
   background-color: #111;
   border: black 1px solid;
   border-radius: 5px;
   width: 150px;
   max-width: 150px;
   border-top: 5px solid rgb(176, 83, 239);
-  z-index: 1;
   color: #c7c7c7;
   text-align: center;
   height: fit-content;
@@ -563,4 +562,26 @@
   left: 10px;
   margin-top: -10px;
   padding: 15px;
+}
+
+.main-edit-album-form-container {
+  background-color: #000;
+  border: 1px solid #fff;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  justify-content: center;
+  width: 380px;
+}
+
+.main-edit-playlist-form-container {
+  background-color: #000;
+  border: 1px solid #fff;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  justify-content: center;
+  width: 380px;
 }
