@@ -76,7 +76,9 @@ function App() {
             <SongPage selectedSong={handleSong} selectedList={handleList} />
           </Route>
 
-          <Route path="/playlists/create" component={CreatePlaylist} />
+          <Route path="/playlists/create">
+            <CreatePlaylist reload={() => setReload(true)} />
+          </Route>
 
           <Route path="/playlists/:playlistId/edit" component={EditPlaylist} />
 

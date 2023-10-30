@@ -9,6 +9,7 @@ import DeleteSong from "../DeleteSong";
 import CreateSong from "../CreateSong";
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 function SingleAlbumPage({ selectedSong, selectedList }) {
   const dispatch = useDispatch();
@@ -34,6 +35,10 @@ function SingleAlbumPage({ selectedSong, selectedList }) {
     dispatch(getSingleAlbum(singleAlbumObj.id));
     dispatch(getSongsThunk());
     setSubmitted(false);
+  }
+
+  if (!singleAlbumObj) {
+    return <Redirect to="/" />;
   }
 
   // if (!arr || !arr.length) {

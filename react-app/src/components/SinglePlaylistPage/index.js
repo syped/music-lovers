@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Redirect } from "react-router-dom";
 import {
   getSinglePlaylistThunk,
   getPlaylistSongsThunk,
@@ -79,6 +79,10 @@ function SinglePlaylistPage({ selectedSong, selectedList }) {
       }
     }
   }, [allLikedArr, playlistArr, sessionUser]);
+
+  if (!singlePlaylistObj) {
+    return <Redirect to="/" />;
+  }
 
   if (!arr || !arr.length) {
     dispatch(getSongsThunk());

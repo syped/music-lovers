@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { createPlaylistThunk } from "../../store/playlist";
 import "./CreatePlaylist.css";
 
-function CreatePlaylistForm() {
+function CreatePlaylistForm({ reload }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const userId = useSelector((state) => state.session.user.id);
@@ -16,9 +16,19 @@ function CreatePlaylistForm() {
   const [image, setImage] = useState(null);
   const [imageLoading, setImageLoading] = useState(false);
 
+  function errorsChecked(name, releaseYear) {
+    const errors = {};
+    if (!name) errors.name = "Playlist name is required";
+    if (!bio) errors.bio = "Bio is required";
+
+    setErrors(errors);
+
+    return errors;
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const errorsFound = errorsChecked(name);
+    const errorsFound = errorsChecked(name, bio);
 
     const formData = new FormData();
     formData.append("playlist_image", image);
@@ -29,14 +39,14 @@ function CreatePlaylistForm() {
 
     setImageLoading(true);
 
-    // if (Object.keys(errorsFound).length === 0) {
-    const response = await dispatch(createPlaylistThunk(formData));
+    if (Object.keys(errorsFound).length === 0) {
+      const response = await dispatch(createPlaylistThunk(formData));
 
-    if (response) {
-      history.push(`/playlists/${response.id}`);
+      if (response) {
+        reload();
+        history.push(`/playlists/${response.id}`);
+      }
     }
-
-    // }
   };
   const isButtonDisabled = () => {
     return !name || !bio;
