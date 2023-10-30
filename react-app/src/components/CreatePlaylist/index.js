@@ -16,10 +16,11 @@ function CreatePlaylistForm({ reload }) {
   const [image, setImage] = useState(null);
   const [imageLoading, setImageLoading] = useState(false);
 
-  function errorsChecked(name, releaseYear) {
+  function errorsChecked(name, bio, image) {
     const errors = {};
     if (!name) errors.name = "Playlist name is required";
     if (!bio) errors.bio = "Bio is required";
+    if (!image) errors.image = "Image is required";
 
     setErrors(errors);
 
@@ -28,7 +29,7 @@ function CreatePlaylistForm({ reload }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const errorsFound = errorsChecked(name, bio);
+    const errorsFound = errorsChecked(name, bio, image);
 
     const formData = new FormData();
     formData.append("playlist_image", image);
@@ -37,10 +38,9 @@ function CreatePlaylistForm({ reload }) {
     formData.append("playlist_bio", bio);
     //do i add bio????
 
-    setImageLoading(true);
-
     if (Object.keys(errorsFound).length === 0) {
       const response = await dispatch(createPlaylistThunk(formData));
+      setImageLoading(true);
 
       if (response) {
         reload();
@@ -48,9 +48,9 @@ function CreatePlaylistForm({ reload }) {
       }
     }
   };
-  const isButtonDisabled = () => {
-    return !name || !bio;
-  };
+  // const isButtonDisabled = () => {
+  //   return !name || !bio;
+  // };
 
   return (
     <div className="main-upload-album-container">
@@ -72,6 +72,9 @@ function CreatePlaylistForm({ reload }) {
                 accept="image/*"
                 onChange={(e) => setImage(e.target.files[0])}
               />
+              {errors.image && (
+                <p className="upload-album-errors">{errors.image}</p>
+              )}
               {imageLoading && <p>Loading...</p>}
             </div>
 
@@ -103,18 +106,12 @@ function CreatePlaylistForm({ reload }) {
                   />
                 </div>
               </label>
-              {errors.releaseYear && (
-                <p className="upload-album-errors">{errors.releaseYear}</p>
+              {errors.bio && (
+                <p className="upload-album-errors">{errors.bio}</p>
               )}
             </div>
             <div className="upload-album-button">
-              <button
-                type="submit"
-                className={`create-button-container ${
-                  isButtonDisabled() ? "create-button-disabled" : ""
-                }`}
-                disabled={isButtonDisabled}
-              >
+              <button type="submit" className={`create-button-container`}>
                 Create Playlist
               </button>
             </div>

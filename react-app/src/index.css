@@ -444,14 +444,13 @@
 .profile-dropdown {
   position: absolute;
   right: 1px;
-  top: 80px;
+  top: 90px;
   background-color: #111;
   border: black 1px solid;
   border-radius: 5px;
   width: 150px;
   max-width: 150px;
   border-top: 5px solid rgb(176, 83, 239);
-  z-index: 1;
   color: #c7c7c7;
   text-align: center;
   height: fit-content;
