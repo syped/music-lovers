@@ -27,7 +27,9 @@ function SingleAlbumPage({ selectedSong, selectedList }) {
   const playIcon = process.env.PUBLIC_URL + "/images/PLAY.svg";
 
   useEffect(() => {
-    dispatch(getSingleAlbum(albumId));
+    if (albumId) {
+      dispatch(getSingleAlbum(albumId));
+    }
     setIsLoaded(true);
     dispatch(getSongsThunk());
   }, [dispatch, albumId]);
@@ -38,9 +40,9 @@ function SingleAlbumPage({ selectedSong, selectedList }) {
     setSubmitted(false);
   }
 
-  if (!singleAlbumObj) {
-    return <Redirect to="/" />;
-  }
+  // if (!singleAlbumObj) {
+  //   return <Redirect to="/" />;
+  // }
 
   // if (!arr || !arr.length) {
   //   dispatch(getSongsThunk());
