@@ -123,7 +123,6 @@ def delete_playlist(id):
     #     return {'errors': "Relationship Failed Song to Playlist"}, 400
 
 @playlist_routes.route('/<int:id>/get-songs')
-@login_required
 def get_playlist_songs(id):
     songs = PlaylistSong.query.filter_by(playlist_id=id).all()
     return jsonify([song.to_dict() for song in songs])
@@ -161,7 +160,6 @@ def create_playlist_song(id):
         return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 @playlist_routes.route('/<int:id>/get-likes')
-@login_required
 def get_likes(id):
     likes = Like.query.filter_by(playlist_id=id).all()
     return jsonify([like.to_dict() for like in likes])

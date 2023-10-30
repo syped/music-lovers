@@ -6,7 +6,7 @@ import { addSongToPlaylistThunk } from "../../store/playlist";
 import { useModal } from "../../context/Modal";
 import "./AllSongsModal.css";
 
-function AllSongsModal({ playlistId }) {
+function AllSongsModal({ playlistId, submitted }) {
   const dispatch = useDispatch();
   // const { playlistId } = useParams();
   const { closeModal } = useModal();
@@ -30,6 +30,7 @@ function AllSongsModal({ playlistId }) {
     };
 
     dispatch(addSongToPlaylistThunk(addedSong));
+    submitted();
   };
 
   const handleClose = () => {
