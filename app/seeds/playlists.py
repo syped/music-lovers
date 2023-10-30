@@ -27,47 +27,47 @@ def seed_playlists():
     db.session.add(playlist3)
 
     playlist4 = Playlist(
-        user_id=1,
-        playlist_name="Workout",
-        playlist_bio="Gotta go hard in the gym",
-        playlist_image="https://t4.ftcdn.net/jpg/05/93/47/83/360_F_593478313_kQRMafnEEtZXSVMOUpKdD7QDVPJSKn4Q.jpg"
+        user_id=4,
+        playlist_name="I LOVE HEESEUNG",
+        playlist_bio="I'll fight Duolingo for him",
+        playlist_image="https://media.tenor.com/-WnrzSiaZFQAAAAC/heeseung-enhypen-heeseung.gif"
     )
     db.session.add(playlist4)
 
     playlist5 = Playlist(
-        user_id=2,
-        playlist_name="LAZY",
-        playlist_bio="Lazy playlist",
-        playlist_image="https://merriam-webster.com/assets/mw/images/gallery/gal-wap-slideshow-slide/cat%20sleeping%20upside%20down%20on%20sofa-10261-3e791c20d759a5cc1f6137451820b10a@1x.jpg"
+        user_id=3,
+        playlist_name="song so good it hurts",
+        playlist_bio="i want to scream these songs",
+        playlist_image="https://i.pinimg.com/originals/f9/df/72/f9df723718728725f8abac9d759d79b2.jpg"
     )
     db.session.add(playlist5)
 
     playlist6 = Playlist(
         user_id=4,
-        playlist_name="Vibes",
-        playlist_bio="The vibey playlist",
-        playlist_image="https://media.self.com/photos/63a1eb6b0248395e19a5ede7/3:2/w_1800,h_1200,c_limit/Self%20Playlist%20flattened.jpg"
+        playlist_name="vibey wifey",
+        playlist_bio="dun DUNCE DUNC UDNDUDN UNDUN",
+        playlist_image="https://media.tenor.com/mljLgH4Csu0AAAAd/cat-cat-vibing.gif"
     )
     db.session.add(playlist6)
 
     playlist7 = Playlist(
-        user_id=3,
-        playlist_name="Car BOPS",
-        playlist_bio="The car playlist",
-        playlist_image="https://as2.ftcdn.net/v2/jpg/05/72/67/79/1000_F_572677902_81yN2FWPAobXTgfGc4HH3M0QcjAthPGm.jpg"
+        user_id=2,
+        playlist_name="car boopy poopy",
+        playlist_bio="vroom vroom skrt skrt",
+        playlist_image="https://i.pinimg.com/originals/18/a5/9b/18a59b1e065ceca2990ee979bd5efc50.jpg"
     )
     db.session.add(playlist7)
 
     playlist8 = Playlist(
-        user_id=1,
-        playlist_name="Plane BOPS",
-        playlist_bio="The plane playlist",
-        playlist_image="https://wallpapers.com/images/featured/plane-desktop-background-dnc62a0eoyniwrfl.jpg"
+        user_id=5,
+        playlist_name="songs to get me through coding",
+        playlist_bio="so I stay ✨sane✨",
+        playlist_image="https://pbs.twimg.com/media/FBsg0xhWYAQV4JA.jpg"
     )
     db.session.add(playlist8)
 
     playlist9 = Playlist(
-        user_id=5,
+        user_id=3,
         playlist_name="Just Chill",
         playlist_bio="CHILL playlist",
         playlist_image="https://i.pinimg.com/1200x/11/17/57/111757ad3dc8123c12f263ecc003b009.jpg"
@@ -75,7 +75,7 @@ def seed_playlists():
     db.session.add(playlist9)
 
     playlist10 = Playlist(
-        user_id=2,
+        user_id=3,
         playlist_name="EDM",
         playlist_bio="EDM playlist",
         playlist_image="https://wallpapers.com/images/hd/edm-14h8pl0glbsyokmz.jpg"
