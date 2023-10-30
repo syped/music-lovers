@@ -19,18 +19,51 @@ import EditPlaylist from "./components/EditPlaylist";
 import LandingPage from "./components/LandingPage";
 import YourLibrary from "./components/YourLibrary";
 import CreateAlbumSongForm from "./components/CreateAlbumForm";
+import AudioPlayer from "react-h5-audio-player";
+import "react-h5-audio-player/lib/styles.css";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  const [reload, setReload] = useState(false);
+  const [selectedSong, setSelectedSong] = useState(null);
+  const [songList, setSongList] = useState([]);
+  const [currentSong, setCurrentSong] = useState(0);
+
   useEffect(() => {
-    dispatch(authenticate()).then(() => setIsLoaded(true));
+    dispatch(authenticate())
+      .then(() => setIsLoaded(true))
+      .then(() => setReload(false));
   }, [dispatch]);
+
+  const handleList = (listData) => {
+    setSongList(listData);
+  };
+
+  let song = songList[currentSong];
+
+  if (!song || !song.mp3) song = { mp3: null };
+
+  const handleSong = (songData) => {
+    setCurrentSong(songData);
+  };
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
-      <YourLibrary />
+      <Navigation reload={reload} isLoaded={isLoaded} />
+      <AudioPlayer
+        src={song.mp3 || null}
+        volume={0.2}
+        autoPlay
+        onEnded={() => {
+          if (currentSong < songList.length - 1) {
+            setCurrentSong((i) => i + 1);
+          } else {
+            setCurrentSong(0);
+          }
+        }}
+      />
+      {/* <YourLibrary reload={reload} /> */}
       {isLoaded && (
         <Switch>
           <Route exact path="/" component={LandingPage} />
@@ -39,21 +72,37 @@ function App() {
 
           <Route path="/signup" component={SignupFormPage} />
 
-          <Route exact path="/songs" component={SongPage} />
+          <Route exact path="/songs">
+            <SongPage selectedSong={handleSong} selectedList={handleList} />
+          </Route>
 
-          <Route path="/playlists/create" component={CreatePlaylist} />
+          <Route path="/playlists/create">
+            <CreatePlaylist reload={() => setReload(true)} />
+          </Route>
 
           <Route path="/playlists/:playlistId/edit" component={EditPlaylist} />
 
-          <Route path="/playlists/:playlistId" component={SinglePlaylistPage} />
+          <Route path="/playlists/:playlistId">
+            <SinglePlaylistPage
+              selectedSong={handleSong}
+              selectedList={handleList}
+            />
+          </Route>
 
           <Route path="/playlists" component={PlaylistPage} />
 
-          <Route exact path="/albums/create" component={CreateAlbum} />
+          <Route exact path="/albums/create">
+            <CreateAlbum reload={() => setReload(true)} />
+          </Route>
 
           <Route path="/albums/:albumId/edit" component={EditAlbum} />
 
-          <Route path="/albums/:albumId" component={SingleAlbumPage} />
+          <Route path="/albums/:albumId">
+            <SingleAlbumPage
+              selectedSong={handleSong}
+              selectedList={handleList}
+            />
+          </Route>
 
           <Route exact path="/albums" component={AlbumPage} />
 

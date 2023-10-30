@@ -1,0 +1,120 @@
+.entire-signup {
+  width: 600px;
+  height: 700px;
+  background: black;
+  border: 1px solid white;
+  border-radius: 15px;
+  /* border: none; */
+}
+
+.signup-header {
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  /* text-align: center; */
+  margin-top: 30px;
+  margin-left: 0px;
+  color: white;
+}
+
+.signup-inputs {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center;
+  align-items: center; */
+}
+
+.signup-email,
+.signup-username,
+.signup-firstname,
+.signup-lastname,
+.signup-password,
+.signup-confirm {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-email:hover,
+.signup-username:hover,
+.signup-firstname:hover,
+.signup-lastname:hover,
+.signup-password:hover,
+.signup-confirm:hover {
+  color: rgb(176, 83, 239);
+}
+
+.signup-email label,
+.signup-username label,
+.signup-firstname label,
+.signup-lastname label,
+.signup-password label,
+.signup-confirm label {
+  margin-left: 180px;
+  margin-bottom: 3px;
+  margin-top: 10px;
+}
+
+.signup-email input,
+.signup-username input,
+.signup-firstname input,
+.signup-lastname input,
+.signup-password input,
+.signup-confirm input {
+  margin-left: 180px;
+  width: 230px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 0px;
+  margin-bottom: 8px;
+  height: 15px;
+  /* text-align: center; */
+}
+
+.signup-submit-button button {
+  border: none;
+  background-color: rgb(176, 83, 239);
+  color: white;
+  padding: 10px;
+  width: 240px;
+  margin-top: 20px;
+  margin-left: 180px;
+  border-radius: 20px;
+  font-family: "Kanit", sans-serif;
+  font-size: 15px;
+}
+
+.signup-submit-button button:hover {
+  background-color: rgb(167, 167, 167);
+  color: rgb(176, 83, 239);
+  cursor: pointer;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: rgb(176, 83, 239);
+  font-weight: bold;
+}
+
+.signup-button-disabled button {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.signup-error {
+  color: #ff0000;
+  margin-top: 5px;
+  font-size: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+#modal-content {
+  background-color: transparent;
+}

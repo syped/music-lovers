@@ -1,15 +1,18 @@
 .library-container {
-  margin-left: 30px;
+  /* margin-left: 30px; */
   background: rgb(18, 18, 18);
   color: white;
   max-width: 250px;
+  width: 100%;
   /* max-height: 1000px; */
-  height: 500px;
+  height: 480px;
   padding: 10px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-left: 20px;
+  text-align: center;
 }
 
 .library-header {
@@ -88,12 +91,14 @@
   background-color: rgb(31, 31, 31);
   padding: 5px;
   border-radius: 5px;
+  overflow-y: auto;
 }
 
 .user-albums:hover,
 .user-playlists:hover {
-  color: rgb(176, 83, 239);
   background-color: rgb(75, 75, 75);
+  color: rgb(176, 83, 239);
+  transition: background-color 0.3s color 0.3s;
 }
 
 .user-album-cover,
@@ -122,7 +127,11 @@
 .user-playlist-name {
   color: rgb(167, 167, 167);
   margin-top: 1px;
+  max-width: 128px;
   width: 128px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .user-album-name:hover,
@@ -165,6 +174,7 @@
 .playlist-delete-button button:hover {
   background-color: black;
   color: rgb(176, 83, 239);
+  transition: background-color 0.3s color 0.3s;
 }
 
 .library-create-album-msg,
@@ -189,19 +199,21 @@
   font-family: "Kanit", sans-serif;
   font-size: 15px;
   border-radius: 20px;
-  margin-top: 5px;
+  margin-top: 10px;
+  margin-left: 30px;
 }
 
 .library-create-album:hover,
 .library-create-playlist:hover {
   background-color: rgb(75, 75, 75);
   color: rgb(176, 83, 239);
+  transition: background-color 0.3s color 0.3s;
 }
 
 .no-content-message {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
 }
 
 .no-user-msg {
@@ -235,4 +247,43 @@
 .library-login button:hover {
   color: white;
   cursor: pointer;
+}
+
+.library-user-create-album,
+.library-user-create-playlist {
+  text-decoration: none;
+  color: rgb(18, 18, 18);
+  background-color: rgb(167, 167, 167);
+  padding: 5px;
+  display: flex;
+  width: 110px;
+  justify-content: center;
+  font-family: "Kanit", sans-serif;
+  font-size: 15px;
+  border-radius: 20px;
+  margin-top: 5px;
+}
+
+.library-user-create-album:hover,
+.library-user-create-playlist:hover {
+  background-color: rgb(75, 75, 75);
+  color: rgb(176, 83, 239);
+  cursor: pointer;
+}
+
+.bleh-create-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.user-albums-container,
+.user-playlists-container {
+  overflow-y: auto;
+  width: 250px;
+  padding-right: 10px;
+  margin-left: 5px;
 }

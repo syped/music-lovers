@@ -26,6 +26,70 @@ def seed_albums():
     )
     db.session.add(album3)
 
+    album4 = Album(
+        user_id=2,
+        album_name="THE WAY IT WAS",
+        release_year=2011,
+        album_image="https://i.imgur.com/WhaBXBw.jpg"
+    )
+    db.session.add(album4)
+
+    album5 = Album(
+        user_id=3,
+        album_name="BURN IT DOWN",
+        release_year=2023,
+        album_image="https://i1.sndcdn.com/artworks-000491630706-o6935j-t500x500.jpg"
+    )
+    db.session.add(album5)
+
+    album6 = Album(
+        user_id=3,
+        album_name="COLLEGE DROPOUT",
+        release_year=2004,
+        album_image="https://upload.wikimedia.org/wikipedia/en/a/a3/Kanyewest_collegedropout.jpg"
+    )
+    db.session.add(album6)
+
+    album7 = Album(
+        user_id=4,
+        album_name="CHEMISTRY",
+        release_year=2023,
+        album_image="https://m.media-amazon.com/images/I/718rCS-3K0L._UF1000,1000_QL80_.jpg"
+    )
+    db.session.add(album7)
+
+    album8 = Album(
+        user_id=4,
+        album_name="WHEN WE ALL FALL ASLEEP WHERE DO WE GO",
+        release_year=2019,
+        album_image="https://www.udiscovermusic.com/wp-content/uploads/2015/10/Billie-Eilish-When-We-All-Fall-Asleep-Where-Do-We-Go.jpg"
+    )
+    db.session.add(album8)
+
+    album9 = Album(
+        user_id=2,
+        album_name="ABBEY ROAD",
+        release_year=1969,
+        album_image="https://www.udiscovermusic.com/wp-content/uploads/2015/10/The-Beatles-Abbey-Road-Album-cover-web-optimised-820.jpg"
+    )
+    db.session.add(album9)
+
+    album10 = Album(
+        user_id=5,
+        album_name="1989",
+        release_year=2014,
+        album_image="https://www.udiscovermusic.com/wp-content/uploads/2015/10/Taylor-Swift-1989.jpg"
+    )
+    db.session.add(album10)
+
+    album11 = Album(
+        user_id=1,
+        album_name="NATIVE",
+        release_year=2013,
+        album_image="https://m.media-amazon.com/images/I/71YyUE+g4oS._UF1000,1000_QL80_.jpg"
+    )
+    db.session.add(album11)
+
     db.session.commit()
 
 def undo_albums():

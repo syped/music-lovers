@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, BooleanField
+from wtforms import StringField, IntegerField, TextAreaField
 from wtforms.validators import DataRequired, Length
 
 from flask_wtf.file import FileRequired, FileAllowed, FileField
@@ -10,6 +10,6 @@ class PlaylistForm(FlaskForm):
     # song_id = IntegerField('song_id', validators=[DataRequired()])
     user_id = IntegerField('user_id', validators=[DataRequired()])
     playlist_image = FileField('playlist_image', validators=[FileAllowed(list(ALLOWED_EXTENSIONS))])
-    playlist_bio = StringField('playlist_bio', validators=[DataRequired()])
+    playlist_bio = TextAreaField('playlist_bio', validators=[DataRequired()])
     # created_at = DateField('created_at')
     # updated_at = DateField('updated_at')

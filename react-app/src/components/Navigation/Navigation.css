@@ -2,18 +2,24 @@ body {
   background: black;
   color: rgb(167, 167, 167);
   font-family: "Kanit", sans-serif;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
-.top-section {
-  display: flex;
-  margin-top: 30px;
-  margin-left: 30px;
-  margin-right: 10px;
-  margin-bottom: 10px;
+.page-grid {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  /* grid-template-rows: 100%; */
 }
 
 .logo-container {
-  padding-right: 10px;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 250px;
+  width: 100%;
 }
 
 .nav-container {
@@ -21,10 +27,17 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 250px;
-  /* width: 25%; */
+  /* width: 100%; */
   border-radius: 10px;
   padding: 10px;
+  position: fixed;
+  width: 250px;
+}
+
+.your-library-cont {
+  position: fixed;
+  margin-top: 210px;
+  /* z-index: -100; */
 }
 
 .nav-links {
@@ -40,12 +53,18 @@ body {
   cursor: pointer;
 }
 
-.pb-container {
-  background: rgb(18, 18, 18);
-  margin-left: auto;
-  width: 100%;
-  max-width: auto;
-  height: 60px;
+.profile-button-cont {
+  background-image: linear-gradient(
+    to bottom,
+    /* rgba(177, 83, 239, 0.844), */ rgb(74, 31, 104),
+    rgba(18, 18, 18, 1) 80%
+  );
+  /* margin-left: auto; */
+
+  margin-top: 20px;
+  margin-left: 50px;
+  margin-right: 10px;
+  height: 690px;
   border-radius: 10px;
 }
 
@@ -57,30 +76,51 @@ li {
 .profile-dropdown {
   position: absolute;
   /* display: none; */
+  z-index: 999;
 }
 
 .hidden {
   display: none;
 }
 
+/* .pb-name li {
+  text-align: center;
+} */
+
 img.logo {
   max-width: 240px;
   max-height: 60px;
+}
+
+.user-button {
+  z-index: 999;
 }
 
 .heart-profile-icon {
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
+  background-image: linear-gradient(
+    to bottom,
+    rgb(74, 31, 104),
+    rgb(67, 33, 98)
+  );
+  height: 50px;
+  max-width: 2000px;
+  width: 0px;
+  height: 60px;
+  margin-bottom: 40px;
+  position: fixed;
+  z-index: 999;
+  /* background-color: rgb(67, 33, 98); */
 }
 
 .heart-profile {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  position: relative;
+  position: fixed;
   width: 30px;
   height: 30px;
   margin-bottom: 35px;
@@ -88,15 +128,19 @@ img.logo {
   background-color: black;
   border-radius: 30px;
   padding: 3px;
+  margin-top: 10px;
+  margin-left: -40px;
+  z-index: 100;
 }
 
 .user-initial {
   color: white;
   font-family: "Kanit", sans-serif;
   font-size: 10px;
-  margin-top: 10px;
-  position: absolute;
-  z-index: 2;
+  margin-top: 20px;
+  margin-left: -40px;
+  position: fixed;
+  z-index: 100;
 }
 
 .button-container {
@@ -122,19 +166,21 @@ img.logo {
   height: 155px;
   right: 0;
   top: 50px;
-  background: rgb(34, 34, 34);
+  /* background: rgb(34, 34, 34); */
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   /* padding: 10px; */
   color: rgb(167, 167, 167);
   z-index: 1;
   margin-right: 30px;
-  margin-top: 30px;
+  margin-top: 10px;
+  z-index: 999;
 }
 
 .user-button {
   position: absolute;
-  right: 20px;
+  margin-top: 10px;
+  right: 30px;
   top: 10%;
   transform: translateY(-50%);
 }
@@ -142,6 +188,7 @@ img.logo {
 .user-info-button {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
@@ -150,12 +197,14 @@ img.logo {
 .pb-email {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   /* margin-bottom: 5px; */
   margin-right: 40px;
   font-family: "Kanit", sans-serif;
   width: 120px;
   padding: 5px;
+  text-align: center;
 }
 
 .pb-username {
@@ -177,7 +226,7 @@ img.logo {
   width: 130px;
   height: 40px;
   border: none;
-  background-color: rgb(34, 34, 34);
+  background-color: rgb(18, 18, 18);
   color: rgb(167, 167, 167);
   font-size: 15px;
   font-family: "Kanit", sans-serif;
@@ -210,21 +259,21 @@ img.logo {
 
 .signup-button button,
 .login-button button {
-  background-color: rgb(18, 18, 18);
+  background-color: transparent;
   border: none;
   font-family: "Kanit", sans-serif;
   position: absolute;
   right: 20px;
-  margin-top: 20px;
-  margin-right: 10px;
+  margin-right: 20px;
   transform: translateY(-50%);
+  z-index: 5;
 }
 
 .signup-button button {
   color: rgb(167, 167, 167);
   font-size: 15px;
-  margin-top: 10px;
-  margin-right: 120px;
+  margin-top: 40px;
+  margin-right: 130px;
   width: 70px;
 }
 
@@ -249,7 +298,7 @@ img.logo {
   width: 90px;
   border-radius: 20px;
   font-size: 15px;
-  margin-top: 0px;
+  margin-top: 30px;
 }
 
 .login-button button:hover {

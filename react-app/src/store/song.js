@@ -75,11 +75,11 @@ export const createSongThunk = (song) => async (dispatch) => {
   }
 };
 
-export const updateSongThunk = (song) => async (dispatch) => {
-  const response = await fetch(`/api/songs/${song.id}`, {
+export const updateSongThunk = (song, songId) => async (dispatch) => {
+  const response = await fetch(`/api/songs/${songId}`, {
     method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(song),
+    // headers: { "Content-Type": "application/json" },
+    body: song,
   });
 
   if (response.ok) {
@@ -128,7 +128,8 @@ const songsReducer = (state = initialState, action) => {
       return newState;
     case UPDATE_SONG:
       newState = { ...state };
-      newState.allSongs[action.song.id] = action.song;
+      // newState.allSongs[action.song.id] = action.song;
+      newState.singleSong = action.song;
       return newState;
     case DELETE_SONG:
       newState = { ...state };

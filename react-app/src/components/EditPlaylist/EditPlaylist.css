@@ -1,0 +1,87 @@
+.main-edit-playlist-form-container {
+  background-color: black;
+  height: 350px;
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 30px;
+  border: 1px solid white;
+}
+
+.update-your-playlist-title {
+  color: white;
+  text-align: center;
+  margin-top: 10px;
+}
+/* 
+.playlist-label,
+.playlist-bio-label {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 10px;
+} */
+
+.edit-playlist-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* text-align: center; */
+  margin-bottom: 10px;
+}
+
+.edit-playlist-name-box input {
+  color: rgb(31, 31, 31);
+  background-color: white;
+  /* text-align: center; */
+  border: none;
+  padding: 5px;
+  width: 200px;
+  height: 25px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.edit-playlist-name-form-fields label {
+  align-items: center;
+}
+
+.edit-playlist-name-form-fields {
+  background-color: rgb(31, 31, 31);
+}
+
+.edit-playlist-bio-box textarea {
+  width: 208px;
+  border-radius: 10px;
+  height: 60px;
+}
+
+.update-playlist-button button {
+  background-color: rgb(176, 83, 239);
+  color: white;
+  border-radius: 15px;
+  padding: 7px;
+  border: none;
+  width: 180px;
+  height: 35px;
+  margin-top: 10px;
+  font-family: "Kanit", sans-serif;
+}
+
+.update-playlist-button button:hover {
+  background-color: rgb(167, 167, 167);
+  color: rgb(176, 83, 239);
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.edit-playlist-form-fields:hover {
+  color: rgb(176, 83, 239);
+}
+
+.errors {
+  color: red;
+  text-align: center;
+}

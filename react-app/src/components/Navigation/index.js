@@ -2,14 +2,15 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
+import YourLibrary from "../YourLibrary";
 
 import "./Navigation.css";
 
-function Navigation({ isLoaded }) {
+function Navigation({ isLoaded, reload }) {
   const sessionUser = useSelector((state) => state.session.user);
 
   return (
-    <div className="top-section">
+    <div className="page-grid">
       <div className="logo-container">
         <li className="nav-container">
           <NavLink exact to="/">
@@ -30,11 +31,16 @@ function Navigation({ isLoaded }) {
           </NavLink>
         </li>
       </div>
-      {isLoaded && (
-        <li className="pb-container">
-          <ProfileButton user={sessionUser} />
-        </li>
-      )}
+      <div className="profile-button-cont">
+        {isLoaded && (
+          <div className="pb-container">
+            <ProfileButton user={sessionUser} />
+          </div>
+        )}
+      </div>
+      <div className="your-library-cont">
+        <YourLibrary reload={reload} />
+      </div>
     </div>
   );
 }

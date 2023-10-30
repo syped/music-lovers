@@ -1,0 +1,44 @@
+.delete-album-modal {
+  background-color: black;
+  height: 300px;
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  border: 1px solid white;
+  color: white;
+  text-align: center;
+  margin-left: 100px;
+}
+
+.are-you-sure {
+  margin-bottom: 30px;
+}
+
+.yes-delete-album,
+.no-delete-album {
+  background-color: rgb(176, 83, 239);
+  margin-bottom: 20px;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  width: 250px;
+  display: flex;
+  justify-content: center;
+}
+
+.yes-delete-album:hover {
+  background-color: red;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.no-delete-album:hover {
+  background-color: rgb(167, 167, 167);
+  color: rgb(176, 83, 239);
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}

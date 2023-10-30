@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Redirect } from "react-router-dom";
 import {
   getSinglePlaylistThunk,
   getPlaylistSongsThunk,
@@ -12,7 +12,7 @@ import { FaRegHeart, FaHeart } from "react-icons/fa";
 // import { likePlaylist, unlikePlaylist } from "../../store/likes";
 import { toggleThunk, getLikeThunk } from "../../store/likes";
 
-function SinglePlaylistPage() {
+function SinglePlaylistPage({ selectedSong, selectedList }) {
   const dispatch = useDispatch();
   const { playlistId } = useParams();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -24,11 +24,14 @@ function SinglePlaylistPage() {
   const arr = Object.values(allSongsObj);
   const allLikedArr = Object.values(allLikedPlaylists);
   const [liked, setLiked] = useState("");
+  const [submitted, setSubmitted] = useState(false);
   // console.log(allLikedArr.length);
 
   const singlePlaylistObj = useSelector(
     (state) => state.playlists.singlePlaylist
   );
+
+  const playIcon = process.env.PUBLIC_URL + "/images/PLAY.svg";
 
   const handleLike = async () => {
     await dispatch(toggleThunk(playlistId));
@@ -40,6 +43,9 @@ function SinglePlaylistPage() {
       setLiked("liked");
     }
   };
+
+  // const isOwner = sessionUser && singlePlaylistObj.user_id === sessionUser.id;
+  // const isLoggedIn = !!sessionUser;
 
   useEffect(() => {
     dispatch(getSinglePlaylistThunk(playlistId));
@@ -74,6 +80,10 @@ function SinglePlaylistPage() {
     }
   }, [allLikedArr, playlistArr, sessionUser]);
 
+  if (!singlePlaylistObj) {
+    return <Redirect to="/" />;
+  }
+
   if (!arr || !arr.length) {
     dispatch(getSongsThunk());
     return null;
@@ -86,38 +96,88 @@ function SinglePlaylistPage() {
 
   let playlistSongsArr = [];
 
-  if (sessionUser) {
-    for (let i = 0; i < playlistArr.length; i++) {
-      let song = playlistArr[i];
-      for (let j = 0; j < arr.length; j++) {
-        if (song.song_id === arr[j].id) {
-          playlistSongsArr.push(arr[j]);
-        }
+  if (submitted) {
+    dispatch(getPlaylistSongsThunk(playlistId));
+    setSubmitted(false);
+    return null;
+  }
+
+  for (let i = 0; i < playlistArr.length; i++) {
+    let song = playlistArr[i];
+    for (let j = 0; j < arr.length; j++) {
+      if (song.song_id === arr[j].id) {
+        playlistSongsArr.push(arr[j]);
       }
     }
   }
 
   if (!singlePlaylistObj || !singlePlaylistObj.id) return null;
 
+  const handleClick = (id) => {
+    for (let i = 0; i < playlistSongsArr.length; i++) {
+      if (id === playlistSongsArr[i].id) {
+        console.log("first", i);
+        selectedSong(i);
+      }
+    }
+  };
+
   return (
     <>
       {isLoaded && (
-        <div>
-          <div>{singlePlaylistObj.playlist_name}</div>
-          {playlistSongsArr.map((song) => (
-            <div>{song.song_name}</div>
-          ))}
-          <div className="song-container">
-            <OpenModalButton
-              buttonText="Add Song"
-              modalComponent={<AllSongsModal playlistId={playlistId} />}
-            />
+        <div className="single-album-container">
+          <img
+            className="single-playlist-image"
+            src={singlePlaylistObj.playlist_image}
+          />
+          <div className="single-playlist-name-bio">
+            <div className="single-album-name">
+              {singlePlaylistObj.playlist_name}
+            </div>
+            <div className="single-playlist-bio">
+              {singlePlaylistObj.playlist_bio}
+            </div>
           </div>
-
-          <p>{singlePlaylistObj.playlist_bio}</p>
-          <button onClick={handleLike} className={liked ? "liked" : ""}>
-            {liked ? "Unlike" : "Like"}
-          </button>
+          {sessionUser && !(singlePlaylistObj.user_id === sessionUser.id) && (
+            <button
+              onClick={handleLike}
+              id="playlist-like"
+              className={liked ? "liked" : ""}
+            >
+              {liked ? "Unlike" : "Like"}
+            </button>
+          )}
+          {sessionUser && singlePlaylistObj.user_id === sessionUser.id && (
+            <div className="add-song-button-playlist">
+              <OpenModalButton
+                buttonText="Add Song"
+                modalComponent={
+                  <AllSongsModal
+                    submitted={() => setSubmitted(true)}
+                    playlistId={playlistId}
+                  />
+                }
+              />
+            </div>
+          )}
+          <h3 className="single-album-header">Title</h3>
+          <div className="underline"></div>
+          <div className="single-album-song-container">
+            {playlistSongsArr.map((song) => (
+              <div className="single-album-song">
+                <img
+                  onClick={() => {
+                    handleClick(song.id); //ADDDDDDDDDDD SONGGG
+                    selectedList(playlistSongsArr);
+                  }}
+                  className="song-play-playlist"
+                  src={playIcon}
+                />
+                <div>{song.song_name}</div>
+              </div>
+            ))}
+          </div>
+          <div className="single-album-song-background"></div>
         </div>
       )}
     </>
