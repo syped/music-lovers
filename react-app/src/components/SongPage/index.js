@@ -42,7 +42,7 @@ function AllSongs({ selectedSong, selectedList }) {
               {/* add picture */}
               <img
                 className="song-card-album-cover"
-                src={allAlbums[song.album_id].album_image}
+                src={allAlbums[song.album_id]?.album_image}
               />
               <img
                 onClick={() => {

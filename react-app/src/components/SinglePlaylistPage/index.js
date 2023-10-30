@@ -50,7 +50,8 @@ function SinglePlaylistPage({ selectedSong, selectedList }) {
   useEffect(() => {
     dispatch(getSinglePlaylistThunk(playlistId));
     dispatch(getPlaylistSongsThunk(playlistId));
-    dispatch(getLikeThunk(playlistId)).then(() => setIsLoaded(true));
+    dispatch(getLikeThunk(playlistId));
+    setIsLoaded(true);
   }, [dispatch, playlistId]);
 
   useEffect(() => {
@@ -89,7 +90,7 @@ function SinglePlaylistPage({ selectedSong, selectedList }) {
     return null;
   }
 
-  if (!allLikedArr || !allLikedArr.length) {
+  if ((singlePlaylistObj && !allLikedArr) || !allLikedArr.length) {
     dispatch(getLikeThunk(playlistId));
     return null;
   }
