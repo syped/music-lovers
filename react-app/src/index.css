@@ -563,3 +563,25 @@
   margin-top: -10px;
   padding: 15px;
 }
+
+.main-edit-album-form-container {
+  background-color: #000;
+  border: 1px solid #fff;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  justify-content: center;
+  width: 380px;
+}
+
+.main-edit-playlist-form-container {
+  background-color: #000;
+  border: 1px solid #fff;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  justify-content: center;
+  width: 380px;
+}

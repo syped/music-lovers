@@ -20,6 +20,7 @@ function CreateSongForm({ submitted, albumId }) {
   function errorsChecked(name, mp3) {
     const errors = {};
     if (!name) errors.name = "Song name is required";
+    if (name.length > 35) errors.name = "Song name is too long";
     if (!mp3) errors.mp3 = "Mp3 file is required";
 
     setErrors(errors);

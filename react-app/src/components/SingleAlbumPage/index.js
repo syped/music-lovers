@@ -60,7 +60,7 @@ function SingleAlbumPage({ selectedSong, selectedList }) {
     else if (albumsSongsArr.length > 1)
       count = `${albumsSongsArr.length} songs`;
     else {
-      count = "New";
+      count = "None";
     }
   }
 

@@ -19,6 +19,7 @@ function CreatePlaylistForm({ reload }) {
   function errorsChecked(name, bio, image) {
     const errors = {};
     if (!name) errors.name = "Playlist name is required";
+    if (name.length > 35) errors.name = "Playlist name is too long";
     if (!bio) errors.bio = "Bio is required";
     if (!image) errors.image = "Image is required";
 

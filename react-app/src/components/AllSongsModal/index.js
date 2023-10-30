@@ -55,7 +55,7 @@ function AllSongsModal({ playlistId, submitted }) {
               {/* add .firstName to song.user_id */}
               <div className="add-songs-album-name">
                 {allAlbums[song.album_id] &&
-                  allAlbums[song.album_id].album_name}
+                  allAlbums[song.album_id]?.album_name}
               </div>
               <button
                 className="add-songs-modal-button"

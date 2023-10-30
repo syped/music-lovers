@@ -23,6 +23,8 @@ function CreateAlbumForm({ reload }) {
     if (!name) errors.name = "Album name is required";
     if (name.length > 35) errors.name = "Album name is too long";
     if (!releaseYear) errors.releaseYear = "Release year is required";
+    if (releaseYear.length !== 4)
+      errors.releaseYear = "Release year must be valid";
     if (!image) errors.image = "Image is required";
 
     setErrors(errors);
