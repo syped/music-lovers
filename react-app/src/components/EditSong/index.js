@@ -31,6 +31,7 @@ function EditSong({ song, albumId, submitted }) {
     const errors = {};
 
     if (!name) errors.name = "Album name is required";
+    if (name.length > 35) errors.name = "Song name is too long";
     if (!mp3) errors.mp3 = "Mp3 file is required";
 
     setErrors(errors);

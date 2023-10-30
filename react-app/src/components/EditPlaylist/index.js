@@ -36,6 +36,7 @@ function EditPlaylist({ playlistId, submitted }) {
     const errors = {};
 
     if (!name) errors.name = "Playlist name is required";
+    if (name.length > 35) errors.name = "Playlist name is too long";
     if (!bio) errors.bio = "Playlist bio is required";
 
     setErrors(errors);
