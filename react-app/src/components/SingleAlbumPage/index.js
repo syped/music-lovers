@@ -27,7 +27,8 @@ function SingleAlbumPage({ selectedSong, selectedList }) {
   const playIcon = process.env.PUBLIC_URL + "/images/PLAY.svg";
 
   useEffect(() => {
-    dispatch(getSingleAlbum(albumId)).then(() => setIsLoaded(true));
+    dispatch(getSingleAlbum(albumId));
+    setIsLoaded(true);
     dispatch(getSongsThunk());
   }, [dispatch, albumId]);
 
