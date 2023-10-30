@@ -81,9 +81,9 @@ function SinglePlaylistPage({ selectedSong, selectedList }) {
     }
   }, [allLikedArr, playlistArr, sessionUser]);
 
-  if (!singlePlaylistObj) {
-    return <Redirect to="/" />;
-  }
+  // if (!singlePlaylistObj) {
+  //   return <Redirect to="/" />;
+  // }
 
   if (!arr || !arr.length) {
     dispatch(getSongsThunk());
