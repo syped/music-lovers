@@ -14,6 +14,11 @@ function AllSongs({ selectedSong, selectedList }) {
   const arr = Object.values(allSongsObj);
   const allAlbumsArr = Object.values(allAlbums);
 
+  useEffect(() => {
+    dispatch(getAlbums());
+    dispatch(getSongsThunk());
+  }, [dispatch]);
+
   if (!arr || !arr.length) {
     dispatch(getAlbums());
     dispatch(getSongsThunk());
@@ -44,13 +49,15 @@ function AllSongs({ selectedSong, selectedList }) {
           {arr.map((song) => (
             <div className="single-song">
               {/* add picture */}
+
               <img
                 className="song-card-album-cover"
                 src={
-                  allAlbums[song.album_id] &&
-                  allAlbums[song.album_id]?.album_image
+                  allAlbums[song.album_id - 1] &&
+                  allAlbums[song.album_id - 1]?.album_image
                 }
               />
+
               {console.log("AHAHAHHAHAHHAAH", song.album_id)}
               <img
                 onClick={() => {
@@ -62,8 +69,8 @@ function AllSongs({ selectedSong, selectedList }) {
               />
               <div>{song.song_name}</div>
               <div className="songs-album-name">
-                {allAlbums[song.album_id] &&
-                  allAlbums[song.album_id]?.album_name}
+                {allAlbums[song.album_id - 1] &&
+                  allAlbums[song.album_id - 1]?.album_name}
               </div>
             </div>
           ))}
