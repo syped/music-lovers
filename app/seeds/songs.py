@@ -42,6 +42,38 @@ def seed_songs():
     )
     db.session.add(song5)
 
+    song6 = Song(
+        user_id=5,
+        album_id=10,
+        song_name="That Kind of Love",
+        mp3='https://music-lovers-images.s3.amazonaws.com/that-kind-of-love.mp3'
+    )
+    db.session.add(song6)
+
+    song7 = Song(
+        user_id=2,
+        album_id=3,
+        song_name="Rooftop",
+        mp3='https://music-lovers-images.s3.amazonaws.com/rooftop.mp3'
+    )
+    db.session.add(song7)
+
+    song8 = Song(
+        user_id=5,
+        album_id=10,
+        song_name="Replay",
+        mp3='https://music-lovers-images.s3.amazonaws.com/replay.mp3'
+    )
+    db.session.add(song8)
+
+    song9 = Song(
+        user_id=5,
+        album_id=10,
+        song_name="Perfect Night",
+        mp3='https://music-lovers-images.s3.amazonaws.com/perfect-night.mp3'
+    )
+    db.session.add(song9)
+
     db.session.commit()
 
 def undo_songs():
