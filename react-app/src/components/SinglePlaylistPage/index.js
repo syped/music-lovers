@@ -24,6 +24,7 @@ function SinglePlaylistPage({ selectedSong, selectedList }) {
   const arr = Object.values(allSongsObj);
   const allLikedArr = Object.values(allLikedPlaylists);
   const [liked, setLiked] = useState("");
+  const [submitted, setSubmitted] = useState(false);
   // console.log(allLikedArr.length);
 
   const singlePlaylistObj = useSelector(
@@ -91,13 +92,17 @@ function SinglePlaylistPage({ selectedSong, selectedList }) {
 
   let playlistSongsArr = [];
 
-  if (sessionUser) {
-    for (let i = 0; i < playlistArr.length; i++) {
-      let song = playlistArr[i];
-      for (let j = 0; j < arr.length; j++) {
-        if (song.song_id === arr[j].id) {
-          playlistSongsArr.push(arr[j]);
-        }
+  if (submitted) {
+    dispatch(getPlaylistSongsThunk(playlistId));
+    setSubmitted(false);
+    return null;
+  }
+
+  for (let i = 0; i < playlistArr.length; i++) {
+    let song = playlistArr[i];
+    for (let j = 0; j < arr.length; j++) {
+      if (song.song_id === arr[j].id) {
+        playlistSongsArr.push(arr[j]);
       }
     }
   }
@@ -142,7 +147,12 @@ function SinglePlaylistPage({ selectedSong, selectedList }) {
             <div className="add-song-button-playlist">
               <OpenModalButton
                 buttonText="Add Song"
-                modalComponent={<AllSongsModal playlistId={playlistId} />}
+                modalComponent={
+                  <AllSongsModal
+                    submitted={() => setSubmitted(true)}
+                    playlistId={playlistId}
+                  />
+                }
               />
             </div>
           )}

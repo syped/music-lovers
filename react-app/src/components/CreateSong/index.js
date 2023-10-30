@@ -49,6 +49,7 @@ function CreateSongForm({ submitted, albumId }) {
       // console.log("first");
       // dispatch(getSingleAlbum(albumId));
       submitted();
+      closeModal();
       // if (response.ok) {
 
       // history.push(`/albums/${albumId}`);

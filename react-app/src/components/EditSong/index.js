@@ -5,7 +5,7 @@ import { updateSongThunk, getSingleSongThunk } from "../../store/song";
 import { useModal } from "../../context/Modal";
 import "./EditSong.css";
 
-function EditSong({ song, albumId }) {
+function EditSong({ song, albumId, submitted }) {
   const dispatch = useDispatch();
   const history = useHistory();
   //   const song = useSelector((state) => state.songs.singleSong);
@@ -64,9 +64,9 @@ function EditSong({ song, albumId }) {
     setMp3Loading(true);
 
     if (Object.keys(errorsFound).length === 0) {
-      const response = await dispatch(updateSongThunk(formData, song.id)).then(
-        closeModal
-      );
+      const response = await dispatch(updateSongThunk(formData, song.id));
+      submitted();
+      closeModal();
 
       // if (response.ok) {
       //   history.push(`/songs/${response.id}`);

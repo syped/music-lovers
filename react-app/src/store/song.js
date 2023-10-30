@@ -128,7 +128,7 @@ const songsReducer = (state = initialState, action) => {
       return newState;
     case UPDATE_SONG:
       newState = { ...state };
-      newState.allSongs[action.song.id] = action.song;
+      // newState.allSongs[action.song.id] = action.song;
       newState.singleSong = action.song;
       return newState;
     case DELETE_SONG:

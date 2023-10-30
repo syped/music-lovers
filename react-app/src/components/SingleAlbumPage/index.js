@@ -32,6 +32,7 @@ function SingleAlbumPage({ selectedSong, selectedList }) {
 
   if (submitted) {
     dispatch(getSingleAlbum(singleAlbumObj.id));
+    dispatch(getSongsThunk());
     setSubmitted(false);
   }
 
@@ -101,14 +102,25 @@ function SingleAlbumPage({ selectedSong, selectedList }) {
             {albumsSongsArr?.map((song) => (
               <div className="single-album-song" key={song.id}>
                 <>
-                  <img
-                    onClick={() => {
-                      handleClick(song.id);
-                      selectedList(albumsSongsArr);
-                    }}
-                    className="song-play"
-                    src={playIcon}
-                  />
+                  {sessionUser ? (
+                    <img
+                      onClick={() => {
+                        handleClick(song.id);
+                        selectedList(albumsSongsArr);
+                      }}
+                      className="song-play"
+                      src={playIcon}
+                    />
+                  ) : (
+                    <img
+                      onClick={() => {
+                        handleClick(song.id);
+                        selectedList(albumsSongsArr);
+                      }}
+                      className="song-play no-session-user-play"
+                      src={playIcon}
+                    />
+                  )}
                   <div>{song.song_name}</div>
                   {sessionUser && sessionUser.id === singleAlbumObj.user_id ? (
                     <div className="song-edit-delete-container">
@@ -116,14 +128,23 @@ function SingleAlbumPage({ selectedSong, selectedList }) {
                         <OpenModalButton
                           buttonText="Edit"
                           modalComponent={
-                            <EditSong albumId={albumId} song={song} />
+                            <EditSong
+                              albumId={albumId}
+                              song={song}
+                              submitted={() => setSubmitted(true)}
+                            />
                           }
                         />
                       </div>
                       <div className="song-delete">
                         <OpenModalButton
                           buttonText="Delete"
-                          modalComponent={<DeleteSong song={song} />}
+                          modalComponent={
+                            <DeleteSong
+                              song={song}
+                              submitted={() => setSubmitted(true)}
+                            />
+                          }
                         />
                       </div>
                     </div>

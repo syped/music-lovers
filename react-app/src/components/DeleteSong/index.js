@@ -4,14 +4,16 @@ import { useDispatch } from "react-redux";
 import { deleteSongThunk } from "../../store/song";
 import "./DeleteSong.css";
 
-function DeleteSongModal({ song }) {
+function DeleteSongModal({ song, submitted }) {
   const dispatch = useDispatch();
   const [exist, setExist] = useState(true);
   const { closeModal } = useModal();
 
   const confirmDelete = (e) => {
     e.preventDefault();
-    dispatch(deleteSongThunk(song.id)).then(closeModal);
+    dispatch(deleteSongThunk(song.id));
+    submitted();
+    closeModal();
     setExist(false);
   };
 
