@@ -9,9 +9,9 @@ function DeleteAlbumModal({ albumId, submitted }) {
   const [exist, setExist] = useState(true);
   const { closeModal } = useModal();
 
-  const confirmDelete = (e) => {
+  const confirmDelete = async (e) => {
     e.preventDefault();
-    dispatch(deleteAlbumThunk(albumId));
+    await dispatch(deleteAlbumThunk(albumId));
     closeModal();
     submitted();
     setExist(false);
