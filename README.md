@@ -8,7 +8,9 @@ https://music-lovers-docker.onrender.com/
 
 ## Technologies Used
 Backend: Flask, SQLAlchemy
+
 FrontEnd: React, Redux
+
 Hosting: Render
 
 ## Wiki Pages
