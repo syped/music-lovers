@@ -29,6 +29,14 @@ function Navigation({ isLoaded, reload }) {
           <NavLink exact to="/playlists" className="nav-links">
             Playlists
           </NavLink>
+          <a
+            href="https://github.com/syped/music-lovers/wiki"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="github-link"
+          >
+            About Us
+          </a>
         </li>
       </div>
       <div className="profile-button-cont">
