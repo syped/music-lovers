@@ -63,7 +63,7 @@
   left: 330px;
   bottom: 630px;
   height: 100%;
-  width: 100%;
+  width: fit-content;
   z-index: 0;
   max-width: 100%;
   max-height: 600px;
@@ -584,4 +584,123 @@
   height: fit-content;
   justify-content: center;
   width: 380px;
+}
+
+@media all and (max-width: 1050px) {
+  .single-album-container {
+    position: relative;
+    left: 330px;
+    bottom: 630px;
+    height: 100%;
+    width: 82%;
+    z-index: 0;
+    max-width: 100%;
+    max-height: 600px;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+  }
+}
+
+@media all and (max-width: 890px) {
+  .single-album-container {
+    position: relative;
+    left: 330px;
+    bottom: 630px;
+    height: 100%;
+    width: 72%;
+    z-index: 0;
+    max-width: 100%;
+    max-height: 600px;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+  }
+
+  .single-album-name {
+    font-size: 25pt;
+    font-weight: bolder;
+    color: white;
+    width: 630px;
+    height: 150px;
+    margin-bottom: 100px;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+  }
+}
+
+@media all and (max-width: 800px) {
+  .profile-button-cont {
+    background-image: linear-gradient( to bottom, rgb(74, 31, 104), rgba(18, 18, 18, 1) 80% );
+    /* margin-left: auto; */
+    margin-top: 20px;
+    margin-left: -227px;
+    margin-right: 10px;
+    height: 690px;
+    border-radius: 10px;
+  }
+
+  .library-container {
+    margin-left: 30px;
+    background: rgb(18, 18, 18);
+    color: white;
+    max-width: 250px;
+    width: 100%;
+    max-height: 1000px;
+    height: 480px;
+    padding: 10px;
+    border-radius: 10px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 20px;
+    text-align: center;
+  }
+
+  .nav-container {
+    background: rgb(18, 18, 18);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    /* width: 100%; */
+    border-radius: 10px;
+    padding: 10px;
+    position: fixed;
+    width: 250px;
+  }
+
+  .single-album-container {
+    position: relative;
+    left: 98px;
+    bottom: 630px;
+    height: 100%;
+    width: 72%;
+    z-index: 0;
+    max-width: 100%;
+    max-height: 600px;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+  }
+
+  .single-playlist-image {
+    height: 150px;
+    border-radius: 10px;
+    transition: all 0.2s ease-in-out;
+    width: 150px;
+    margin-top: -100px;
+  }
+
+  .single-playlist-name-bio {
+    position: relative;
+    left: -180px;
+    top: 100px;
+  }
+
+  .single-playlist-bio {
+    margin-bottom: 70px;
+    width: 600px;
+    margin-top: -100px;
+  }
 }
