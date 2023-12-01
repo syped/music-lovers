@@ -1,3 +1,35 @@
+# Music Lovers
+
+## Intro
+Music Lovers is a music listening platform where artists can share their music to their fans and listeners can create their own playlist to support their favorite artists! On the artist side users can currently create, update, and delete their albums and upload an album cover. From the listeners usage, users can view albums, create, update, delete songs from their created playlists.
+
+Check us out!
+https://music-lovers-docker.onrender.com/
+
+## Technologies Used
+Backend: Flask, SQLAlchemy
+
+FrontEnd: React, Redux
+
+Hosting: Render
+
+## Wiki Pages
+About Us:
+https://github.com/syped/music-lovers/wiki
+
+Database Schema:
+https://github.com/syped/music-lovers/wiki/Database-Schema
+
+Feature List:
+https://github.com/syped/music-lovers/wiki/Feature-List
+
+User Stories:
+https://github.com/syped/music-lovers/wiki/User-Stories
+
+
+
+
+
 # Flask React Project
 
 This is the starter for the Flask React project.
