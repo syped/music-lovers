@@ -306,3 +306,10 @@ img.logo {
   width: 91px;
   cursor: pointer;
 }
+
+.github-link {
+font-size: 12px;
+color: rgb(167, 167, 167);
+text-decoration: none;
+font-family: "Kanit", sans-serif;
+}
